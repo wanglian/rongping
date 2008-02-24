@@ -6,15 +6,20 @@
 	<p>The profile you requested does not exist.</p>
 <% else -%>
 	<% content_for :header do -%>
-		Profile for <%= @user.login %>
+		Editing my profile
 	<% end -%>
-	
+
 	<%= render :partial => 'profiles/my_account' if current_user == @user %>
 	
+	<% form_for :profile, @profile, :url => profile_url(@profile.user), :html => {:method => :put} do |f| %>
+	
 	<% @profile.public_attributes.each do |column| -%>
-		<p>
-			<strong><%= column.humanize %></strong>: <%= @profile.send(column) %>
+		<p><label><%= column.humanize %></label><br />
+		<%= input "profile", "#{column}", :value => @profile.send(column) %>
 		</p>
 	<% end -%>
+	
+	<%= submit_tag "Save changes" %>
+	
+	<% end %>
 <% end -%>
-

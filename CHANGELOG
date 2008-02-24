@@ -2,5 +2,5 @@
 ================================================================================
  * Created initial base_app project
  * Added restful_authentication with activation
- * Added profiles, partially, the are not yet editable
+ * Added profiles
  * Created default layout

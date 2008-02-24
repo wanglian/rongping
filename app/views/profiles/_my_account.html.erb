@@ -1,0 +1,19 @@
+<% content_for :sidebar do -%>
+<h2>My account</h2>
+
+<ul>
+	<li><%= link_to "Update my profile", edit_profile_url(current_user) %></li>
+</ul>
+
+<ul>
+	<% # TODO: (base_app) Implement 'change email' feature %>
+	<li><%= link_to "Change my email address", "#" %></li>
+	<% # TODO: (base_app) Implement 'change password' feature %>
+	<li><%= link_to "Change my password", "#" %></li>
+</ul>
+
+<ul>
+	<% # TODO: (base_app) Implement 'delete my account' feature %>
+	<li><%= link_to "Delete my account", "#" %></li>
+</ul>
+<% end -%>
