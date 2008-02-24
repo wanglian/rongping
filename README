@@ -41,7 +41,7 @@ NOTE: Also run 'rake notes:todo'. Todo's tagged with (base_app) are also wanted 
     - Manage settings for base_app
  * OpenID signup/login
  * Reset password option
- * User profiles
+ * User profiles (partially done)
  * Configuration (e.g. from config/app.yml) (use activation? enable OpenID? etc.)
  * Use Gibberish and make the whole app available in English and Dutch by default
  * Add form helpers which allow easy form building (is a plugin available?)

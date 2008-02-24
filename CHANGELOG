@@ -1,0 +1,6 @@
+24-02-2008 - ariejan
+================================================================================
+ * Created initial base_app project
+ * Added restful_authentication with activation
+ * Added profiles, partially, the are not yet editable
+ * Created default layout
