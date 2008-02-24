@@ -1,6 +1,17 @@
 # See how all your routes lay out with "rake routes"
 ActionController::Routing::Routes.draw do |map|
   
+  map.resources :users, :member => { :suspend   => :put,
+                                     :unsuspend => :put,
+                                     :purge     => :delete }
+  map.resource :session
+  
+  # Account shortcuts
+  map.signup   '/signup',   :controller => 'users',    :action => 'new'
+  map.activate '/activate/:activation_code', :controller => 'users',    :action => 'activate'
+  map.login    '/login',    :controller => 'sessions', :action => 'new'
+  map.logout   '/logout',   :controller => 'sessions', :action => 'destroy', :method => :delete
+  
   # Dashboard as the default location
   map.root :controller => 'dashboard', :action => 'index'
 
