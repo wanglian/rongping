@@ -7,23 +7,54 @@
 
 	<title>base_app</title>
 	
+	<%= stylesheet_link_tag 'default' %>
+  	<%= javascript_include_tag :defaults %>
+  
 </head>
 
 <body>
 
-<div id="header">
-	<h1>base_app</h1>
-</div>
+  <div id="header">
+    <div id="global_links">
+      <%= render :partial => 'shared/global_links' %>
+    </div>
+    <h1>base_app <span>Ariejan.net</span></h1>
 
-<% if flash[:notice] -%>
-<div id="notice">
-	<%= flash[:notice] %>
-</div>
-<% end -%>
+    <div id="tabs">
+      <%= render :partial => 'shared/tabs' %>
+    </div>
+  </div>
 
-<div id="content">
-	<%= yield %>
-</div>
+  <div id="main">
+
+    <div id="left">
+	 <% if flash[:notice] %>
+       <div id="notice"><%= flash[:notice] %></div>
+     <% end %>
+
+	 <% if flash[:warning] %>
+       <div id="warning"><%= flash[:warning] %></div>
+     <% end %>
+
+	 <% if flash[:error] %>
+       <div id="error"><%= flash[:error] %></div>
+     <% end %>
+
+      <h2 class="head"><%= yield_or_default yield(:header), "Use 'content_for :header do; end' in your view to set this title" %></h2>
+
+      <div id="screen">
+        <%= yield %>
+      </div>
+    </div>
+    <div id="right">
+      <%= yield_or_default(yield(:sidebar)) %>
+    </div>
+  </div>
+  <div id="footer">
+    base_app<br />
+	Copyright © Ariejan de Vroom
+  </div>
+
 
 </body>
 </html>
