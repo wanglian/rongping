@@ -7,6 +7,7 @@
 #   "company_name" 	=> "My Company Name"
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
+  include RoleRequirement
   
   helper :all # include all helpers, all the time
 

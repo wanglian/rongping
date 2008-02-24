@@ -1,5 +1,16 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
+  has_and_belongs_to_many :roles
+  has_one :profile
+  
+  # has_role? simply needs to return true or false whether a user has a role or not.  
+  # It may be a good idea to have "admin" roles return true always
+  def has_role?(role_in_question)
+    @_list ||= self.roles.collect(&:name)
+    return true if @_list.include?("admin")
+    (@_list.include?(role_in_question.to_s) )
+  end
+
   # Virtual attribute for the unencrypted password
   attr_accessor :password
 
@@ -12,13 +23,12 @@ class User < ActiveRecord::Base
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :login, :email, :case_sensitive => false
   before_save :encrypt_password
-  after_create :create_profile
+  
+  after_create :create_environment
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :password, :password_confirmation
-  
-  has_one :profile
 
   acts_as_state_machine :initial => :pending
   state :passive
@@ -126,8 +136,11 @@ class User < ActiveRecord::Base
       self.deleted_at = self.activation_code = nil
     end
     
-    def create_profile
-      self.profile = Profile.new
-      save
+    def create_environment
+      # Give the user a profile
+      self.profile = Profile.create
+      
+      # Give the defaul 'user' role
+      self.roles << Role.find_by_name('user')
     end
 end
