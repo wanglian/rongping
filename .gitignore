@@ -1,3 +1,5 @@
 log/*
 tmp/*
 database.yml
+*.sqlite
+*.sqlite3
