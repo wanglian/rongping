@@ -3,3 +3,4 @@ tmp/*
 database.yml
 *.sqlite
 *.sqlite3
+schema.rb
