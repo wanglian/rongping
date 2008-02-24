@@ -1,6 +1,7 @@
 <% if logged_in? %>
  	<strong><%= current_user.login %></strong> | 
 	<%= link_to "Dashboard", root_url %> | 
+	<%= link_to "My Account", profile_url(current_user) %> | 
 	<%= link_to "Log out", logout_url, :method => :delete %>
 <% else %>
 	<%= link_to "Sign up", signup_url %> | 

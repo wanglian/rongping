@@ -14,6 +14,8 @@ class SessionsController < ApplicationController
       redirect_back_or_default('/')
       flash[:notice] = "Welcome back to base_app, #{self.current_user.login}!"
     else
+      # TODO: (base_app) Add feature to resend the activation email, which might be caught as SPAM
+      flash[:error] = "The login/password combination you provided is incorrect or your account has not yet been activated."
       render :action => 'new'
     end
   end

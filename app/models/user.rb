@@ -12,10 +12,13 @@ class User < ActiveRecord::Base
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :login, :email, :case_sensitive => false
   before_save :encrypt_password
+  after_create :create_profile
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :password, :password_confirmation
+  
+  has_one :profile
 
   acts_as_state_machine :initial => :pending
   state :passive
@@ -121,5 +124,10 @@ class User < ActiveRecord::Base
     def do_activate
       self.activated_at = Time.now.utc
       self.deleted_at = self.activation_code = nil
+    end
+    
+    def create_profile
+      self.profile = Profile.new
+      save
     end
 end

@@ -1,0 +1,40 @@
+<% if @profile.nil? -%>
+	<% content_for :header do -%>
+		Profile not be found
+	<% end -%>
+	
+	<p>The profile you requested does not exist.</p>
+<% else -%>
+	<% content_for :header do -%>
+		Profile for <%= @user.login %>
+	<% end -%>
+	
+	<% if current_user == @user %>
+		<% content_for :sidebar do -%>
+		<h2>My account</h2>
+		
+		<ul>
+			<li><%= link_to "Update my profile", edit_profile_url(current_user) %></li>
+		</ul>
+		
+		<ul>
+			<% # TODO: (base_app) Implement 'change email' feature %>
+			<li><%= link_to "Change my email address", "#" %></li>
+			<% # TODO: (base_app) Implement 'change password' feature %>
+			<li><%= link_to "Change my password", "#" %></li>
+		</ul>
+		
+		<ul>
+			<% # TODO: (base_app) Implement 'delete my account' feature %>
+			<li><%= link_to "Delete my account", "#" %></li>
+		</ul>
+		<% end -%>
+	<% end %>
+	
+	<% @profile.public_attributes.each do |column| -%>
+		<p>
+			<strong><%= column.humanize %></strong>: <%= @profile.send(column) %>
+		</p>
+	<% end -%>
+<% end -%>
+

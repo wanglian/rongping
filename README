@@ -20,15 +20,19 @@ base_app is a default Ruby on Rails project which by default includes the follow
 
 == Getting started
 
-To get started quickly, do a search and replace on the following strings to personalize base_app. 
+There are several things you'll need to do before you can really get started. Run the following rake command:
 
- "base_app" 		=> "My Cool Application Name"
- "base_app_url" 	=> "www.baseapp.com"			# Don't include http:// or a trailing slash
- "company_name" 	=> "My Company Name"
+   rake notes:todo
 
-== To do's
+This will generate a list of TODO entries throughout the project. Check the TODO entries in the code for more information.
+
+Note: Todo's tagged with (base_app) are for the base_app project itself. You can safely ignore these.
+
+== base_app To do's
 
 There are still some things I want in base_app, but which haven't gotten around to implementing yet.
+
+NOTE: Also run 'rake notes:todo'. Todo's tagged with (base_app) are also wanted features
 
  * Add user roles (with default 'user' role for users, and a default administrator role)
  * Administration panel where you can:

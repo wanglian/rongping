@@ -12,6 +12,9 @@ ActionController::Routing::Routes.draw do |map|
   map.login    '/login',    :controller => 'sessions', :action => 'new'
   map.logout   '/logout',   :controller => 'sessions', :action => 'destroy', :method => :delete
   
+  # Profiles
+  map.resources :profiles
+  
   # Dashboard as the default location
   map.root :controller => 'dashboard', :action => 'index'
 

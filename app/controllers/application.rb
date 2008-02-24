@@ -1,6 +1,10 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
+# TODO: Search and Replace placeholder strings and replace them with sensible values
+#   "base_app" 		  => "My Cool Application Name"
+#   "base_app_url" 	=> "www.baseapp.com"			# Don't include http:// or a trailing slash
+#   "company_name" 	=> "My Company Name"
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   
