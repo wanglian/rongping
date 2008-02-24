@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates
+END
+unit_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/unit_test.rb
+END
+helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/helper.rb
+END
+authenticated_test_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/authenticated_test_helper.rb
+END
+model_functional_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/model_functional_test.rb
+END
+controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/controller.rb
+END
+activation.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/activation.rhtml
+END
+authenticated_system.rb
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/authenticated_system.rb
+END
+observer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/observer.rb
+END
+signup.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/signup.rhtml
+END
+unit_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/unit_spec.rb
+END
+migration.rb
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/migration.rb
+END
+login.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/login.rhtml
+END
+model_functional_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/model_functional_spec.rb
+END
+signup_notification.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/signup_notification.rhtml
+END
+model_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/model_helper.rb
+END
+model.rb
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/model.rb
+END
+functional_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/functional_test.rb
+END
+model_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/model_controller.rb
+END
+fixtures.yml
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/fixtures.yml
+END
+mailer_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/mailer_test.rb
+END
+mailer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/mailer.rb
+END
+functional_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/channelservice_fm/!svn/ver/1/trunk/vendor/plugins/restful_authentication/generators/authenticated/templates/functional_spec.rb
+END
