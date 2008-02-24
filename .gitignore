@@ -5,3 +5,5 @@ database.yml
 *.sqlite3
 schema.rb
 doc/api
+.DS_Store
+.svn
