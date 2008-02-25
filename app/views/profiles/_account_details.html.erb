@@ -1,0 +1,14 @@
+<h3>Account details</h3>
+<table class="overview">
+	<%= cell "Login", h(@user.login) %>
+
+	<%= cell_separator %>
+	
+	<%= cell "Email", "#{h(@user.email)} <small>#{link_to "change", "#"}</small>" %>
+	<%= cell "Password", "#{"*"*8} <small>#{link_to "change", "#"}</small>" %>
+	
+	<%= cell_separator %>
+	
+	<%= cell "Account created", @user.created_at.to_s(:long) %>
+	<%= cell "Last updated", @user.updated_at.to_s(:long) %>
+</table>

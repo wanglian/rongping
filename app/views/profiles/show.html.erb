@@ -6,15 +6,16 @@
 	<p>The profile you requested does not exist.</p>
 <% else -%>
 	<% content_for :header do -%>
-		Profile for <%= @user.login %>
+		<% if current_user == @user -%>
+			My Account
+		<% else -%>
+			Profile for <%= @user.login %>
+		<% end -%>
 	<% end -%>
 	
 	<%= render :partial => 'profiles/my_account' if current_user == @user %>
 	
-	<% @profile.public_attributes.each do |column| -%>
-		<p>
-			<strong><%= column.humanize %></strong>: <%= @profile.send(column) %>
-		</p>
-	<% end -%>
+	<%= render :partial => 'profiles/account_details' if current_user == @user %>
+	
+	<%= render :partial => 'profiles/profile_details' %>
 <% end -%>
-

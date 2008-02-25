@@ -396,9 +396,14 @@ table.index td, table.overview td {
 table.overview td {
 	border: none;
 }
+table.overview td.separator {
+	border-bottom: 1px solid #e0e0e0;
+	padding: 0;
+	margin: 0;
+}
 table.overview td.label {
 	border: none;
-	width: auto;
+	min-width: 150px;
 	font-weight: bold;
 	text-align: right;
 	padding: 8px 12px 8px 0;
