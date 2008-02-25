@@ -38,7 +38,7 @@ base_app Account for <em><%=h @user.login %></em>
 	<%= cell_separator %>
 	
 	<%= cell "Email", h(@user.email) %>
-	<%= cell "Password", "#{"*"*8} <small>#{link_to "reset password", reset_password_admin_user_url(@user), :method => :put}</small>" %>
+	<%= cell "Password", "#{"*"*8} <small>#{link_to "send new password", reset_password_admin_user_url(@user), :method => :put}</small>" %>
 	
 	<%= cell_separator %>
 	
