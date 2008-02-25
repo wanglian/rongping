@@ -10,10 +10,16 @@ ActionController::Routing::Routes.draw do |map|
   map.signup   '/signup',   :controller => 'users',    :action => 'new'
   map.activate '/activate/:activation_code', :controller => 'users',    :action => 'activate'
   map.login    '/login',    :controller => 'sessions', :action => 'new'
-  map.logout   '/logout',   :controller => 'sessions', :action => 'destroy', :method => :delete
+  map.logout   '/logout',   :controller => 'sessions', :action => 'destroy', :conditions => {:method => :delete}
   
   # Profiles
   map.resources :profiles
+  
+  # Administration
+  map.namespace(:admin) do |admin|
+    admin.root :controller => 'dashboard', :action => 'index'
+    admin.resources :roles
+  end
   
   # Dashboard as the default location
   map.root :controller => 'dashboard', :action => 'index'
