@@ -1,7 +1,8 @@
 # See how all your routes lay out with "rake routes"
 ActionController::Routing::Routes.draw do |map|
   
-  map.resources :users
+  map.resources :users, :member => { :edit_password => :get,
+                                     :update_password => :put }
   map.resource :session
   
   # Account shortcuts

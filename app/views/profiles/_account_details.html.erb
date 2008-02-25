@@ -5,7 +5,7 @@
 	<%= cell_separator %>
 	
 	<%= cell "Email", "#{h(@user.email)} <small>#{link_to "change", "#"}</small>" %>
-	<%= cell "Password", "#{"*"*8} <small>#{link_to "change", "#"}</small>" %>
+	<%= cell "Password", "#{"*"*8} <small>#{link_to "change", edit_password_user_url(@user)}</small>" %>
 	
 	<%= cell_separator %>
 	

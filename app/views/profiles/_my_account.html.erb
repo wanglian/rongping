@@ -8,8 +8,7 @@
 <ul>
 	<% # TODO: (base_app) Implement 'change email' feature %>
 	<li><%= link_to "Change my email address", "#" %></li>
-	<% # TODO: (base_app) Implement 'change password' feature %>
-	<li><%= link_to "Change my password", "#" %></li>
+	<li><%= link_to "Change my password", edit_password_user_url(@user) %></li>
 </ul>
 
 <% unless admin? -%>
