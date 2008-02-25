@@ -12,8 +12,9 @@
 	<li><%= link_to "Change my password", "#" %></li>
 </ul>
 
+<% unless admin? -%>
 <ul>
-	<% # TODO: (base_app) Implement 'delete my account' feature %>
-	<li><%= link_to "Delete my account", "#" %></li>
+	<li><%= link_to "Delete my account", user_url(current_user), :method => :delete, :confirm => "Are you sure you want to schedule your account for deletion? All data linked to your account on base_app will be removed from our systems.\n\nTHIS ACTION CANNOT BE UNDONE!\n\nThanks for using base_app. We hope to see you again soon!"%></li>
 </ul>
+<% end -%>
 <% end -%>

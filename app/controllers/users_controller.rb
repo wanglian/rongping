@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-  # Protect these actions behind an admin login
-  require_role :admin, :only => [:suspend, :unsuspend, :destroy, :purge]
-  before_filter :find_user, :only => [:profile, :suspend, :unsuspend, :destroy, :purge]
+  before_filter :find_user, :only => [:profile, :destroy]
   
   # render new.rhtml
   def new
@@ -26,26 +24,6 @@ class UsersController < ApplicationController
       flash[:notice] = "Your account is now ready.<br />Thanks for signing up!"
     end
     redirect_back_or_default('/')
-  end
-
-  def suspend
-    @user.suspend! 
-    redirect_to users_path
-  end
-
-  def unsuspend
-    @user.unsuspend! 
-    redirect_to users_path
-  end
-
-  def destroy
-    @user.delete!
-    redirect_to users_path
-  end
-
-  def purge
-    @user.destroy
-    redirect_to users_path
   end
 
 protected

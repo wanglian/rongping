@@ -43,4 +43,17 @@ module ApplicationHelper
   def admin?
     logged_in? && current_user.has_role?(:admin)
   end
+  
+  def cell(label, value)
+    "<tr>
+  		<td class='label' nowrap='nowrap'>#{label}</td>
+  		<td class='value'>#{value}</td>
+  	</tr>"
+  end
+  
+  def cell_separator
+    "<tr>
+  		<td colspan='2' class='separator'></td>
+  	</tr>"
+  end
 end

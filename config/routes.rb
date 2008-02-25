@@ -1,9 +1,7 @@
 # See how all your routes lay out with "rake routes"
 ActionController::Routing::Routes.draw do |map|
   
-  map.resources :users, :member => { :suspend   => :put,
-                                     :unsuspend => :put,
-                                     :purge     => :delete }
+  map.resources :users
   map.resource :session
   
   # Account shortcuts
@@ -18,7 +16,10 @@ ActionController::Routing::Routes.draw do |map|
   # Administration
   map.namespace(:admin) do |admin|
     admin.root :controller => 'dashboard', :action => 'index'
-    admin.resources :roles
+    admin.resources :users, :member => { :suspend   => :put,
+                                         :unsuspend => :put,
+                                         :activate  => :put, 
+                                         :purge     => :delete }
   end
   
   # Dashboard as the default location

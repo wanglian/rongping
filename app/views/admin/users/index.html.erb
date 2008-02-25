@@ -1,0 +1,28 @@
+<% content_for :header do -%>
+	base_app Users
+<% end -%>
+
+<table class="index">
+  <tr>
+	<th>Login</th>
+	<th>Email</th>
+	<th>Status</th>
+  </tr>
+
+<% # TODO: (base_app) Add some sort of search feature to easily find users %>
+<% for user in @users %>
+  <tr>
+	<td><%=h user.login %></td>
+	<td><%=h user.email %></td>
+	<td><%=h user.state %></td>
+    <td class="actions">
+		<%= link_to 'Show', admin_user_url(user) %>
+    	<%= link_to 'Edit', edit_admin_user_path(user) %>
+	</td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New user', new_admin_user_path %>
