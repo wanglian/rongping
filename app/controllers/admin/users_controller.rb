@@ -2,6 +2,14 @@ class Admin::UsersController < ApplicationController
   require_role :admin
   layout 'admin'
   
+  def reset_password
+    @user = User.find(params[:id])
+    @user.reset_password!
+    
+    flash[:notice] = "A new password has been sent to the user by email."
+    redirect_to admin_user_path(@user)
+  end
+  
   def pending
     @users = User.paginate :all, :conditions => {:state => 'pending'}, :page => params[:page]
     render :action => 'index'

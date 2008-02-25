@@ -69,6 +69,16 @@ class User < ActiveRecord::Base
     transitions :from => :suspended, :to => :passive
   end
 
+  # Creates a new password for the user, and notifies him with an email
+  def reset_password!
+    password = PasswordGenerator.random_pronouncable_password(3)
+    self.password = password
+    self.password_confirmation = password
+    save
+    
+    UserMailer.deliver_reset_password(self)
+  end
+
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
     u = find_in_state :first, :active, :conditions => {:login => login} # need to get the salt
