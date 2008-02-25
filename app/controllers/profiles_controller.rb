@@ -2,6 +2,8 @@ class ProfilesController < ApplicationController
   before_filter :find_profile
   before_filter :check_owner_access, :only => [:edit, :update]
   
+  require_role :user, :only => [:edit, :update]
+  
   def show
     # render show.html.erb
   end

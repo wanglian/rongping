@@ -41,6 +41,6 @@ module ApplicationHelper
 
   # Return true if the currently logged in user is an admin
   def admin?
-    logged_in? && currentuser.has_role?(:admin)
+    logged_in? && current_user.has_role?(:admin)
   end
 end
