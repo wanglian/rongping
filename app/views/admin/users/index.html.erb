@@ -23,6 +23,8 @@
 <% end %>
 </table>
 
-<br />
+<%= will_paginate @users %>
 
-<%= link_to 'New user', new_admin_user_path %>
+<p>
+	<%= link_to 'New user', new_admin_user_path %>
+</p>

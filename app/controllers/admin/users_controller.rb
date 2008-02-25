@@ -37,9 +37,8 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin_users
   # GET /admin_users.xml
-  # TODO: (base_app) Use pagination
   def index
-    @users = User.find(:all)
+    @users = User.paginate :all, :page => params[:page]
 
     respond_to do |format|
       format.html # index.html.erb

@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
 
   # Virtual attribute for the unencrypted password
   attr_accessor :password
+  
+  # Per page pagination
+  cattr_reader :per_page
+  @@per_page = 25
 
   validates_presence_of     :login, :email
   validates_presence_of     :password,                   :if => :password_required?

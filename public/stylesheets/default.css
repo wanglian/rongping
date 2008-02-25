@@ -596,3 +596,36 @@ body.groups div#screen_body,
 div.page_header {
 	zoom: 100%;
 }
+
+/* Pagination */
+.pagination {
+	text-align: right;
+	padding: 3px;
+	margin: 3px;
+}
+.pagination a {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+	border: 1px solid #aaa;
+	text-decoration: none;
+	color: #666;
+}
+.pagination a:hover, .pagination a:active {
+	border: 1px solid #666;
+	background-color: #aaa;
+	color: #000;
+}
+.pagination span.current {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+	border: 1px solid #666;
+	font-weight: bold;
+	background-color: #666;
+	color: #FFF;
+}
+.pagination span.disabled {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+	border: 1px solid #eee;
+	color: #ddd;
+}
