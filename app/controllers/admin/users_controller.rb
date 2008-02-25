@@ -2,6 +2,26 @@ class Admin::UsersController < ApplicationController
   require_role :admin
   layout 'admin'
   
+  def pending
+    @users = User.paginate :all, :conditions => {:state => 'pending'}, :page => params[:page]
+    render :action => 'index'
+  end
+  
+  def suspended
+    @users = User.paginate :all, :conditions => {:state => 'suspended'}, :page => params[:page]
+    render :action => 'index'
+  end
+  
+  def active
+    @users = User.paginate :all, :conditions => {:state => 'active'}, :page => params[:page]
+    render :action => 'index'
+  end
+  
+  def deleted
+    @users = User.paginate :all, :conditions => {:state => 'deleted'}, :page => params[:page]
+    render :action => 'index'
+  end
+  
   def activate
     @user = User.find(params[:id])
     @user.activate!

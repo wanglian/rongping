@@ -19,7 +19,11 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :users, :member => { :suspend   => :put,
                                          :unsuspend => :put,
                                          :activate  => :put, 
-                                         :purge     => :delete }
+                                         :purge     => :delete },
+                            :collection => { :pending   => :get,
+                                             :active    => :get, 
+                                             :suspended => :get, 
+                                             :deleted   => :get }
   end
   
   # Dashboard as the default location
