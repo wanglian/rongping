@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def forgot_login
     if request.put?
       begin
-        @user = User.find_by_email(params[:email])
+        @user = User.find_by_email(params[:email], :conditions => ['NOT state = ?', 'deleted'])
       rescue
         @user = nil
       end

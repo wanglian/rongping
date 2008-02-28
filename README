@@ -12,6 +12,7 @@ base_app is a default Ruby on Rails project which by default includes the follow
  * User authentication, with:
     - login form at /login
     - signup form at /signup
+    - password and login recovery
     - activation
  * Plugins:
     - restful_authentication
@@ -34,14 +35,11 @@ There are still some things I want in base_app, but which haven't gotten around 
 
 NOTE: Also run 'rake notes:todo'. Todo's tagged with (base_app) are also wanted features
 
- * Add user roles (with default 'user' role for users, and a default administrator role)
  * Administration panel where you can:
     - Manage users (add, delete, purge, suspend, activate, send new passwords)
     - Manage roles / permissions
     - Manage settings for base_app
  * OpenID signup/login
- * Reset password option
- * User profiles (partially done)
  * Configuration (e.g. from config/app.yml) (use activation? enable OpenID? etc.)
  * Use Gibberish and make the whole app available in English and Dutch by default
  * Add form helpers which allow easy form building (is a plugin available?)
