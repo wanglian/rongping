@@ -1,0 +1,15 @@
+<% content_for :header do -%>
+	Account Amnesia
+<% end -%>
+
+<p>
+	You have indicated you can't remember your base_app account at all.
+</p>
+
+<p>
+	We can't help you directly to recover you account. Please contact support at <%= secure_mail_to 'support@base_app_url.host' %> for more help. 
+</p>
+
+<p>
+	If you don't have any important data in your account, you may also opt for <%= link_to "registering a new account", signup_url %>.
+</p>

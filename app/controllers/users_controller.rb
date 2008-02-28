@@ -10,6 +10,11 @@ class UsersController < ApplicationController
     render :layout => 'login'
   end
 
+  def clueless
+    # These users are beyond our automated help...
+    render :layout => 'login'
+  end
+
   def forgot_login
     if request.put?
       begin
