@@ -1,16 +1,33 @@
 class UsersController < ApplicationController
   before_filter :find_user, :only => [:profile, :destroy, :edit_password, :update_password]
   
-  layout 'login', :only => [:troubleshooting, :forgot_password, :reset_password, :forgot_login, :clueless]
-  layout 'application', :only => [:edit_password]
-  
-  
   # render new.rhtml
   def new
   end
 
   def troubleshooting
     # Render troubleshooting.html.erb
+    render :layout => 'login'
+  end
+
+  def forgot_login
+    if request.put?
+      begin
+        @user = User.find_by_email(params[:email])
+      rescue
+        @user = nil
+      end
+      
+      if @user.nil?
+        flash.now[:error] = 'No account was found with that email address.'
+      else
+        UserMailer.deliver_forgot_login(@user)
+      end
+    else
+      # Render forgot_login.html.erb
+    end
+    
+    render :layout => 'login'
   end
 
   def forgot_password
@@ -18,13 +35,15 @@ class UsersController < ApplicationController
       @user = User.find_by_login_or_email(params[:email_or_login])
 
       if @user.nil?
-        flash.now[:error] = 'No user was found by that login or email address.'
+        flash.now[:error] = 'No account was found by that login or email address.'
       else
         @user.forgot_password if @user.active?
       end
     else
       # Render forgot_password.html.erb
     end
+    
+    render :layout => 'login'
   end
   
   def reset_password
@@ -37,6 +56,8 @@ class UsersController < ApplicationController
     unless @user.nil? || !@user.active?
       @user.reset_password!
     end
+    
+    render :layout => 'login'
   end
 
   def create

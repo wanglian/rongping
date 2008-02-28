@@ -1,0 +1,22 @@
+<% content_for :header do -%>
+	Login Recovery
+<% end -%>
+
+<% unless @user.nil? %>
+	<p>An email containing your base_app account's login has been dispatched to you at <em><%= @user.email %></em>.</p>
+	
+	<div id="submitbutton">
+		<p><%= link_to "Login now &raquo;", login_url %></p>
+	</div>
+<% else %>
+	<p>Please enter the email address associated with your account. We will send you an email with your login shortly.</p>
+
+	<% form_tag user_forgot_login_url, :method => :put do %>
+		<p><label>Your email address</label><br />
+		<%= text_field_tag :email %></p>
+	
+		<div id="submitbutton">
+			<p><%= submit_tag 'Send me my login &raquo;' %></p>
+		</div>
+	<% end %>
+<% end %>
