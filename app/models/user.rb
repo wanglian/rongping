@@ -74,6 +74,7 @@ class User < ActiveRecord::Base
     password = PasswordGenerator.random_pronouncable_password(3)
     self.password = password
     self.password_confirmation = password
+    self.password_reset_code = nil
     save
     
     UserMailer.deliver_reset_password(self)
@@ -124,6 +125,18 @@ class User < ActiveRecord::Base
     save(false)
   end
 
+  def forgot_password
+    self.make_password_reset_code
+    save
+    UserMailer.deliver_forgot_password(self)
+  end
+  
+  def self.find_by_login_or_email(login_or_email)
+    find(:first, :conditions => ['login = ? OR email = ?', login_or_email, login_or_email])
+  rescue
+    nil
+  end
+  
   protected
     # before filter 
     def encrypt_password
@@ -138,7 +151,11 @@ class User < ActiveRecord::Base
     
     def make_activation_code
       self.deleted_at = nil
-      self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+      self.activation_code = Digest::SHA1.hexdigest(Time.now.to_s.split(//).sort_by {rand}.join )
+    end
+    
+    def make_password_reset_code
+      self.password_reset_code = Digest::SHA1.hexdigest(Time.now.to_s.split(//).sort_by {rand}.join )
     end
     
     def do_delete

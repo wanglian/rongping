@@ -1,0 +1,17 @@
+<% content_for :header do -%>
+	What seems to be the problem?
+<% end -%>
+
+<p>
+	You have indicated you are having trouble logging in to base_app. What seems to be the problem?
+</p>
+
+<ul>
+	<li><%= link_to "I don't remember my password", user_forgot_password_url %></li>
+	<li><%= link_to "I forgot my login, but I know my email", user_forgot_login_url %></li>
+	<li><%= link_to "I don't remember my login, email or password!", user_clueless_url %></li>
+</ul>
+
+<p>
+	<%= link_to "&laquo; Go back", login_url %>
+</p>

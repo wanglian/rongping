@@ -1,8 +1,42 @@
 class UsersController < ApplicationController
   before_filter :find_user, :only => [:profile, :destroy, :edit_password, :update_password]
   
+  layout 'login', :only => [:troubleshooting, :forgot_password, :reset_password, :forgot_login, :clueless]
+  layout 'application', :only => [:edit_password]
+  
+  
   # render new.rhtml
   def new
+  end
+
+  def troubleshooting
+    # Render troubleshooting.html.erb
+  end
+
+  def forgot_password
+    if request.put?
+      @user = User.find_by_login_or_email(params[:email_or_login])
+
+      if @user.nil?
+        flash.now[:error] = 'No user was found by that login or email address.'
+      else
+        @user.forgot_password if @user.active?
+      end
+    else
+      # Render forgot_password.html.erb
+    end
+  end
+  
+  def reset_password
+    begin
+      @user = User.find_by_password_reset_code(params[:password_reset_code])
+    rescue
+      @user = nil
+    end
+    
+    unless @user.nil? || !@user.active?
+      @user.reset_password!
+    end
   end
 
   def create
@@ -60,7 +94,8 @@ class UsersController < ApplicationController
     end
   end
 
-protected
+  protected
+
   def find_user
     @user = User.find(params[:id])
   end

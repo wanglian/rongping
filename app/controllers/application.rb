@@ -3,12 +3,12 @@
 
 # TODO: Search and Replace placeholder strings and replace them with sensible values
 #   "base_app" 		  => "My Cool Application Name"
-#   "base_app_url" 	=> "www.baseapp.com"			# Don't include http:// or a trailing slash
+#   "base_app_url.host" 	=> "www.baseapp.com"			# Don't include http:// or a trailing slash
 #   "company_name" 	=> "My Company Name"
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   include RoleRequirement
-  
+    
   helper :all # include all helpers, all the time
 
   # See ActionController::RequestForgeryProtection for details
