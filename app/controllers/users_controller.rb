@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_filter :find_user, :only => [:profile, :destroy, :edit_password, :update_password]
   
+  layout 'login', :except => [:edit_password, :update_password]
+  
   # render new.rhtml
   def new
   end
