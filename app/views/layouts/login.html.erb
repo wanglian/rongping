@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-	<title>base_app</title>
+	<title><%= s(:site_name) %></title>
 	
 	<%= stylesheet_link_tag 'dialog' %>
   	<%= javascript_include_tag :defaults %>
@@ -40,8 +40,8 @@
 
   </div>
   <div id="footer">
-    base_app by company_name<br />
-	Copyright © company_name
+    <%= s(:site_name) %> by <%= s(:company_name) %><br />
+	Copyright © <%= s(:company_name) %>
   </div>
 
 

@@ -3,7 +3,7 @@
 <% end -%>
 
 <% unless @user.nil? %>
-	<p>An email containing your base_app account's login has been dispatched to you at <em><%= @user.email %></em>.</p>
+	<p>An email containing your <%= s(:site_name) %> account's login has been dispatched to you at <em><%= @user.email %></em>.</p>
 	
 	<div id="submitbutton">
 		<p><%= link_to "Login now &raquo;", login_url %></p>

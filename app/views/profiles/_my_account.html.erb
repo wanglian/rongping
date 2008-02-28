@@ -13,7 +13,7 @@
 
 <% unless admin? -%>
 <ul>
-	<li><%= link_to "Delete my account", user_url(current_user), :method => :delete, :confirm => "Are you sure you want to schedule your account for deletion? All data linked to your account on base_app will be removed from our systems.\n\nTHIS ACTION CANNOT BE UNDONE!\n\nThanks for using base_app. We hope to see you again soon!"%></li>
+	<li><%= link_to "Delete my account", user_url(current_user), :method => :delete, :confirm => "Are you sure you want to schedule your account for deletion? All data linked to your account on #{s(:site_name)} will be removed from our systems.\n\nTHIS ACTION CANNOT BE UNDONE!\n\nThanks for using #{s(:site_name)}. We hope to see you again soon!"%></li>
 </ul>
 <% end -%>
 <% end -%>

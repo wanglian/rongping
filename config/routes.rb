@@ -25,6 +25,7 @@ ActionController::Routing::Routes.draw do |map|
   # Administration
   map.namespace(:admin) do |admin|
     admin.root :controller => 'dashboard', :action => 'index'
+    admin.resources :settings
     admin.resources :users, :member => { :suspend   => :put,
                                          :unsuspend => :put,
                                          :activate  => :put, 

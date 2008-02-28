@@ -1,0 +1,20 @@
+<% content_for :header do -%>
+	Application Settings
+<% end -%>
+
+<% content_for :sidebar do -%>
+	<p>
+		There are site-wide settings. They will be used through-out your application.
+	</p>
+<% end -%>
+
+<% @settingsgroups.each do |sg| %>
+	<h3><%= sg.name %></h3>
+	
+	<% # TODO: (base_app) Find a good way to manage settings of different types. %>
+	<table class="overview">
+		<% sg.settings.each do |s| %>
+			<%= cell(s.label, s.value) %>
+		<% end %>
+	</table>
+<% end %>
