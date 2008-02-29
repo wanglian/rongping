@@ -408,8 +408,14 @@ table.overview td.label {
 	text-align: right;
 	padding: 8px 12px 8px 0;
 }
+table.overview td.label small {
+	font-weight: normal;
+}
 table.overview td.value {
 	width: 100%;
+}
+table.overview td.value input[type="text"] {
+	width: 250px;
 }
 table.index td.actions {
 	width: auto;
@@ -633,4 +639,8 @@ div.page_header {
 	margin: 2px;
 	border: 1px solid #eee;
 	color: #ddd;
+}
+#submitbutton {
+	margin: 0.8em;
+	text-align: right;
 }

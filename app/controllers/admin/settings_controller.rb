@@ -3,6 +3,12 @@ class Admin::SettingsController < ApplicationController
   layout 'admin'
   
   def index
-    @settingsgroups = SettingsGroup.find(:all, :order => 'name ASC')
+    # Render index.html.erb
+  end
+  
+  def update
+    # Do stuff
+    
+    redirect_to :action => :index
   end
 end

@@ -6,15 +6,27 @@
 	<p>
 		There are site-wide settings. They will be used through-out your application.
 	</p>
+	<p>
+		To add new settings, simple create a migration (see migration #006 for an example), and add  your 
+		settings code here to allow the administrator to edit it.
+	</p>
 <% end -%>
 
-<% @settingsgroups.each do |sg| %>
-	<h3><%= sg.name %></h3>
+<% form_tag :action => 'update' do %>
+
+<h3>General</h3>
 	
-	<% # TODO: (base_app) Find a good way to manage settings of different types. %>
-	<table class="overview">
-		<% sg.settings.each do |s| %>
-			<%= cell(s.label, s.value) %>
-		<% end %>
-	</table>
+<%= render :partial => 'textfield', :locals => {:setting => Setting.load(:site_name)} %>
+<%= render :partial => 'textfield', :locals => {:setting => Setting.load(:company_name)} %>
+<%= render :partial => 'textfield', :locals => {:setting => Setting.load(:site_url)} %>
+
+<h3>Support</h3>
+	
+<%= render :partial => 'textfield', :locals => {:setting => Setting.load(:support_name)} %>
+<%= render :partial => 'textfield', :locals => {:setting => Setting.load(:support_email)} %>
+
+<div id="submitbutton">
+	<p><%= submit_tag 'Save Settings' %></p>
+</div>
+
 <% end %>
