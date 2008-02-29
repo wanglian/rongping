@@ -4,7 +4,7 @@
 
 <% content_for :sidebar do -%>
 	<p>
-		There are site-wide settings. They will be used through-out your application.
+		These are site-wide settings. They will be used through-out your application.
 	</p>
 	<p>
 		To add new settings, simple create a migration (see migration #006 for an example), and add  your 
@@ -16,14 +16,16 @@
 
 <h3>General</h3>
 	
-<%= render :partial => 'textfield', :locals => {:setting => Setting.load(:site_name)} %>
-<%= render :partial => 'textfield', :locals => {:setting => Setting.load(:company_name)} %>
-<%= render :partial => 'textfield', :locals => {:setting => Setting.load(:site_url)} %>
+	
+	
+<%= settings_field(Setting.load(:site_name)) %>
+<%= settings_field(Setting.load(:company_name)) %>
+<%= settings_field(Setting.load(:site_url)) %>
 
 <h3>Support</h3>
 	
-<%= render :partial => 'textfield', :locals => {:setting => Setting.load(:support_name)} %>
-<%= render :partial => 'textfield', :locals => {:setting => Setting.load(:support_email)} %>
+<%= settings_field(Setting.load(:support_name)) %>
+<%= settings_field(Setting.load(:support_email)) %>
 
 <div id="submitbutton">
 	<p><%= submit_tag 'Save Settings' %></p>

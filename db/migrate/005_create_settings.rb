@@ -3,7 +3,8 @@ class CreateSettings < ActiveRecord::Migration
     create_table :settings, :force => true do |t|
       t.string :label
       t.string :identifier
-      t.text :description
+      t.text   :description
+      t.string :field_type, :default => 'string'
       t.text   :value
 
       t.timestamps
