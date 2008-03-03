@@ -13,7 +13,7 @@ class CreateDefaultSettings < ActiveRecord::Migration
       :identifier => 'company_name',
       :description => "Your company's name. It will be used to identify you as the owner of the application.",
       :field_type => 'string',
-      :value => "Ariejan.net"
+      :value => "Kabisa ICT"
     )
     
     Setting.create(

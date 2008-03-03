@@ -46,3 +46,7 @@ NOTE: Also run 'rake notes:todo'. Todo's tagged with (base_app) are also wanted 
  * Test the whole thing!
 
 Feel free to implement any of these features and send in a patch. Other features are welcome also, but those will be judged on general usability. 
+
+== Credit
+
+BaseAPP is developed by Kabisa ICT and released to the public under the MIT license.
