@@ -9,6 +9,9 @@ base_app is a default Ruby on Rails project which by default includes the follow
     - notice, warning and error flash messages
     - a very agreeable stylesheet
  * Default dashboard page
+ * Administration panel where you can:
+    - Manage users (add, delete, purge, suspend, activate, send new passwords)
+    - Manage settings for base_app
  * User authentication, with:
     - login form at /login
     - signup form at /signup
@@ -35,10 +38,7 @@ There are still some things I want in base_app, but which haven't gotten around 
 
 NOTE: Also run 'rake notes:todo'. Todo's tagged with (base_app) are also wanted features
 
- * Administration panel where you can:
-    - Manage users (add, delete, purge, suspend, activate, send new passwords)
-    - Manage roles / permissions
-    - Manage settings for base_app
+ * Manage roles / permissions
  * OpenID signup/login
  * Configuration (e.g. from config/app.yml) (use activation? enable OpenID? etc.)
  * Use Gibberish and make the whole app available in English and Dutch by default
