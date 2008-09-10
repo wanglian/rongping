@@ -1,10 +1,6 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   
-  has_attached_file :avatar,
-    :styles => { :medium => "300x300>", 
-                :thumb  => "100x100>" }
-  
   has_and_belongs_to_many :roles
   has_one :profile
   
@@ -37,7 +33,7 @@ class User < ActiveRecord::Base
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :password, :password_confirmation, :avatar
+  attr_accessible :login, :email, :password, :password_confirmation
 
   acts_as_state_machine :initial => :pending
   state :passive

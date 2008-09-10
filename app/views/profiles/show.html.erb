@@ -5,6 +5,10 @@
 	
 	<p>The profile you requested does not exist.</p>
 <% else -%>
+	<div style="float: right; margin: 10px">
+		<%= image_tag @user.avatar.url(:thumb) %>
+	</div>
+	
 	<% content_for :header do -%>
 		<% if current_user == @user -%>
 			My Account
