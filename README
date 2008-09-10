@@ -1,26 +1,29 @@
-== Welcome to basApp
+== Welcome to BaseApp
 
-base_app is a default Ruby on Rails project which by default includes the following:
+BaseApp is a default Ruby on Rails project which by default includes the following:
 
  * A layout, including:
     - tabs
     - global links
     - optional sidebar
     - notice, warning and error flash messages
-    - a very agreeable stylesheet
+    - a very agreeable stylesheet (which is easy to customize)
  * Default dashboard page
  * Administration panel where you can:
     - Manage users (add, delete, purge, suspend, activate, send new passwords)
-    - Manage settings for base_app
+    - Manage settings 
  * User authentication, with:
     - login form at /login
     - signup form at /signup
     - password and login recovery
     - activation
+ * User Profiles:
+    - Location, Website, Full name fields by default, easily extendible.
+    - Gravatars
  * Plugins:
     - restful_authentication
     - acts_as_state_machine
- * Frozen Rails 2.0.2
+ * Frozen Rails 2.1.1
 
 == Getting started
 
@@ -30,23 +33,23 @@ There are several things you'll need to do before you can really get started. Ru
 
 This will generate a list of TODO entries throughout the project. Check the TODO entries in the code for more information.
 
-Note: Todo's tagged with (base_app) are for the base_app project itself. You can safely ignore these.
+Note: Todo's tagged with (BaseApp) are for the BaseApp project itself. You can safely ignore these.
 
-== base_app To do's
+== Contribute! 
 
-There are still some things I want in base_app, but which haven't gotten around to implementing yet.
+There are still some things I want in BaseApp, but which haven't gotten around to implementing yet.
 
-NOTE: Also run 'rake notes:todo'. Todo's tagged with (base_app) are also wanted features
+NOTE: Also run 'rake notes:todo'. Todo's tagged with (BaseApp) are also wanted features
 
+ * TESTS!!!
  * Manage roles / permissions
  * OpenID signup/login
  * Configuration (e.g. from config/app.yml) (use activation? enable OpenID? etc.)
- * Use Gibberish and make the whole app available in English and Dutch by default
- * Add form helpers which allow easy form building (is a plugin available?)
- * Test the whole thing!
-
+ * Use Gibberish, Globalize or Rails 2.2's i18n and make the whole app available in English and Dutch by default
+ * A website, documentation, bug/patch tracker
+ 
 Feel free to implement any of these features and send in a patch. Other features are welcome also, but those will be judged on general usability. 
 
 == Credit
 
-BaseAPP is developed by Kabisa ICT and released to the public under the MIT license.
+BaseAPP is developed by Ariejan de Vroom and released to the public under the MIT license.
