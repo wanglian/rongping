@@ -6,7 +6,7 @@
 	<p>The profile you requested does not exist.</p>
 <% else -%>
 	<div style="float: right; margin: 10px">
-		<%= image_tag @user.avatar.url(:thumb) %>
+		<%= gravatar_for @user %>
 	</div>
 	
 	<% content_for :header do -%>
