@@ -7,3 +7,4 @@ schema.rb
 doc/api
 .DS_Store
 .svn
+public/avatars/*
