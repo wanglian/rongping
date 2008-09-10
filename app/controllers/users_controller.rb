@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
-  before_filter :find_user, :only => [:profile, :destroy, :edit_password, :update_password, :edit_email, :update_email]
+  before_filter :find_user, 
+    :only => [:profile, 
+              :destroy, 
+              :edit_password,   :update_password, 
+              :edit_email,      :update_email,
+              :edit_avatar,     :update_avatar ]
   
   layout 'login' #, :except => [:edit_password, :update_password]
   
@@ -141,6 +146,25 @@ class UsersController < ApplicationController
     end
   end  
 
+  def edit_avatar
+    # render edit_avatar.html.erb
+  end
+  
+  def update_avatar
+    if current_user == @user
+      if @user.update_attributes(:avatar => params[:avatar])
+        flash[:notice] = "Your avatar has been updated."
+        redirect_to profile_url(@user)
+      else
+        flash[:error] = "Your avatar could not be updated."
+        redirect_to edit_avatar_user_url(@user)
+      end
+    else
+      flash[:error] = "You cannot update another user's avatar."
+      redirect_to edit_avatar_user_url(@user)
+    end
+  end
+  
   protected
 
   def find_user

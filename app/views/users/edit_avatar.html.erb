@@ -1,0 +1,17 @@
+<% content_for :header do -%>
+	Change my avatar
+<% end -%>
+
+<% form_for :user, @user, :url => update_avatar_user_url(@user), :html => {:method => :put, :multipart => true } do |f| %>
+
+	<h3>Your avatar</h3>
+
+	<p>Please choose a new avatar to use, or <%= link_to "remove your current avatar", "#" %>.</p>
+	
+	<p>We recommend uploading a 300x300px square avatar.</p>
+
+	<p><%= file_field_tag 'avatar', :size => 20 %></p>
+
+	<p><%= submit_tag "Upload avatar" %> or <%= link_to "forget about it", profile_url(@user) %></p>
+	
+<% end %>
