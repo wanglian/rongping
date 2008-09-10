@@ -1,0 +1,15 @@
+<% content_for :header do -%>
+	Change my email address
+<% end -%>
+
+<% form_for :user, @user, :url => update_email_user_url(@user), :html => {:method => :put} do |f| %>
+
+	<h3>Your new email address</h3>
+
+	<p>Please enter your new email address below. Please double-check it, because you may need it later to retrieve your password.</p>
+
+	<p><%= text_field_tag 'email', '', :size => 20 %></p>
+
+	<p><%= submit_tag "Change my email address" %> or <%= link_to "forget about it", profile_url(@user) %></p>
+	
+<% end %>

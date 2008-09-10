@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :find_user, :only => [:profile, :destroy, :edit_password, :update_password]
+  before_filter :find_user, :only => [:profile, :destroy, :edit_password, :update_password, :edit_email, :update_email]
   
   layout 'login' #, :except => [:edit_password, :update_password]
   
@@ -121,6 +121,25 @@ class UsersController < ApplicationController
       redirect_to edit_password_user_url(@user)
     end
   end
+  
+  def edit_email
+    # render edit_email.html.erb
+  end
+  
+  def update_email
+    if current_user == @user
+      if @user.update_attributes(:email => params[:email])
+        flash[:notice] = "Your email address has been updated."
+        redirect_to profile_url(@user)
+      else
+        flash[:error] = "Your email address could not be updated."
+        redirect_to edit_email_user_url(@user)
+      end
+    else
+      flash[:error] = "You cannot update another user's email address!"
+      redirect_to edit_email_user_url(@user)
+    end
+  end  
 
   protected
 

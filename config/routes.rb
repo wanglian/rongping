@@ -9,7 +9,9 @@ ActionController::Routing::Routes.draw do |map|
   map.user_clueless        '/users/clueless',        :controller => 'users', :action => 'clueless'
   
   map.resources :users, :member => { :edit_password => :get,
-                                     :update_password => :put }
+                                     :update_password => :put,
+                                     :edit_email => :get,
+                                     :update_email => :put }
                             
   map.resource :session
   
