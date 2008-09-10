@@ -1,0 +1,8 @@
+admin:
+  id: 1
+  login: 'admin'
+  email: 'admin@example.com'
+  crypted_password: '28ced7c173fc7e19ee105b60d8b5b2e5b501f08b' # base_app
+  salt: '4e388b040ae676fb9d0f13d3a8015092580dcffa'
+  activated_at: <%= Time.now.to_s(:db) %>
+  state: 'active'
