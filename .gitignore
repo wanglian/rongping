@@ -3,7 +3,6 @@ tmp/*
 database.yml
 *.sqlite
 *.sqlite3
-db/schema.rb
 doc/api
 .DS_Store
 .svn
