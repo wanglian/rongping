@@ -1,8 +1,6 @@
 <ul>
-	<li style="float: right;"><a href="#">Tab 1</a></li>
-	<li style="float: right;"><a href="#">Tab 2</a></li>
+	<li style="float: right;"><%= tab_to '订单查询', [{:controller => "orders"}] %></li>
+	<li style="float: right;"><%= tab_to '订单录入', [{:controller => "orders", :action => 'new'}] %></li>
 
-	<li><%= tab_to "Dashboard", [{:controller => "dashboard" }] %></li>
-	<li><%= tab_to "Ping Tab" %></li>
-	<li><%= tab_to "Pong Tab" %></li>
+	<li><%= tab_to "Dashboard"[], [{:controller => "dashboard" }] %></li>
 </ul>

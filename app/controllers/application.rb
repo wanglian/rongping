@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
     
   helper :all # include all helpers, all the time
   
+  Gibberish.current_language = 'zh-CN'
+  
   # Return the value for a given setting
   def s(identifier)
     Setting.get(identifier)

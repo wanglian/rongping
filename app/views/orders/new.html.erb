@@ -1,0 +1,90 @@
+<% content_for :header do -%>
+	订单录入
+<% end -%>
+
+<% content_for :sidebar do -%>
+	
+<% end -%>
+
+<% form_for :order, :url => orders_path do |f| -%>
+<table>
+  <caption></caption>
+  <tr>
+    <td align="right">订单编号</td><td colspan="3"><%= f.text_field :order_number %></td>
+  </tr>
+  <tr>
+    <td align="right">核算日期</td><td><%= f.date_select :audit_at %></td>
+    <td align="right">核查单号</td><td><%= f.text_field :audit_number, :size => 15 %></td>
+  </tr>
+  <tr>
+    <td align="right">客户名称</td><td><%= f.text_field :customer %></td>
+    <td align="right">联系人</td><td><%= f.text_field :contact, :size => 15 %></td>
+  </tr>
+  <tr>
+    <td align="right">客户经理</td><td><%= f.select :manager_id, User.find(:all).collect {|user| [user.login, user.id]} %></td>
+    <td align="right">销售部门</td><td><%= f.select :department_id, Department.find(:all).collect {|d| [d.name, d.id]} %></td>
+  </tr>
+  
+</table>
+<hr size="1"/>
+<table>
+  <caption></caption>
+  <tr>
+    <td align="right">用户名称</td><td colspan="3"><%= f.text_field :account_name %></td>
+  </tr>
+  <tr>
+    <td align="right">联系信息</td><td colspan="3"><%= f.text_area :account_contact, :rows => 2 %></td>
+  </tr>
+</table>
+<hr size="1"/>
+<table>
+  <caption></caption>
+  <tr>
+    <td align="right">产品</td><td><%= f.select :product_id, Product.find(:all).collect {|p| [p.name, p,id]} %></td>
+    <td align="right">速率</td><td><%= f.select :port_rate, Order::PORT_RATES %></td>
+  </tr>
+  <tr>
+    <td align="right">安装费</td><td><%= f.text_field :install_fee, :size => 10 %>元</td>
+    <td align="right">租金</td><td><%= f.text_field :rent_fee, :size => 10 %>元</td>
+  </tr>
+  </tr>
+</table>
+<hr size="1"/>
+<table>
+  <caption>甲端</caption>
+  <tr>
+    <td align="right">接口类型</td><td><%= f.select :a_access_type, Order::ACCESS_TYPES %></td>
+    <td align="right">接入设备</td><td><%= f.text_field :a_access_device %></td>
+  </tr>
+  <tr>
+    <td align="right">接入地址</td><td colspan="3"><%= f.text_area :a_address, :rows => 2 %></td>
+  </tr>
+  <tr>
+    <td align="right">联系人</td><td colspan="3"><%= f.text_area :a_contact, :rows => 2 %></td>
+  </tr>
+</table>
+<hr size="1"/>
+<table>
+  <caption>乙端</caption>
+  <tr>
+    <td align="right">接口类型</td><td><%= f.select :b_access_type, Order::ACCESS_TYPES %></td>
+    <td align="right">接入设备</td><td><%= f.text_field :b_access_device %></td>
+  </tr>
+  <tr>
+    <td align="right">接入地址</td><td colspan="3"><%= f.text_area :b_address, :rows => 2 %></td>
+  </tr>
+  <tr>
+    <td align="right">联系人</td><td colspan="3"><%= f.text_area :b_contact, :rows => 2 %></td>
+  </tr>
+</table>
+<hr size="1"/>
+<table>
+  <caption></caption>
+  <tr>
+    <td align="right">状态</td><td><%= f.select :state, Order::STATES %></td>
+    <td align="right">确认人</td><td><%= f.select :confirm_user_id, User.find(:all).collect {|user| [user.login, user.id]} %></td>
+    <td align="right">确认时间</td><td><%= f.date_select :confirm_at %></td>
+  </tr>
+</table>
+<%= f.submit 'submit' %>
+<% end -%>

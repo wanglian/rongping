@@ -1,0 +1,26 @@
+<% content_for :header do -%>
+	订单查询
+<% end -%>
+
+<% content_for :sidebar do -%>
+	
+<% end -%>
+
+<table>
+  <tr>
+    <td>订单编号</td>
+    <td>客户名称</td>
+    <td>用户名称</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <% for order in @orders -%>
+    <tr>
+      <td><%= order.order_number %></td>
+      <td><%= order.customer %></td>
+      <td><%= order.account_name %></td>
+      <td><%= link_to '附加信息', '#' %></td>
+      <td><%= link_to '施工进展', '#' %></td>
+    </tr>
+  <% end -%>
+</table>

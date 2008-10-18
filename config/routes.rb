@@ -1,5 +1,6 @@
 # See how all your routes lay out with "rake routes"
 ActionController::Routing::Routes.draw do |map|
+  map.resources :orders
   
   # Non RESTful routes for user management.
   map.user_troubleshooting '/users/troubleshooting', :controller => 'users', :action => 'troubleshooting'

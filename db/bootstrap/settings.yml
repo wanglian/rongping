@@ -3,21 +3,21 @@ site_name:
   identifier: 'site_name'
   description: 'The name of your application. This name will be used to brand your entire application.'
   field_type: 'string'
-  value: "BaseAPP"
+  value: "Console"
 
 company_name:
   label: "Company name"
   identifier: 'company_name'
   description: "Your company's name. It will be used to identify you as the owner of the application."
   field_type: 'string'
-  value: "Kabisa ICT"
+  value: "HPT"
   
 site_url:
   label: "Site URL"
   identifier: 'site_url'
   description: "The FQDN of your site. Don't include http:// or a trailing slash. If your application uses more than one FQDN, specify the primary one."
   field_type: 'string'
-  value: "baseapp.com"
+  value: "localhost"
   
 support_name:
   label: "Support name"
@@ -31,4 +31,4 @@ support_email:
   identifier: 'support_email'
   description: 'What is your support email address? This address will be shown to users for them to email support requests.'
   field_type: 'string'
-  value: "support@baseapp.com"
+  value: "wanglian1024@gmail.com"
