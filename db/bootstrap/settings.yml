@@ -3,14 +3,14 @@ site_name:
   identifier: 'site_name'
   description: 'The name of your application. This name will be used to brand your entire application.'
   field_type: 'string'
-  value: "订单管理系统"
+  value: "Order Tracking System"
 
 company_name:
   label: "Company name"
   identifier: 'company_name'
   description: "Your company's name. It will be used to identify you as the owner of the application."
   field_type: 'string'
-  value: "瀚平网络技术"
+  value: "HP Technology"
   
 site_url:
   label: "Site URL"

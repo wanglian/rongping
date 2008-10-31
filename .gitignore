@@ -1,4 +1,5 @@
 log/*
+public/avatarts/*
 tmp/*
 database.yml
 *.sqlite
@@ -6,3 +7,4 @@ database.yml
 doc/api
 .DS_Store
 .svn
+

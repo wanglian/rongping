@@ -13,7 +13,7 @@
     <tr>
       <%- row_attendees.each do |attendee| -%>
       <td align="center">
-      <%= avatar_for attendee, 'thumb' %><br/>
+      <%= avatar_for attendee %><br/>
       <%= user_link attendee %>
       </td>
       <%- end -%>
@@ -22,7 +22,7 @@
   </table>
 <% else -%>
   <p>
-    没有参与者.
+    没有人参加.
   </p>
 <% end -%>
 
