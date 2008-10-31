@@ -1,0 +1,12 @@
+<% content_for :header do -%>
+	<%= @user.name %>
+<% end -%>
+
+<p><%= gravatar_for @user %></p>
+Email: <%= @user.email %>
+
+<h2>个人动态</h2>
+<ul>
+  <%= render :partial => 'activity', :collection => @user.activities %>
+  <%= "没有记录" if @user.activities.empty? %>
+</ul>

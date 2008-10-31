@@ -1,0 +1,31 @@
+<% content_for :header do -%>
+	<%= "Topics"[] %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <ul>
+    <li><%= link_to "Add new topic"[], "javascript:$('topic_name').focus();" %></li>
+  </ul>
+  <%= render :partial => 'shared/activity' -%>
+<% end -%>
+
+<table class="index">
+  <%= render :partial => 'topic', :collection => @topics %>
+  <% if @topics.empty? %><tr><td><%= "No record"[] %></td></tr><% end %>
+</table>
+
+<%= will_paginate @topics %>
+<br />
+
+<h2><%= "Add new topic"[] %></h2>
+
+<% form_for(:topic) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.text_field :name, :size => 60 %>
+  </p>
+  <p>
+    <%= f.submit "Create"[] %>
+  </p>
+<% end %>

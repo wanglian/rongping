@@ -1,0 +1,33 @@
+<div style="width:240px;">
+<% special_days = events.collect { |x| x.start_time.to_date }.uniq -%>
+<%
+  if date.month == 1
+    last_month = 12
+    last_year = date.year - 1
+    next_month = 2
+    next_year = date.year
+  elsif date.month == 12
+    last_month = 11
+    last_year = date.year
+    next_month = 1
+    next_year = date.year + 1
+  else
+    last_month = date.month - 1
+    last_year = date.year
+    next_month = date.month + 1
+    next_year = date.year
+  end
+%>
+<%= 
+  calendar(:year => date.year, :month => date.month, 
+           :next_month_text => (link_to ">>", events_path(:month => next_month, :year => next_year)), 
+           :previous_month_text => (link_to "<<", events_path(:month => last_month, :year => last_year)),
+           :month_url => events_url(:year => date.year, :month => date.month)) do |d|
+    if special_days.include?(d)
+      [link_to(d.mday, events_path(:year => d.year, :month => d.month, :day => d.mday)), { :class => "day" }]
+    else
+      [d.mday]
+    end
+  end
+%>
+</div>

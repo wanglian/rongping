@@ -4,14 +4,13 @@ class CreateOrders < ActiveRecord::Migration
       t.string :order_number
       t.date :audit_at
       t.string :audit_number
-      t.string :customer
-      t.string :contact
+      t.integer :customer_id
+      t.integer :user_id
       t.integer :manager_id #客户经理
-      t.integer :department_id #销售部门
       t.text :memo #备注
       
       t.string :account_name
-      t.text :account_contact #联系人
+      t.text :account_contact #联系信息
       
       t.integer :product_id
       t.string :port_rate
@@ -29,9 +28,19 @@ class CreateOrders < ActiveRecord::Migration
       t.text :b_address
       t.text :b_contact
       
-      t.string :state # new/progress/done
+      t.string :state # new/in progress/done
       t.integer :confirm_user_id
       t.datetime :confirm_at
+      
+      #attach
+      t.string :circuit_id
+      t.string :dsu_type
+      t.string :dsu_sn
+      t.string :router_type
+      t.string :router_sn
+      t.string :config_name
+      t.string :node_name
+      t.string :port_assignment
       
       t.timestamps
     end

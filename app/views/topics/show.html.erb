@@ -1,0 +1,20 @@
+<% content_for :header do -%>
+	<%= @topic.name %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'shared/activity' -%>
+<% end -%>
+
+<table id="comments" class="overview">
+  <%= render :partial => 'comment', :collection => @topic.comments %>
+</table>
+
+<%- if logged_in? -%>
+  <div style="margin-left:80px;">
+    <%- form_remote_tag :url => add_comment_topic_path(@topic), :html => {:id => 'comment_form'} do -%>
+    	<%= text_area_tag :comment, nil, :class => 'comment' %><br/>
+    	<%= submit_tag 'Reply'[] %>
+    <%- end -%>
+  </div>
+<%- end -%>

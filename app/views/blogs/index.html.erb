@@ -1,0 +1,17 @@
+<% content_for :header do -%>
+	<%= @user.name %>的日志
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <ul>
+    <% if current_user == @user %><li><%= link_to 'Add new blog'[], new_blog_path %></li><% end %>
+  </ul>
+  <%= render :partial => 'shared/activity' -%>
+<% end -%>
+
+<table class="index">
+  <%= render :partial => 'blog', :collection => @blogs %>
+  <% if @blogs.empty? %><tr><td><%= "No record"[] %></td></tr><% end %>
+</table>
+
+<%= will_paginate @blogs %>

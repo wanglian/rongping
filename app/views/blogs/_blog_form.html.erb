@@ -1,0 +1,14 @@
+<% form_for(@blog) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit "Create"[] %>
+    <%= button_to_function 'Cancel'[], "history.back()" %>
+  </p>
+<% end %>

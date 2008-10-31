@@ -5,11 +5,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-	<title><%= s(:site_name) %></title>
+	<title><%= 'site_name'[] %></title>
 	
 	<%= stylesheet_link_tag 'default' %>
-  	<%= javascript_include_tag :defaults %>
-  
+	<%= stylesheet_link_tag 'calendar/blue/style' %>
+  <%= javascript_include_tag :defaults %>
+  <%= calendar_date_select_includes %>
 </head>
 
 <body>
@@ -18,7 +19,7 @@
     <div id="global_links">
       <%= render :partial => 'shared/global_links' %>
     </div>
-    <h1><%= s(:site_name) %> <span><%= s(:company_name) %></span></h1>
+    <h1><%= "site_name"[] %> <span><%= "company_name"[] %></span></h1>
 
     <div id="tabs">
       <%= render :partial => 'shared/tabs' %>
@@ -28,17 +29,17 @@
   <div id="main">
 
     <div id="left">
-	 <% if flash[:notice] %>
-       <div id="notice"><%= flash[:notice] %></div>
-     <% end %>
+	    <% if flash[:notice] %>
+        <div id="notice"><%= flash[:notice] %></div>
+      <% end %>
 
-	 <% if flash[:warning] %>
-       <div id="warning"><%= flash[:warning] %></div>
-     <% end %>
+	    <% if flash[:warning] %>
+        <div id="warning"><%= flash[:warning] %></div>
+      <% end %>
 
-	 <% if flash[:error] %>
-       <div id="error"><%= flash[:error] %></div>
-     <% end %>
+	    <% if flash[:error] %>
+        <div id="error"><%= flash[:error] %></div>
+      <% end %>
 
       <h2 class="head"><%= yield_or_default yield(:header), "Use 'content_for :header do; end' in your view to set this title" %></h2>
 
@@ -51,8 +52,15 @@
     </div>
   </div>
   <div id="footer">
-    <%= s(:site_name) %> by <%= s(:company_name) %><br />
-	Copyright © <%= s(:company_name) %>
+    <%= 'site_name'[] %> 
+	  © <%= 'company_name'[] %>
+	  [<% if cookies[:lang] == 'en-US' -%>
+      English |
+      <%= link_to_remote '简体中文', :url => choose_lang_path(:lang => 'zh-CN'), :success => "window.location.reload();", :method => :put %>
+    <% else -%>
+      <%= link_to_remote 'English', :url => choose_lang_path(:lang => 'en-US'), :success => "window.location.reload();", :method => :put %> |
+      简体中文
+    <% end -%>]
   </div>
 
 

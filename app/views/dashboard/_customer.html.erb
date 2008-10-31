@@ -1,0 +1,11 @@
+<% content_for :header do -%>
+	<%= 'Welcome'[] %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+	
+<% end -%>
+
+<ul>
+  <li><%= tab_to 'My orders'[], [{:controller => "orders"}] %></li>
+</ul>

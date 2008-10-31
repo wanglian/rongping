@@ -1,0 +1,9 @@
+<% content_for :header do -%>
+	修改订单
+<% end -%>
+
+<% form_for @order do |f| -%>
+<%= render :partial => 'order_form', :locals => {:f => f} %>
+<%= f.submit '保存' %>
+<%= button_to_function '取消', "history.back()"%>
+<% end -%>

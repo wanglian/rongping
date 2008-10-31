@@ -2,9 +2,6 @@
 	订单录入
 <% end -%>
 
-<% content_for :sidebar do -%>
-	
-<% end -%>
-
 订单已保存。
-<%= link_to '录入下一个订单', new_orders_path %>
+<%= link_to '查看订单', edit_order_path(@order) %> 或者
+<%= link_to '录入下一个订单', new_order_path %>

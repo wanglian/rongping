@@ -1,0 +1,38 @@
+<% content_for :header do -%>
+	<%= session[:mail_box][] %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <ul>
+    <li><%= rezm_link_to_inbox %></li>
+    <li><%= rezm_link_to_outbox %></li>
+    <li><%= rezm_link_to_trash_bin %></li>
+  </ul>
+  <%= render :partial => 'shared/activity' -%>
+<% end -%>
+
+<% form_for :message, :url => destroy_selected_messages_path do |form| %>
+  <table class="index">
+  <%- for message in @messages  -%>
+    <tr>
+      <td style="align:center;width:25px;"><%= rezm_delete_check_box(message) %></td>
+      <td width="40px"><%= avatar_for rezm_sender_or_receiver(message), :thumb %></td>
+      <td width="20px"><%= rezm_message_icon(message) %></td>
+      <td>
+        <%= rezm_to_or_from_label %>: <%= rezm_sender_or_receiver_link(message) %>
+        <%= rezm_sent_at(message) %><br/>
+        <%= "Subject"[] %>: <%= rezm_link_to_message(message) %>
+      </td>  
+    </tr>
+  <%- end -%>
+  <%- unless @messages.empty? -%>
+    <tr>
+      <td colspan="4"><%= submit_tag "Delete"[] %></td>
+    </tr>
+  <%- else -%>
+    <tr>
+      <td colspan="4"><%= "No record"[] %></td>
+    </tr>
+  <%- end -%>
+  </table>
+<% end %>

@@ -1,0 +1,13 @@
+<% content_for :header do -%>
+	<%= "Users"[] %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'shared/activity' -%>
+<% end -%>
+
+<table class="index">
+  <%= render :partial => 'user', :collection => @users %>
+</table>
+
+<%= will_paginate @users %>

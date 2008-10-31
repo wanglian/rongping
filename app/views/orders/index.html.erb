@@ -1,26 +1,36 @@
 <% content_for :header do -%>
-	订单查询
+	订单
 <% end -%>
 
 <% content_for :sidebar do -%>
-	
+  <ul>
+    <li><%= link_to '订单录入', new_order_path %></li>
+  </ul>
+  <%= render :partial => 'shared/activity' -%>
 <% end -%>
 
-<table>
+<table class="index">
   <tr>
-    <td>订单编号</td>
-    <td>客户名称</td>
-    <td>用户名称</td>
-    <td></td>
-    <td></td>
+    <th>订单编号</th>
+    <th>产品</th>
+    <th>客户名称</th>
+    <th>用户名称</th>
+    <th>状态</th>
+    <th></th>
   </tr>
   <% for order in @orders -%>
-    <tr>
+    <tr id="order-<%= order.id %>">
       <td><%= order.order_number %></td>
-      <td><%= order.customer %></td>
-      <td><%= order.account_name %></td>
-      <td><%= link_to '附加信息', '#' %></td>
-      <td><%= link_to '施工进展', '#' %></td>
+      <td><%= order.product_category.name %>/<%= order.product.name %></td>
+      <td><%= order.customer_name %></td>
+      <td><%= order.user.name %></td>
+      <td><%= order.state %></td>
+      <td>
+        <%= link_to '修改', edit_order_path(order) %>
+        <%= link_to_remote '删除', :url => order_path(order), :confirm => '确定删除这个订单?', :method => :delete, :success => "Element.remove('order-#{order.id}')" %>
+      </td>
     </tr>
   <% end -%>
+  <% if @orders.empty? %><tr><td colspan="6"><%= "No record"[] %></td></tr><% end %>
 </table>
+<%= will_paginate @orders %>

@@ -1,0 +1,2 @@
+module Admin::OrganizesHelper
+end

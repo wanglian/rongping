@@ -1,5 +1,5 @@
 <% content_for :header do -%>
- 	<%= s(:site_name) %> Account for <em><%=h @user.login %></em>
+ 	用户 - <em><%=h @user.login %></em>
 <% end -%>
 
 <% content_for :sidebar do -%>
@@ -32,19 +32,19 @@
 <% end -%>
 
 <table class="overview">
-	<%= cell "Login", h(@user.login) %>
+	<%= cell "Login"[], h(@user.login) %>
 	<%= cell "User ID", h(@user.id) %>
 
 	<%= cell_separator %>
 	
 	<%= cell "Email", h(@user.email) %>
-	<%= cell "Password", "#{"*"*8} <small>#{link_to_if !@user.deleted?, "send new password", reset_password_admin_user_url(@user), :method => :put}</small>" %>
+	<%= cell "Password"[], "#{"*"*8} <small>#{link_to_if !@user.deleted?, "send new password", reset_password_admin_user_url(@user), :method => :put}</small>" %>
 	
 	<%= cell_separator %>
 	
-	<%= cell "Account created", @user.created_at.to_s(:long) %>
-	<%= cell "Last updated", @user.updated_at.to_s(:long) %>
+	<%= cell "Account created"[], @user.created_at.to_s(:long) %>
+	<%= cell "Last updated"[], @user.updated_at.to_s(:long) %>
 </table>
 
-<%= link_to 'Edit', edit_admin_user_path(@user) %> |
-<%= link_to 'Back', admin_users_path %>
+<%= link_to 'Edit'[], edit_admin_user_path(@user) %> |
+<%= link_to 'Back'[], admin_users_path %>

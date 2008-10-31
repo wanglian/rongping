@@ -1,0 +1,33 @@
+<% content_for :header do -%>
+	<%= "Compose"[] %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <ul>
+    <li><%= rezm_link_to_inbox %></li>
+    <li><%= rezm_link_to_outbox %></li>
+    <li><%= rezm_link_to_trash_bin %></li>
+  </ul>
+  <%#= render :partial => 'shared/activity' -%>
+<% end -%>
+
+<% form_for @message do |form| %>
+  <%= form.error_messages %>
+  <p>
+    <label for="message_recepient" ><%= 'Recipient'[] %>:</label><br />
+    <%= form.text_field :recipient, :size => 40, :value => @message.recipient, :readonly => true %>
+  </p>
+
+  <p>
+    <label for="message_subject" ><%= 'Subject'[] %>:</label><br />
+    <%= form.text_field :subject, :size => 40 %>
+  </p>
+  
+  <p>
+    <label for="message_body" ><%= 'Message'[] %>:</label><br />
+    <%= form.text_area :body %>
+  </p>
+
+  <%= submit_tag "Send"[] %>
+  <%= button_to_function 'Cancel'[], "history.back()"%>
+<% end %>

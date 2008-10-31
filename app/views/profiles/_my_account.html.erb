@@ -1,19 +1,19 @@
 <% content_for :sidebar do -%>
-<h2>My account</h2>
+<h2><%= 'My account'[] %></h2>
 
 <ul>
-	<li><%= link_to "Update my profile", edit_profile_url(current_user) %></li>
-	<li><%= link_to "Update my avatar", edit_avatar_user_url(current_user) %></li>
+	<!-- <li><%#= link_to "Update my profile", edit_profile_url(current_user) %></li> -->
+	<!-- <li><%#= link_to "Update my avatar", edit_avatar_user_url(current_user) %></li> -->
 </ul>
 
 <ul>
-	<li><%= link_to "Change my email address", edit_email_user_url(@user) %></li>
-	<li><%= link_to "Change my password", edit_password_user_url(@user) %></li>
+	<!-- <li><%#= link_to "Change my email address", edit_email_user_url(@user) %></li> -->
+	<li><%= link_to "Change my password"[], edit_password_user_url(@user) %></li>
 </ul>
 
 <% unless admin? -%>
 <ul>
-	<li><%= link_to "Delete my account", user_url(current_user), :method => :delete, :confirm => "Are you sure you want to schedule your account for deletion? All data linked to your account on #{s(:site_name)} will be removed from our systems.\n\nTHIS ACTION CANNOT BE UNDONE!\n\nThanks for using #{s(:site_name)}. We hope to see you again soon!"%></li>
+	<!-- <li><%#= link_to "Delete my account", user_url(current_user), :method => :delete, :confirm => "Are you sure you want to schedule your account for deletion? All data linked to your account on #{s(:site_name)} will be removed from our systems.\n\nTHIS ACTION CANNOT BE UNDONE!\n\nThanks for using #{s(:site_name)}. We hope to see you again soon!"%></li> -->
 </ul>
 <% end -%>
 <% end -%>

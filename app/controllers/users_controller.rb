@@ -1,11 +1,19 @@
 class UsersController < ApplicationController
+  before_filter :login_required, :only => [:index]
   before_filter :find_user, 
     :only => [:profile, 
               :destroy, 
               :edit_password,   :update_password, 
-              :edit_email,      :update_email ]
+              :edit_email,      :update_email,
+              :update_avatar ]
   
   layout 'login' #, :except => [:edit_password, :update_password]
+  # layout 'application', :only => [:index, :show]
+  
+  def index
+    @users = User.paginate_by_sql "select * from users where id in (select user_id from roles_users where role_id = (select id from roles where name='user'))", :page => params[:page]
+    render :layout => 'application'
+  end
   
   # render new.rhtml
   def new
@@ -144,6 +152,27 @@ class UsersController < ApplicationController
       redirect_to edit_email_user_url(@user)
     end
   end  
+  
+  def update_avatar
+    if @user.update_attributes(params[:user])
+      respond_to do |format|
+        format.html
+        format.js do
+          responds_to_parent do
+            render :update do |page|
+              page.replace_html :avatar, avatar_for(@user, "medium")
+              page["avatar-form"].reset
+            end
+          end
+        end
+      end
+    end
+  end
+  
+  def choose_lang
+    cookies[:lang] = params[:lang] == 'en-US' ? 'en-US' : 'zh-CN'
+    render :nothing => true
+  end
   
   protected
 

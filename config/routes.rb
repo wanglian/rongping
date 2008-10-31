@@ -1,6 +1,21 @@
 # See how all your routes lay out with "rake routes"
 ActionController::Routing::Routes.draw do |map|
-  map.resources :orders
+  map.resources :messages,  
+                   :collection => {:destroy_selected => :post,  
+                                   :inbox            => :get,  
+                                   :outbox           => :get,  
+                                   :trashbin         => :get},  
+                   :member => {:reply => :get}
+                   
+  map.resources :blogs, :member => {:add_comment => :post, :delete_comment => :delete}
+  
+  map.resources :events, :member => { :attend => :post, :unattend => :delete, :add_comment => :post, :delete_comment => :delete }
+  
+  map.resources :topics, :member => {:add_comment => :post, :delete_comment => :delete}
+
+  map.resources :orders do |order|
+    order.resources :order_progresses
+  end
   
   # Non RESTful routes for user management.
   map.user_troubleshooting '/users/troubleshooting', :controller => 'users', :action => 'troubleshooting'
@@ -19,6 +34,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session
   
   # Account shortcuts
+  map.choose_lang '/choose_lang/:lang', :controller => 'users', :action => 'choose_lang'
   map.signup   '/signup',   :controller => 'users',    :action => 'new'
   map.activate '/activate/:activation_code', :controller => 'users',    :action => 'activate'
   map.login    '/login',    :controller => 'sessions', :action => 'new'
@@ -35,11 +51,13 @@ ActionController::Routing::Routes.draw do |map|
                                          :unsuspend => :put,
                                          :activate  => :put, 
                                          :purge     => :delete,
-                                         :reset_password => :put },
+                                         :reset_password => :put,
+                                         :choose_lang => :put },
                             :collection => { :pending   => :get,
                                              :active    => :get, 
                                              :suspended => :get, 
                                              :deleted   => :get }
+    admin.resources :organizes, :member => {:new_user => :get, :create_user => :post, :show_user => :get}
   end
   
   # Dashboard as the default location

@@ -1,0 +1,16 @@
+<%#= cell avatar_for(topic.user), "<div style='padding:5px 0;'><span style='font-size:1.2em;font-weight:bold;'>#{link_to h(topic.name), topic}</span> (#{topic.comments.size}个回复)</div><div>#{user_link topic.user} #{time_ago_in_words topic.created_at}前 #{link_to_remote '删除', :url => topic_path(topic), :method => :delete, :confirm => '确定删除这个话题?', :success => 'Element.remove("topic_#{topic.id}")' if topic.user == current_user}</div>" %>
+
+<tr id="topic_<%= topic.id %>">
+  <td width="80" class="top"><%= avatar_for topic.user %></td>
+  <td class="top">
+    <div style="padding:5px 0;">
+      <span style="font-size:1.2em;font-weight:bold;"><%= link_to h(topic.name), topic %></span>
+      (<%= topic.comments.size %>个回复)
+    </div>
+    <div>
+      <%= user_link topic.user %>
+      <%= time_ago_in_words topic.created_at %>前
+      <%= link_to_remote '删除', :url => topic_path(topic), :method => :delete, :confirm => "确定删除这个话题?", :success => "Element.remove('topic_#{topic.id}')" if topic.user == current_user %>
+    </div>
+  </td>
+</tr>

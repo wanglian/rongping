@@ -1,7 +1,10 @@
-<h3>Profile</h3>
+<h3><%= "Profile"[] %>
+<%= link_to "Edit"[], edit_profile_path(@user) if current_user == @user %>
+</h3>
 
 <table class="overview">
 	<% @profile.public_attributes.each do |column| -%>
-		<%= cell "#{column.humanize}", "#{@profile.send(column) || '-'}" %>
+		<%= cell "#{column.humanize}"[], "#{@profile.send(column) || '-'}" %>
 	<% end -%>
+	<%= cell_separator %>
 </table>

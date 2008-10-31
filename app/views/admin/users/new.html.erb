@@ -1,5 +1,5 @@
 <% content_for :header do -%>
-Create a new <%= s(:site_name) %> account
+  创建用户
 <% end -%>
 
 <% content_for :sidebar do -%>
@@ -17,19 +17,19 @@ Create a new <%= s(:site_name) %> account
 <%= error_messages_for :user %>
 
 <% form_for :user, :url => admin_users_path do |f| -%>
-<p><label for="login">Login</label><br/>
+<p><label for="login"><%= 'Login'[] %></label><br/>
 <%= f.text_field :login %></p>
 
 <p><label for="email">Email</label><br/>
 <%= f.text_field :email %></p>
 
-<p><label for="password">Password</label><br/>
+<p><label for="password"><%= 'Password'[] %></label><br/>
 <%= f.password_field :password %></p>
 
-<p><label for="password_confirmation">Confirm Password</label><br/>
+<p><label for="password_confirmation"><%= 'Confirm Password'[] %></label><br/>
 <%= f.password_field :password_confirmation %></p>
 
-<p><%= submit_tag 'Create account' %></p>
+<p><%= submit_tag 'Save'[] %></p>
 <% end -%>
 
-<%= link_to 'Back', admin_users_path %>
+<%= link_to 'Back'[], admin_users_path %>

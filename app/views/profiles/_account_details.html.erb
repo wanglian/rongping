@@ -1,14 +1,17 @@
-<h3>Account details</h3>
+<h3><%= 'Account details'[] %></h3>
 <table class="overview">
-	<%= cell "Login", h(@user.login) %>
+	<%= cell "Login"[], h(@user.login) %>
 
 	<%= cell_separator %>
 	
-	<%= cell "Email", "#{h(@user.email)} <small>#{link_to "change", edit_email_user_url(@user)}</small>" %>
-	<%= cell "Password", "#{"*"*8} <small>#{link_to "change", edit_password_user_url(@user)}</small>" %>
+	<%#= cell "Email", "#{h(@user.email)} <small>#{link_to "change", edit_email_user_url(@user)}</small>" %>
+	<%= cell "Email", "#{h(@user.email)}" %>
+	<%= cell "Password"[], "#{"*"*8} <small>#{link_to "change"[], edit_password_user_url(@user)}</small>" %>
 	
 	<%= cell_separator %>
 	
-	<%= cell "Account created", @user.created_at.to_s(:long) %>
-	<%= cell "Last updated", @user.updated_at.to_s(:long) %>
+	<%= cell "Account created"[], @user.created_at.to_s(:long) %>
+	<%= cell "Last updated"[], @user.updated_at.to_s(:long) %>
+	
+	<%= cell_separator %>
 </table>

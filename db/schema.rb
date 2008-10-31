@@ -9,20 +9,95 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081017120252) do
+ActiveRecord::Schema.define(:version => 20081031104554) do
+
+  create_table "activities", :force => true do |t|
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["item_type"], :name => "index_activities_on_item_type"
+  add_index "activities", ["item_id"], :name => "index_activities_on_item_id"
+
+  create_table "blogs", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "blogs", ["user_id"], :name => "index_blogs_on_user_id"
+
+  create_table "comments", :force => true do |t|
+    t.string   "title",            :limit => 50, :default => ""
+    t.text     "comment",                        :default => ""
+    t.datetime "created_at",                                     :null => false
+    t.integer  "commentable_id",                 :default => 0,  :null => false
+    t.string   "commentable_type", :limit => 15, :default => "", :null => false
+    t.integer  "user_id",                        :default => 0,  :null => false
+  end
+
+  add_index "comments", ["user_id"], :name => "fk_comments_user"
 
   create_table "departments", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "event_attendees", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "event_attendees_count", :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.boolean  "receiver_deleted"
+    t.boolean  "receiver_purged"
+    t.boolean  "sender_deleted"
+    t.boolean  "sender_purged"
+    t.datetime "read_at"
+    t.integer  "receiver_id"
+    t.integer  "sender_id"
+    t.string   "subject",          :null => false
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["receiver_id"], :name => "index_messages_on_receiver_id"
+  add_index "messages", ["sender_id"], :name => "index_messages_on_sender_id"
+
+  create_table "order_progresses", :force => true do |t|
+    t.integer  "order_id"
+    t.string   "progress_type"
+    t.text     "note"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "orders", :force => true do |t|
     t.string   "order_number"
     t.date     "audit_at"
     t.string   "audit_number"
-    t.string   "customer"
-    t.string   "contact"
+    t.integer  "customer_id"
+    t.integer  "user_id"
     t.integer  "manager_id"
-    t.integer  "department_id"
     t.text     "memo"
     t.string   "account_name"
     t.text     "account_contact"
@@ -41,6 +116,22 @@ ActiveRecord::Schema.define(:version => 20081017120252) do
     t.string   "state"
     t.integer  "confirm_user_id"
     t.datetime "confirm_at"
+    t.string   "circuit_id"
+    t.string   "dsu_type"
+    t.string   "dsu_sn"
+    t.string   "router_type"
+    t.string   "router_sn"
+    t.string   "config_name"
+    t.string   "node_name"
+    t.string   "port_assignment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "organizes", :force => true do |t|
+    t.string   "name"
+    t.text     "contact"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -82,6 +173,13 @@ ActiveRecord::Schema.define(:version => 20081017120252) do
     t.datetime "updated_at"
   end
 
+  create_table "topics", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "login"
     t.string   "email"
@@ -96,6 +194,9 @@ ActiveRecord::Schema.define(:version => 20081017120252) do
     t.string   "state",                                   :default => "passive"
     t.datetime "deleted_at"
     t.string   "password_reset_code"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
   end
 
 end

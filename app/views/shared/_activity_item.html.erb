@@ -1,0 +1,11 @@
+<%- unless activity_item.item.nil? -%>
+<tr>
+  <td width="20">
+    <%= feed_icon activity_item %>
+  </td>
+  <td>
+    <%= feed_message activity_item %>
+    [<%= time_ago_in_words(activity_item.created_at).capitalize %>前]
+  </td>
+</tr>
+<%- end -%>

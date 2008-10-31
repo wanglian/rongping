@@ -5,21 +5,45 @@
 	
 	<p>The profile you requested does not exist.</p>
 <% else -%>
-	<div style="float: right; margin: 10px">
-		<%= gravatar_for @user %>
+	<%- content_for :header do -%>
+		<%- if current_user == @user -%>
+			<%= 'My Account'[] %>
+		<%- else -%>
+			<%= @user.login %>
+		<%- end -%>
+	<%- end -%>
+	
+  <div style="margin: 10px">
+		<div id="avatar"><%= avatar_for @user, 'medium' %></div>
+		<%- if current_user == @user -%>
+		<p><%= link_to_function "Upload photo"[], visual_effect(:toggle_appear, "div-avatar") %></p>
+		<div id="div-avatar" style="display:none;">
+		  <% form_for @user, :url => formatted_update_avatar_user_path(@user, :js), :html => { :id => "avatar-form", :multipart => true, :target => 'upload_frame' } do |form| %>
+        <%= form.file_field :avatar %>
+        <%= form.submit 'Save'[] %>
+        <%= button_to_function 'Cancel'[], visual_effect(:toggle_appear, "div-avatar") %>
+      <% end -%>
+      <iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>
+		</div>
+		<%- end -%>
 	</div>
 	
-	<% content_for :header do -%>
-		<% if current_user == @user -%>
-			My Account
-		<% else -%>
-			Profile for <%= @user.login %>
-		<% end -%>
-	<% end -%>
+	<%- unless current_user == @user -%>
+	  <p>
+	    <%= link_to "#{@user.name}的日志", blogs_path(:user => @user.name) %> |
+      <%= link_to 'Send a message'[:compose], new_message_path(:id => @user.id) %>
+	  </p>
+	<%- end -%>
 	
 	<%= render :partial => 'profiles/my_account' if current_user == @user %>
 	
 	<%= render :partial => 'profiles/account_details' if current_user == @user %>
 	
 	<%= render :partial => 'profiles/profile_details' %>
+	
+	<h3><%= "Recent activities"[] %></h3>
+  <table class="index">
+    <%= render :partial => 'shared/activity_item', :collection => @user.activities %>
+    <%= "No record"[] if @user.activities.empty? %>
+  </table>
 <% end -%>

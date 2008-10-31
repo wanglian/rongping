@@ -1,0 +1,101 @@
+<% content_for :header do -%>
+	订单列表
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'shared/activity' -%>
+<% end -%>
+
+<table class="index">
+  <tr>
+    <th width="10%">订单编号</th>
+    <th width="10%">产品</th>
+    <th>客户名称</th>
+    <th width="30%">付款方</th>
+    <th width="25%"></th>
+  </tr>
+  <% for order in @orders -%>
+    <tr id="order-<%= order.id %>">
+      <td><%= link_to_function order.order_number, "toggle_order_action('#{order.id}', 'detail');" %></td>
+      <td><%= order.product_category.name %>/<%= order.product.name %></td>
+      <td><%= order.customer_name %></td>
+      <td><%= order.user.name %></td>
+      <td>
+        <%= link_to_function '附加信息', "toggle_order_action('#{order.id}', 'attach');" %>
+        <%= link_to_function '施工进展', "toggle_order_action('#{order.id}', 'progress');" %>
+      </td>
+    </tr>
+    <tr id="order-action-<%= order.id %>" style="display:none;">
+      <td>
+        
+      </td>
+      <td colspan="4" id="order-action-content-<%= order.id %>">
+        <div id="order-detail-<%= order.id %>" style="display:none;">
+          <div class="head">详细信息</div>
+        </div>
+        <div id="order-attach-<%= order.id %>" style="display:none;">
+          <div class="head">附加信息</div>
+          <div id="status" class="notice" style="display:none;"></div>
+          <% form_remote_for order do |f| %>
+          <table class="overview">
+            <%= cell "线路编号", f.text_field(:circuit_id) %>
+            <%= cell "设备信息", f.text_field(:dsu_type) %>
+            <%= cell "设备串号", f.text_field(:dsu_sn) %>
+            <%= cell "路由器型号", f.text_field(:router_type) %>
+            <%= cell "配置文件名", f.text_field(:config_name) %>
+            <%= cell_separator %>
+            <%= cell "设备所连的节点名", f.text_field(:node_name) %>
+            <%= cell "节点上所对应的端口", f.text_field(:port_assignment) %>
+            <tr>
+            <td></td>
+            <td>
+              <%= f.submit '保存'%>
+              <%= button_to_function '取消', "Element.toggle('order-action-#{order.id}')" %>
+            </td>
+            </tr>
+          </table>
+          <% end -%>
+        </div>
+        <div id="order-progress-<%= order.id %>" style="display:none;">
+          <div class="head">施工进展</div>
+          <div style="margin-left:80px;">
+            <p>
+            <% form_remote_for :order_progress, :url => order_order_progresses_path(order), :html => {:id => "order-#{order.id}-progress-form"} do |f| -%>
+              <div><%= f.select :progress_type, OrderProgress::PROGRESS_TYPE %></div>
+              <div><%= f.text_area :note, :class => "comment" %></div>
+              <div>
+                <%= f.submit '回复' %>
+                <%#= button_to_function '取消', "Element.toggle('order-action-#{order.id}')" %>
+              </div>
+            <% end -%>
+            </p>
+          </div>
+          <p id="order-<%= order.id %>-progresses-summary"><%= progresses_summary(order.order_progresses) %></p>
+          <table id="order-<%= order.id %>-progresses" class="overview">
+            <%= render :partial => 'order_progress', :collection => order.order_progresses %>
+          </table>
+          
+        </div>
+      </td>
+    </tr>
+  <% end -%>
+  <% if @orders.empty? %><tr><td colspan="5"><%= "No record"[] %></td></tr><% end %>
+</table>
+<%= will_paginate @orders %>
+
+<script>
+  var order_action_status = [];
+  function toggle_order_action(id, action) {
+    if (order_action_status[id] != action) {
+      Element.show('order-action-' + id);
+      Element.hide('order-detail-' + id);
+      Element.hide('order-progress-' + id);
+      Element.hide('order-attach-' + id);
+      Element.show('order-' + action + '-' + id);
+      order_action_status[id] = action;
+    } else {
+      Element.toggle('order-action-' + id);
+      order_action_status[id] = null;
+    }
+  }
+</script>

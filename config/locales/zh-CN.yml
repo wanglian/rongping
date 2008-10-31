@@ -1,0 +1,28 @@
+"zh-CN":
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%e %b"
+      long: "%B %e, %Y"
+      only_day: "%e"
+
+    day_names: [星期日, 星期一, 星期二, 星期三, 星期四, 星期五, 星期六]
+    abbr_day_names: [日, 一, 二, 三, 四, 五, 六]
+    month_names: [~, 一月, 二月, 三月, 四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月]
+    abbr_month_names: [~, 一月, 二月, 三月, 四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月]
+    order: [ :year, :month, :day ]
+  
+  time:
+    formats:
+      default: "%a %b %d %H:%M:%S %Z %Y"
+      time: "%H:%M"
+      short: "%d %b %H:%M"
+      long: "%B %d, %Y %H:%M"
+      only_second: "%S"
+      
+      datetime:
+        formats:
+          default: "%Y-%m-%dT%H:%M:%S%Z"
+          
+      am: '上午'
+      pm: '下午'

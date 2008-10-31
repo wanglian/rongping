@@ -1,5 +1,5 @@
 <% content_for :header do -%>
-	<%= s(:site_name) %> Users
+	<%= 'Users'[] %>
 <% end -%>
 
 <% content_for :sidebar do -%>
@@ -15,9 +15,10 @@
 <table class="index">
   <tr>
 	<th>ID</th>
-	<th>Login</th>
+	<th><%= 'Login'[] %></th>
 	<th>Email</th>
-	<th>Status</th>
+	<th>类型</th>
+	<th><%= 'Status'[] %></th>
   </tr>
 
 <% # TODO: (base_app) Add some sort of search feature to easily find users %>
@@ -26,9 +27,10 @@
 	<td><%=h user.id %></td>
 	<td><%= link_to h(user.login), admin_user_url(user) %></td>
 	<td><%=h user.email %></td>
+	<td><%= user.roles.collect {|r| r.name[]} %></td>
 	<td><%=h user.state %></td>
     <td class="actions">
-		<%= link_to 'Show', admin_user_url(user) %>
+		<%= link_to 'Show'[], admin_user_url(user) %>
 	</td>
   </tr>
 <% end %>

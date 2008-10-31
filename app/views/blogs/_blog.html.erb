@@ -1,0 +1,16 @@
+<tr><td>
+  <h3><%= link_to h(blog.title), blog %></h3>
+
+  <p>
+    <%=simple_format blog.body %>
+  </p>
+
+  <p>
+    写于 <%= time_ago_in_words(blog.created_at) %>前 |
+    <%= link_to "#{blog.comments.size}个评论", blog_path(blog) %>
+    <%- if current_user == blog.user -%>
+      | <%= link_to 'Edit'[], edit_blog_path(blog) %>
+      | <%= link_to 'Delete'[], blog_path(blog), :method => :delete, :confirm => "确定删除这篇日志?" %>
+    <%- end -%>
+  </p>
+</tr></tr>

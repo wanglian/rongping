@@ -1,5 +1,5 @@
 <% content_for :header do -%>
-<%= s(:site_name) %> Login
+<%= "site_name"[] %> <%= 'Login'[:log_in] %>
 <% end -%>
 
 <% content_for :sidebar do -%>
@@ -9,17 +9,17 @@
 <% end -%>
 
 <% form_tag session_path do -%>
-<p><label for="login">Login</label><br/>
+<p><label for="login"><%= 'Login'[] %></label><br/>
 <%= text_field_tag 'login' %></p>
 
-<p><label for="password">Password</label><br/>
+<p><label for="password"><%= 'Password'[] %></label><br/>
 <%= password_field_tag 'password' %></p>
 
-<p><label for="remember_me">Remember me:</label>
+<p><label for="remember_me"><%= 'Remember me'[] %>:</label>
 <%= check_box_tag 'remember_me' %></p>
 
 <ul>
-	<li><%= link_to "Sign up for an account now", signup_url %></li>
+  <% if registration_enabled %><li><%= link_to "Sign up for an account now", signup_url %></li><% end %>
 	<li><%= link_to "Having trouble logging in?", user_troubleshooting_url %></li>
 </ul>
 

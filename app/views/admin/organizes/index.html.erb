@@ -1,0 +1,42 @@
+<% content_for :header do -%>
+	<%= 'Customers'[] %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+	<ul>
+		<li><%= link_to '创建客户', new_admin_organize_path %></li>
+	</ul>
+<% end -%>
+
+<table class="index">
+  <tr>
+    <th>ID</th>
+    <th>名称</th>
+    <th>联系信息</th>
+    <th>帐号</th>
+    <th></th>
+  </tr>
+
+<% for organize in @organizes %>
+  <tr>
+    <td><%= organize.id %></td>
+    <td><%= link_to organize.name, admin_organize_path(organize) %></td>
+    <td><%= organize.contact %></td>
+    <td>
+      <%= link_to organize.user.login, show_user_admin_organize_path(organize, :user_id => organize.user.id) if organize.user %>
+      <%= link_to 'Create'[], new_user_admin_organize_path(organize) unless organize.user%>
+    </td>
+    <td class="actions">
+      <%= link_to 'Show'[], admin_organize_path(organize) %>
+      <%#= link_to 'Edit'[], edit_admin_organize_path(organize) %>
+      <%#= link_to 'Destroy'[], admin_organize_path(organize), :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @organizes %>
+
+<p>
+  <%= link_to '创建客户', new_admin_organize_path %>
+</p>

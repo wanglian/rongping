@@ -1,0 +1,13 @@
+<tr id="comment_<%= comment.id %>">
+  <td width="80" class="top"><%= avatar_for comment.user %></td>
+  <td class="top">
+    <div class="comment_title">
+      <%= user_link comment.user %>
+      <%= time_ago_in_words comment.created_at %>前
+      <%= link_to_remote '删除', :url => delete_comment_event_path(comment.commentable, :cid => comment.id), :method => :delete, :confirm => "确定删除这个回复?", :success => "Element.remove('comment_#{comment.id}')" if comment.user == current_user %>
+    </div>
+    <div style="padding: 5px 0;">
+      <%= simple_format comment.comment %>
+    </div>
+  </td>
+</tr>

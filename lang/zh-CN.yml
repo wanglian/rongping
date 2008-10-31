@@ -1,12 +1,105 @@
 app_name: HPT
+site_name: 订单跟踪系统
+company_name: 瀚平网络技术
 
 dashboard: 首页
-my_account: 帐号
+my: 我的
+account: 帐号
+my_account: 我的帐号
 administration: 管理
 log_out: 退出
 sign_up: 注册
 log_in: 登录
 settings: 设置
 users: 用户
+customers: 客户
 
+prev_page: 上一页
+next_page: 下一页
+no_record: 没有记录
 
+login: 登录名
+password: 密码
+confirm_password: 确认密码
+remember_me: 记住我
+location: 家乡
+real_name: 姓名
+website: 个人网站
+
+edit: 编辑
+save: 保存
+create: 创建
+update: 更新
+delete: 删除
+show: 查看
+back: 返回
+destroy: 删除
+cancel: 取消
+or: 或者
+change: 修改
+publish: 发表
+reply: 回复
+
+new_user: 创建用户
+status: 状态
+
+admin: 管理员
+user: 用户
+users: 用户
+customer: 客户
+profile: 个人信息
+upload_photo: 上传头像
+
+change_my_password: 修改密码
+your_current_password: 当前密码
+enter_current_password: ''
+your_new_password: 新密码
+enter_new_password: ''
+account_details: 帐号信息
+account_created: 帐号创建时间
+last_updated: 最后更新
+
+my_orders: 我的订单
+order_number: 订单编号
+product: 产品
+customer: 客户名称
+paid_user: 付款方
+order_information: 订单信息
+order_progress: 施工进展
+  
+forum: 论坛
+topic: 话题
+topics: 话题
+add_new_topic: 创建话题
+
+activity: 动态
+recent_activities: 最新动态
+
+event: 活动
+events: 活动
+add_new_event: 创建活动
+edit_event: 编辑活动
+title: 标题
+description: 说明
+start_time: 开始时间
+end_time: 结束时间
+comments: 评论
+attendees: 参加者
+
+blog: 日志
+add_new_blog: 写日志
+edit_blog: 编辑日志
+
+message: 消息
+messages: 消息
+message_state: "消息({count})"
+inbox: 收件箱
+outbox: 发件箱
+trash: 垃圾箱
+trashbin: 垃圾箱
+compose: 发消息
+recipient: 发送给 
+subject: 主题
+send: 发送
+to: 发给
+from: 来自

@@ -1,0 +1,37 @@
+<% content_for :header do -%>
+	<%= @blog.user.name %>的日志
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'shared/activity' -%>
+<% end -%>
+
+<table class="index"><tr><td>
+  <h3><%=h @blog.title %></h3>
+
+  <p>
+    <%= simple_format @blog.body %>
+  </p>
+
+  <p>
+    写于 <%= time_ago_in_words(@blog.created_at) %>前
+    <%- if current_user == @blog.user -%>
+      <%= link_to 'Edit'[], edit_blog_path(@blog) %> |
+      <%= link_to 'Delete'[], blog_path(@blog), :method => :delete, :confirm => "确定删除这篇日志?" %>
+    <%- end -%>
+  </p>
+</td></tr></table>
+
+<h2><%= "Comments"[] %></h2>
+<table id="comments">
+  <%= render :partial => 'comment', :collection => @blog.comments %>
+</table>
+<%- if logged_in? -%>
+  <div style="margin-left:80px;">
+  <% form_remote_tag :url => add_comment_blog_path(@blog), :html => { :id => "comment_form" } do |f| %>
+    <%= text_area_tag :comment, nil, :class => "comment" %><br/>
+    <%= submit_tag "Publish"[] %>
+  <% end %>
+  </div>
+<%- end -%>
+

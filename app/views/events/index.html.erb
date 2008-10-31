@@ -1,0 +1,24 @@
+<% content_for :header do -%>
+	<%= 'events'[] %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'calendar', :locals => { :events => @month_events, :date => @date } %>
+
+  <ul>
+    <li><%= link_to "Add new event"[], new_event_path %></li>
+  </ul>
+  <%= render :partial => 'shared/activity' -%>
+<% end -%>
+
+<div style="float:right;width:200px;">
+  
+</div>
+
+<table class="index">
+  <%= render :partial => @events %>
+  <% if @events.empty? %><tr><td><%= "No record"[] %></td></tr><% end %>
+</table>
+
+
+  

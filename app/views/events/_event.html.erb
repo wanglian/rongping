@@ -1,0 +1,37 @@
+<tr>
+  <td width="80">
+    <%= avatar_for event.user %>
+  </td>
+  <td>
+    <p>
+      <%= link_to h(event.title), event, :style => "font-size:1.2em;font-weight:bold;" %>
+      <%= event.start_time.to_s :short %>
+      <% unless event.end_time.nil? -%>
+      - <%= event.end_time.to_s :short %>
+      <% end -%>
+    </p>
+    <p>
+      <%= simple_format event.description %>
+    </p>
+    <p class="meta">
+      <%= user_link event.user %> 创建于
+      <%= time_ago_in_words(event.created_at) %>前
+      <% if current_user == event.user -%>
+      | <%= link_to "Edit"[],  edit_event_path(event) %>
+      <% end -%>
+    </p>
+    <% unless event.event_attendees_count == 0 -%>
+    <p>
+      <%= event.event_attendees_count %>人参加 |
+      <%= link_to "#{event.comments.size}个评论", event_path(event) %>
+    </p>
+    <% end -%>
+    <p>
+      <% unless event.attending?(current_user) -%>
+      <%= link_to "我参加", attend_event_path(event), :method => :post %>
+      <% else -%>
+      <%= link_to "我退出", unattend_event_path(event), :method => :delete %>
+      <% end -%>
+    </p>
+  </td>
+</tr>

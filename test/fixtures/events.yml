@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  user_id: 1
+  start_time: 2008-10-30 21:57:21
+  end_time: 2008-10-30 21:57:21
+  event_attendees_count: 1
+
+two:
+  title: MyString
+  description: MyText
+  user_id: 1
+  start_time: 2008-10-30 21:57:21
+  end_time: 2008-10-30 21:57:21
+  event_attendees_count: 1

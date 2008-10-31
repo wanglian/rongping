@@ -1,0 +1,59 @@
+<% content_for :header do -%>
+	<%= 'My orders'[] %>
+<% end -%>
+
+<table class="index">
+  <tr>
+    <th width="10%"><%= 'Order Number'[] %></th>
+    <th><%= 'Product'[] %></th>
+    <th><%= 'Customer'[] %></th>
+    <th><%= 'Paid user'[] %></th>
+    <th><%= 'Status'[] %></th>
+  </tr>
+  <%- for order in @orders -%>
+    <tr id="order-<%= order.id %>">
+      <td><%= link_to_function order.order_number, "toggle_order_action('#{order.id}', 'detail');" %></td>
+      <td><%= order.product_category.name %>/<%= order.product.name %></td>
+      <td><%= order.customer_name %></td>
+      <td><%= order.user.name %></td>
+      <td><%= link_to_function order.state, "toggle_order_action('#{order.id}', 'progress');" %></td>
+    </tr>
+    <tr id="order-action-<%= order.id %>" style="display:none;">
+      <td></td>
+      <td colspan="4" id="order-action-content-<%= order.id %>">
+        <div id="order-detail-<%= order.id %>" style="display:none;">
+          <div class="head"><%= 'Order Information'[] %></div>
+          <table>
+            <tr>
+              <th></th>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <div id="order-progress-<%= order.id %>" style="display:none;">
+          <div class="head"><%= 'Order Progress'[] %></div>
+          <table id="order-<%= order.id %>-progresses" class="overview">
+            <%= render :partial => 'order_progresses/order_progress', :collection => order.order_progresses %>
+          </table>
+        </div>
+      </td>
+    </tr>
+  <%- end -%>
+  <% if @orders.empty? %><tr><td colspan="5"><%= "No record"[] %></td></tr><% end %>
+</table>
+
+<script>
+  var order_action_status = [];
+  function toggle_order_action(id, action) {
+    if (order_action_status[id] != action) {
+      Element.show('order-action-' + id);
+      Element.hide('order-detail-' + id);
+      Element.hide('order-progress-' + id);
+      Element.show('order-' + action + '-' + id);
+      order_action_status[id] = action;
+    } else {
+      Element.toggle('order-action-' + id);
+      order_action_status[id] = null;
+    }
+  }
+</script>

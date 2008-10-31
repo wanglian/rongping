@@ -1,0 +1,13 @@
+<tr id="progress-<%= order_progress.id %>">
+  <td width="80"><%= avatar_for order_progress.user %></td>
+  <td id="progress-content-<%= order_progress.id %>">
+    <div class="comment_title">
+      [<%= order_progress.progress_type %>]
+      <%= order_progress.user.login %>
+      <%= order_progress.created_at.to_s :db %>
+    </div>
+    <div>
+      <%= simple_format order_progress.note %>
+    </div>
+  </td>
+</tr>

@@ -1,6 +1,20 @@
 <ul>
-	<li style="float: right;"><%= tab_to '订单查询', [{:controller => "orders"}] %></li>
-	<li style="float: right;"><%= tab_to '订单录入', [{:controller => "orders", :action => 'new'}] %></li>
-
+	<% if current_user.has_role?('user') -%>
+	<li style="float: right;"><%= tab_to '订单管理', [{:controller => "orders"}] %></li>
+	<li style="float: right;"><%= tab_to '订单跟踪', [{:controller => "order_progresses"}] %></li>
+	<% end -%>
+	<% if current_user.has_role?('customer') && !current_user.has_role?('admin')%>
+	<li style="float: right;"><%= tab_to 'My orders'[], [{:controller => "orders"}] %></li>
+	<% end %>
 	<li><%= tab_to "Dashboard"[], [{:controller => "dashboard" }] %></li>
+	<% if current_user.has_role?('user') -%>
+	<li><%= tab_to "Users"[], [{:controller => "users"}] %></li>
+	<li><%= tab_to "Blog"[], [{:controller => "blogs"}] %></li>
+	<li><%= tab_to "Forum"[], [{:controller => "topics"}] %></li>
+	<li><%= tab_to "Event"[], [{:controller => "events"}] %></li>
+	<li>
+	  <%= tab_to "Messages({count})"[:message_state, current_user.unread_messages.size], [{:controller => "messages"}] if current_user.unread_messages.size > 0 %>
+	  <%= tab_to "Messages"[], [{:controller => "messages"}] unless current_user.unread_messages.size > 0 %>
+	</li>
+	<% end -%>
 </ul>

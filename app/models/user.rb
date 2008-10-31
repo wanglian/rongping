@@ -1,9 +1,17 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
+  restful_easy_messages
   
   has_and_belongs_to_many :roles
   has_one :profile
+  has_one :organize
+  has_many :activities, :order => "created_at DESC", :limit => 15
   
+  has_attached_file :avatar,
+                    :styles => {:medium => "240>", :small => "72>", :thumb => "36>"},
+                    :default_url => "/images/default_:style_avatar.png",
+                    :default_style => :small
+
   # has_role? simply needs to return true or false whether a user has a role or not.  
   # It may be a good idea to have "admin" roles return true always
   def has_role?(role_in_question)
@@ -11,7 +19,11 @@ class User < ActiveRecord::Base
     return true if @_list.include?("admin")
     (@_list.include?(role_in_question.to_s) )
   end
-
+  
+  def name
+    login
+  end
+  
   # Virtual attribute for the unencrypted password
   attr_accessor :password
   
@@ -33,7 +45,7 @@ class User < ActiveRecord::Base
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :password, :password_confirmation
+  attr_accessible :login, :email, :password, :password_confirmation, :avatar
 
   acts_as_state_machine :initial => :pending
   state :passive

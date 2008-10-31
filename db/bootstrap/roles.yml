@@ -5,3 +5,7 @@ admin_role:
 user_role:
   id: 2
   name: 'user'
+  
+customer_role:
+  id: 3
+  name: 'customer'

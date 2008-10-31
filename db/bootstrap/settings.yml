@@ -3,14 +3,14 @@ site_name:
   identifier: 'site_name'
   description: 'The name of your application. This name will be used to brand your entire application.'
   field_type: 'string'
-  value: "Console"
+  value: "订单管理系统"
 
 company_name:
   label: "Company name"
   identifier: 'company_name'
   description: "Your company's name. It will be used to identify you as the owner of the application."
   field_type: 'string'
-  value: "HPT"
+  value: "瀚平网络技术"
   
 site_url:
   label: "Site URL"
@@ -32,3 +32,10 @@ support_email:
   description: 'What is your support email address? This address will be shown to users for them to email support requests.'
   field_type: 'string'
   value: "wanglian1024@gmail.com"
+
+registration_enabled:
+  label: "Registration enabled"
+  identifier: 'registration_enabled'
+  description: 'Whether registration enabled. 1 - enabled, 0 - disabled.'
+  field_type: 'string'
+  value: '1'

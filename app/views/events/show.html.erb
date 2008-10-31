@@ -1,0 +1,50 @@
+<% content_for :header do -%>
+	<%= "Event"[] %> - <%= @event.title %>
+<% end -%>
+
+<table class="index">
+  <%= render :partial => @event %>
+</table>
+
+<h2><%= "Attendees"[] %></h2>
+<% unless @attendees.empty? -%>
+  <table>
+    <%- @attendees.in_groups_of(5, false) do |row_attendees| -%>
+    <tr>
+      <%- row_attendees.each do |attendee| -%>
+      <td align="center">
+      <%= avatar_for attendee, 'thumb' %><br/>
+      <%= user_link attendee %>
+      </td>
+      <%- end -%>
+    </tr>
+    <%- end -%>
+  </table>
+<% else -%>
+  <p>
+    没有参与者.
+  </p>
+<% end -%>
+
+<h2><%= "Comments"[] %></h2>
+<table id="comments">
+  <%= render :partial => 'comment', :collection => @event.comments %>
+</table>
+<%- if logged_in? -%>
+  <div style="margin-left:80px;">
+  <% form_remote_tag :url => add_comment_event_path(@event), :html => { :id => "comment_form" } do |f| %>
+    <%= text_area_tag :comment, nil, :class => "comment" %><br/>
+    <%= submit_tag "Publish"[] %>
+  <% end %>
+  </div>
+<%- end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'calendar', :locals => { :events => @month_events, :date => @date } %>
+
+  <ul>
+    <li><%= link_to "Add new event"[], new_event_path %></li>
+  </ul>
+  <%= render :partial => 'shared/activity' -%>
+<% end -%>
+
