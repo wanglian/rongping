@@ -1,5 +1,5 @@
 log/*
-public/avatarts/*
+public/avatars/*
 tmp/*
 database.yml
 *.sqlite
