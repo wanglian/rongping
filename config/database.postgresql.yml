@@ -1,4 +1,4 @@
-# PostgreSQL. Versions 7.4 and 8.x are supported.
+rongping# PostgreSQL. Versions 7.4 and 8.x are supported.
 #
 # Install the ruby-postgres driver:
 #   gem install ruby-postgres
@@ -11,8 +11,8 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: baseapp_development
-  username: baseapp
+  database: rongping_development
+  username: rongping
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -36,13 +36,13 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: baseapp_test
-  username: baseapp
+  database: rongping_test
+  username: rongping
   password:
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: baseapp_production
-  username: baseapp
+  database: rongping_production
+  username: rongping
   password:

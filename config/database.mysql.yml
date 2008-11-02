@@ -17,10 +17,9 @@
 development:
   adapter: mysql
   encoding: utf8
-  database: baseapp_development
+  database: rongping_development
   username: root
   password:
-  socket: /tmp/mysql.sock
 
 # Warning: The database defined as 'test' will be erased and
 # re-generated from your development database when you run 'rake'.
@@ -28,15 +27,13 @@ development:
 test:
   adapter: mysql
   encoding: utf8
-  database: baseapp_test
+  database: rongping_test
   username: root
   password:
-  socket: /tmp/mysql.sock
 
 production:
   adapter: mysql
   encoding: utf8
-  database: baseapp_production
+  database: rongping_production
   username: root
   password: 
-  socket: /tmp/mysql.sock
