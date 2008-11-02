@@ -9,15 +9,16 @@
 <table class="index"><tr><td>
   <h3><%=h @blog.title %></h3>
 
-  <p>
+  <div class="box">
     <%= simple_format @blog.body %>
-  </p>
+  </div>
 
   <p>
+    <%= user_link @blog.user %>
     写于 <%= time_ago_in_words(@blog.created_at) %>前
     <%- if current_user == @blog.user -%>
       <%= link_to 'Edit'[], edit_blog_path(@blog) %> |
-      <%= link_to 'Delete'[], blog_path(@blog), :method => :delete, :confirm => "确定删除这篇日志?" %>
+      <%= link_to 'Delete'[], blog_path(@blog), :method => :delete, :confirm => "You are deleting '{object}'.\nAre you sure?"[:confirm_alert, @blog.title] %>
     <%- end -%>
   </p>
 </td></tr></table>

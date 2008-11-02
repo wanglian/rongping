@@ -1,0 +1,16 @@
+<% content_for :header do -%>
+	<%= 'Documents'[] %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <ul>
+    <li><%= link_to 'Add new document'[], new_document_path %></li>
+  </ul>
+  <%= render :partial => 'shared/activity' -%>
+<% end -%>
+
+<table class="index">
+  <%= render :partial => 'document', :collection => @documents %>
+</table>
+
+<%= will_paginate @documents %>

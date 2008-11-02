@@ -1,4 +1,4 @@
-<p style="font-size:1.5em;font-weight:bold;"><%= 'Activity'[] %></p>
+<div style="font-size:1.5em;font-weight:bold;"><%= 'Activity'[] %></div>
 <table class="index">
   <%= render :partial => 'shared/activity_mini_item', :collection => Activity.find_recent %>
 </table>

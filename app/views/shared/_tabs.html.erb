@@ -10,6 +10,8 @@
 	<% if current_user.has_role?('user') -%>
 	<li><%= tab_to "Users"[], [{:controller => "users"}] %></li>
 	<li><%= tab_to "Blog"[], [{:controller => "blogs"}] %></li>
+	<li><%= tab_to "Document"[], [{:controller => "documents"}] %></li>
+	<li><%= tab_to "Chat"[], [{:controller => "chatrooms"}] %></li>
 	<li><%= tab_to "Forum"[], [{:controller => "topics"}] %></li>
 	<li><%= tab_to "Event"[], [{:controller => "events"}] %></li>
 	<li>

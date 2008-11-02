@@ -10,7 +10,7 @@ module ActivityLogger
   # adding activities to the contacts of the wall's or post's owner,
   # we should include the owner as well, so that he sees in his feed
   # that a comment has been made.
-  def add_activities(options = {})
-    Activity.create!(:item => options[:item], :user => options[:user])
+  def log_activity
+    Activity.create!(:item => self, :user => user)
   end
 end

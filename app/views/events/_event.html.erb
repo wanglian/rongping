@@ -10,9 +10,9 @@
       - <%= event.end_time.to_s :short %>
       <% end -%>
     </p>
-    <p>
+    <div class="box">
       <%= simple_format event.description %>
-    </p>
+    </div>
     <p class="meta">
       <%= user_link event.user %> 创建于
       <%= time_ago_in_words(event.created_at) %>前

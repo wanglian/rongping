@@ -53,11 +53,5 @@ class Event < ActiveRecord::Base
   def attending?(user)
     self.attendee_ids.include?(user[:id])
   end
-
-  private
-
-    def log_activity
-      add_activities(:item => self, :user => self.user)
-    end
   
 end

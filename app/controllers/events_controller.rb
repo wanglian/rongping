@@ -3,9 +3,7 @@ class EventsController < ApplicationController
   before_filter :login_required
   before_filter :load_event, :except => [:index, :new, :create]
   before_filter :load_date, :only => [:index, :show]
-  # before_filter :authorize_show, :only => :show
-  before_filter :authorize_change, :only => [:edit, :update]
-  before_filter :authorize_destroy, :only => :destroy
+  before_filter :can_edit, :only => [:update, :destroy]
   
   def index
     @month_events = Event.monthly_events(@date)
@@ -124,25 +122,6 @@ class EventsController < ApplicationController
   end
   
   private
-  
-    def authorize_show
-      # if (@event.only_contacts? and
-      #           not (@event.user.contact_ids.include?(current_user.id) or
-      #                current_user?(@event.user) or current_user.admin?))
-      #         redirect_to home_url 
-      #       end
-      true
-    end
-  
-    def authorize_change
-      redirect_to home_url unless current_user == @event.user
-    end
-
-    def authorize_destroy
-      can_destroy = current_user?(@event.user) || current_user.admin?
-      redirect_to home_url unless can_destroy
-    end
-
     def load_date
       if @event
         @date = @event.start_time

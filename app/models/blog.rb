@@ -14,10 +14,4 @@ class Blog < ActiveRecord::Base
   def self.per_page
     10
   end
-  
-  private
-  
-    def log_activity
-      add_activities(:item => self, :user => user)
-    end
 end

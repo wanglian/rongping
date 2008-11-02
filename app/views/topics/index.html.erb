@@ -20,12 +20,6 @@
 <h2><%= "Add new topic"[] %></h2>
 
 <% form_for(:topic) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.text_field :name, :size => 60 %>
-  </p>
-  <p>
-    <%= f.submit "Create"[] %>
-  </p>
+  <%= f.text_field :name, :size => 60 %>
+  <%= f.submit "Create"[] %>
 <% end %>

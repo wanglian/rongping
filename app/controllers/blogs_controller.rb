@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
   before_filter :login_required
   before_filter :find_blog, :except => [:index, :new, :create]
+  before_filter :can_edit, :only => [:update, :destroy]
   
   # GET /blogs
   # GET /blogs.xml

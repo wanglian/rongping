@@ -23,7 +23,7 @@ module MessagesHelper
   
   # Link to view the trash bin
   def rezm_link_to_trash_bin
-    link_to "Trash"[], trashbin_messages_path
+    link_to "Trashbin"[], trashbin_messages_path
   end
   
   # Dynamic label for the sender/receiver column in the messages.rhtml view
@@ -119,6 +119,6 @@ module MessagesHelper
   
   # Delete Button
   def rezm_button_to_delete(message)
-    link_to "Delete"[], message_path(message), :confirm => "Are you sure?", :method => :delete  
+    link_to "Delete"[], message_path(message), :confirm => "Are you sure?"[], :method => :delete  
   end
 end

@@ -1,0 +1,5 @@
+<tr>
+  <td style="width:145px;text-align:right;padding-right:5px;font-weight:bold;"><%= chat.user.name %></td>
+  <td style="background:#eef;padding-left:2px;" id="chat-<%= chat.id %>"><div><%= chat.body %></div></td>
+  <td width="150"><%= chat.created_at.to_s :db %></td>
+</tr>

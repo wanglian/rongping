@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081031104554) do
+ActiveRecord::Schema.define(:version => 20081101164343) do
 
   create_table "activities", :force => true do |t|
     t.integer  "item_id"
@@ -32,6 +32,22 @@ ActiveRecord::Schema.define(:version => 20081031104554) do
 
   add_index "blogs", ["user_id"], :name => "index_blogs_on_user_id"
 
+  create_table "chatrooms", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "chats", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "body"
+    t.integer  "chatroom_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
     t.text     "comment",                        :default => ""
@@ -45,6 +61,17 @@ ActiveRecord::Schema.define(:version => 20081031104554) do
 
   create_table "departments", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "documents", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "event_attendees", :force => true do |t|

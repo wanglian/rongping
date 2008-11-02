@@ -6,10 +6,4 @@ class OrderProgress < ActiveRecord::Base
   belongs_to :user
   
   after_create :log_activity
-  
-  private
-  
-    def log_activity
-      add_activities(:item => self, :user => user)
-    end
 end

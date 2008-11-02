@@ -15,7 +15,7 @@ a:hover {
 	color: #fff;
 }
 input {
-	font-size: 1.1em;
+	font-size: 1.0em;
 }
 ul {
 	padding-left: 2em;
@@ -670,4 +670,10 @@ textarea {
 
 textarea.comment {
 	width:400px;height:100px;
+}
+
+.box {
+/*	border:solid 1px #eee;*/
+	background:#eee;
+	padding:2px;
 }

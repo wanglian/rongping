@@ -11,15 +11,15 @@ module ActivitiesHelper
       parent_type = parent.class.to_s
       case parent_type
       when "Topic"
-        %(#{user_link(activity.item.user)} 回复话题: #{topic_link(parent)}.)
+        %(#{user_link(activity.item.user)} 回复了话题: #{topic_link(parent)}.)
       when "Blog"
         blog = activity.item.commentable
-        %(#{user_link(user)} 评论#{someones(blog.user, user)}日志: #{blog_link(blog)}.)
+        %(#{user_link(user)} 评论了#{someones(blog.user, user)}日志: #{blog_link(blog)}.)
       when "user"
         %(#{user_link(activity.item.commenter)} commented on 
           #{wall(activity)}.)
         when "Event"
-          %(#{user_link(activity.user)} 评论活动: #{event_link(parent)}.)
+          %(#{user_link(activity.user)} 评论了活动: #{event_link(parent)}.)
       end
     when "Connection"
       %(#{user_link(activity.item.user)} and
@@ -30,20 +30,24 @@ module ActivitiesHelper
       %(#{user_link(user)} made a post on the forum topic
         #{topic_link(post.topic)}.)
     when "Topic"
-      %(#{user_link(user)} 创建话题: #{topic_link(activity.item)}.)
+      %(#{user_link(user)} 创建了一个话题: #{topic_link(activity.item)}.)
     when "Photo"
       %(#{user_link(user)}'s profile picture has changed.)
     when "user"
       %(#{user_link(user)}'s description has changed.)
     when "Event"
       event = activity.item
-      %(#{user_link(user)} 创建了活动: #{event_link(event.title, event)}.)
+      %(#{user_link(user)} 创建了一个活动: #{event_link(event.title, event)}.)
     when "EventAttendee"
       event = activity.item.event
-      %(#{user_link(user)} 参加#{someones(event.user, user)}活动: 
+      %(#{user_link(user)} 参加了#{someones(event.user, user)}活动: 
         #{event_link(event.title, event)}.) 
+    when "Document"
+      %(#{user_link(user)} 上传了一个文件: #{document_link(activity.item)})
+    when "Chatroom"
+      %(#{user_link(user)} 创建了一个会话: #{chatroom_link(activity.item)})
     when "OrderProgress"
-      %(#{user_link(user)} 填写#{order_link("订单施工记录", activity.item)})
+      %(#{user_link(user)} 填写了#{order_link("订单施工记录", activity.item)})
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
     end
@@ -59,12 +63,12 @@ module ActivitiesHelper
       parent_type = parent.class.to_s
       case parent_type
       when "Topic"
-        %(#{user_link(activity.item.user)} 回复#{topic_link("话题", parent)})
+        %(#{user_link(activity.item.user)} 回复了#{topic_link("话题", parent)})
       when "Event"
-        %(#{user_link(activity.user)} 评论#{event_link("活动", parent)})
+        %(#{user_link(activity.user)} 评论了#{event_link("活动", parent)})
       when "Blog"
         blog = activity.item.commentable
-        %(#{user_link(user)} 评论#{someones(blog.user, user)}#{blog_link("日志", blog)}.)
+        %(#{user_link(user)} 评论了#{someones(blog.user, user)}#{blog_link("日志", blog)}.)
       when "user"
         %(#{user_link(activity.item.commenter)} commented on 
           #{wall(activity)}.)
@@ -76,18 +80,22 @@ module ActivitiesHelper
       topic = activity.item.topic
       %(#{user_link(user)} made a #{topic_link("forum post", topic)}.)
     when "Topic"
-      %(#{user_link(user)} 创建#{topic_link("话题", activity.item)}.)
+      %(#{user_link(user)} 创建了#{topic_link("一个话题", activity.item)}.)
     when "Photo"
       %(#{user_link(user)}'s profile picture has changed.)
     when "user"
       %(#{user_link(user)}'s description has changed.)
     when "Event"
-      %(#{user_link(user)} 创建#{event_link("活动", activity.item)}.)
+      %(#{user_link(user)} 创建了#{event_link("一个活动", activity.item)}.)
     when "EventAttendee"
       event = activity.item.event
       %(#{user_link(user)} 参加#{someones(event.user, user)}#{event_link("活动", event)}.)
+    when "Document"
+      %(#{user_link(user)} 上传了#{document_link("一个文件", activity.item)})
+    when "Chatroom"
+      %(#{user_link(user)} 创建了#{chatroom_link("一个会话", activity.item)})
     when "OrderProgress"
-      %(#{user_link(user)} 填写#{order_link("订单施工记录", activity.item)}.)
+      %(#{user_link(user)} 填写了#{order_link("订单施工记录", activity.item)}.)
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
     end
@@ -123,6 +131,10 @@ module ActivitiesHelper
             when "Event"
               "time.gif"
             when "EventAttendee"
+              "check.gif"
+            when "Document"
+              "document.gif"
+            when "Chatroom"
               "check.gif"
             when "OrderProgress"
               "reply.gif"
@@ -168,7 +180,22 @@ module ActivitiesHelper
     link_to(text, '/order_progresses')
   end
   
-
+  def document_link(text, document = nil)
+    if document.nil?
+      document = text
+      text = document.title
+    end
+    link_to text, document_path(document)
+  end
+  
+  def chatroom_link(text, chatroom = nil)
+    if chatroom.nil?
+      chatroom = text
+      text = chatroom.title
+    end
+    link_to text, chatroom_chats_path(chatroom)
+  end
+  
   # Return a link to the wall.
   def wall(activity)
     commenter = activity.user

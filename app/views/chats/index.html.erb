@@ -1,0 +1,31 @@
+<% content_for :header do -%>
+	<%= @chatroom.title %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'shared/activity' -%>
+<% end -%>
+
+<%- if logged_in? -%>
+<table class="index">
+  <tr>
+    <td width="150"></td>
+    <td>
+      <div style="width:100%;">
+        <%- @chat = Chat.new unless @chat -%>
+        <%- remote_form_for @chat, :url => chatroom_chats_path(@chatroom), :loading => "$('chat_body').clear();" do |f| -%>
+          <%= f.text_field :body, :value => '', :style => "width:70%;" %>
+          <%= submit_tag "Post"[] %>
+        <%- end -%>
+      </div>
+    </td>
+  </tr>
+</table>
+<div class="clear"> </div>
+<%- end -%>
+
+<table class="index" id="chats">
+  <%= render :partial => "chat", :collection => @chats %>
+</table>
+
+<%= periodically_call_remote :url => refresh_chatroom_chats_path(@chatroom), :method => 'get', :frequency => 3 %>

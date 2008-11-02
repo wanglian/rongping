@@ -24,4 +24,32 @@ class ApplicationController < ActionController::Base
     WillPaginate::ViewHelpers.pagination_options[:prev_label] = '&laquo; Previous'[:prev_page]
     WillPaginate::ViewHelpers.pagination_options[:next_label] = 'Next &raquo;'[:next_page]
   end
+  
+  def current_action
+    request.path_parameters[:action]
+  end
+  
+  def current_controller
+    request.path_parameters[:controller]
+  end
+  
+  def can_edit
+    redirect_to root_path and return false unless logged_in?
+    klass = current_controller.singularize.classify.constantize
+    @item = klass.find(params[:id])
+    if current_controller == "users"
+      redirect_to root_path and return false unless current_user.admin? || (current_user == @item)
+    else
+      redirect_to root_path and return false unless current_user.admin? || (current_user == @item.user)
+    end
+  end
+      
+  def can_edit?(current_item)
+    return false unless logged_in?
+    if current_controller == "users"
+      return current_user.admin? || (current_user == current_item) 
+    else
+      return current_user.admin? || (current_user.id == current_item.user_id) 
+    end
+  end
 end

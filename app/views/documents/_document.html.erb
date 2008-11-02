@@ -1,0 +1,17 @@
+<tr>
+  <td width="20"><%= image_tag "icons/document.gif" %></td>
+  <td>
+    <div style="font-size:1.2em;font-weight:bold;padding-bottom:5px;"><%= link_to h(document.title), document %></div>
+    <div>
+      <div style="float:right;"><%= link_to "Download"[], document.attachment.url %></div>
+      <%= user_link document.user %>
+      上传 <%= time_ago_in_words(document.created_at) %>前
+      <%= "Content type"[]%>: <%= document.attachment_content_type %>
+      <%= "Size"[] %>: <%= document.attachment_file_size/1000.0 %>K
+      <%- if current_user == document.user -%>
+        <%= link_to "Edit"[], edit_document_path(document) %> |
+        <%= link_to "Delete"[], document_path(document), :method => :delete, :confirm => "You are deleting '{object}'. Are you sure?"[:confirm_alert, document.title]  %>
+      <%- end -%>
+    </div>
+  </td>
+</tr>

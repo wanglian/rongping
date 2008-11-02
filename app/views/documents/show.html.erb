@@ -1,0 +1,26 @@
+<% content_for :header do -%>
+	<%= 'Document'[] %> - <%= h(@document.title) %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <ul>
+    <li><%= link_to 'Add new document'[], new_document_path %></li>
+    <li><%= link_to 'Documents'[], documents_path %></li>
+  </ul>
+<% end -%>
+
+<p>
+  <%= user_link @document.user %>
+  上传于: <%= time_ago_in_words(@document.created_at) %>前
+  <%= "Content type"[]%>: <%= @document.attachment_content_type %>
+  <%= "Size"[] %>: <%= @document.attachment_file_size/1000.0 %>K
+  <%= link_to "Download"[], @document.attachment.url %>
+  <%- if current_user == @document.user -%>
+    | <%= link_to "Edit"[], edit_document_path(@document) %>
+    | <%= link_to "Delete"[], document_path(@document), :method => :delete, :confirm => "You are deleting '{object}'. Are you sure?"[:confirm_alert, @document.title]  %>
+  <%- end -%>
+</p>
+
+<div class="box">
+  <%= simple_format h(@document.description) %>
+</div>

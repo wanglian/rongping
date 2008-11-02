@@ -68,7 +68,7 @@ class MessagesController < ApplicationController
   # GET /messages/inbox.atom
   # Displays all new and read and undeleted messages in the User's inbox
   def inbox
-    session[:mail_box] = "inbox"
+    session[:mail_box] = "Inbox"
     @messages = rezm_user.inbox_messages
     respond_to do |format|
       format.html { render :action => "index" }
@@ -80,7 +80,7 @@ class MessagesController < ApplicationController
   # GET /messages/outbox
   # Displays all messages sent by the user
   def outbox
-    session[:mail_box] = "outbox"
+    session[:mail_box] = "Outbox"
     @messages = rezm_user.outbox_messages
     
     respond_to do |format|
@@ -91,7 +91,7 @@ class MessagesController < ApplicationController
   # GET /messages/trashbin
   # Displays all messages deleted from the user's inbox
   def trashbin
-    session[:mail_box] = "trashbin"
+    session[:mail_box] = "Trashbin"
     @messages = rezm_user.trashbin_messages
     
     respond_to do |format|
@@ -143,11 +143,11 @@ class MessagesController < ApplicationController
   
   def current_mailbox
     case session[:mail_box]
-    when "inbox"
+    when "Inbox"
       inbox_messages_path
-    when "outbox"
+    when "Outbox"
       outbox_messages_path
-    when "trashbin"
+    when "Trashbin"
       trashbin_messages_path
     else
       inbox_messages_path

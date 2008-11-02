@@ -4,7 +4,7 @@
     <div class="comment_title">
       <%= user_link comment.user %>
       <%= time_ago_in_words comment.created_at %>前
-      <%= link_to_remote '删除', :url => delete_comment_topic_path(@topic, :cid => comment.id), :method => :delete, :confirm => "确定删除这个回复?", :success => "Element.remove('comment_#{comment.id}')" if comment.user == current_user %>
+      <%= link_to_remote '删除', :url => delete_comment_topic_path(@topic, :cid => comment.id), :method => :delete, :confirm => "Are you sure?"[], :success => "Element.remove('comment_#{comment.id}')" if comment.user == current_user %>
     </div>
     <div style="padding: 5px 0;">
       <%= simple_format comment.comment %>
