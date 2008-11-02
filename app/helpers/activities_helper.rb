@@ -11,7 +11,7 @@ module ActivitiesHelper
       parent_type = parent.class.to_s
       case parent_type
       when "Topic"
-        "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "replied"[], "{user}'s {object}"[:whose_object, parent.user.name, "topic"[]], topic_link(parent)]
+        "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "replied to"[], "{user}'s {object}"[:whose_object, parent.user.name, "topic"[]], topic_link(parent)]
       when "Blog"
         "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "commented"[], "{user}'s {object}"[:whose_object, parent.user.name, "blog"[]], blog_link(parent)]
       when "user"
