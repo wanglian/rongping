@@ -19,7 +19,7 @@
         <%- end -%>
       </div>
 
-      <div><%= simple_format h(@chatroom.description) %></div>
+      <div><%= simple_format auto_link(sanitize @chatroom.description) %></div>
     </td>
   </tr>
   <tr>

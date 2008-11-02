@@ -7,7 +7,7 @@
       <%= link_to_remote 'Delete', :url => delete_comment_topic_path(@topic, :cid => comment.id), :method => :delete, :confirm => "Are you sure?"[], :success => "Element.remove('comment_#{comment.id}')" if comment.user == current_user %>
     </div>
     <div style="padding: 5px 0;">
-      <%= simple_format h(comment.comment) %>
+      <%= simple_format auto_link(sanitize comment.comment) %>
     </div>
   </td>
 </tr>

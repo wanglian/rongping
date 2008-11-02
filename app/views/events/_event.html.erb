@@ -11,7 +11,7 @@
       <% end -%>
     </div>
     <div class="box">
-      <%= simple_format event.description %>
+      <%= simple_format auto_link(sanitize event.description) %>
     </div>
     <div>
       <%= user_link event.user %> <%= "Created"[] %>

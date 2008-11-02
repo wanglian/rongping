@@ -22,5 +22,5 @@
 </p>
 
 <div class="box">
-  <%= simple_format h(@document.description) %>
+  <%= simple_format auto_link(sanitize @document.description) %>
 </div>

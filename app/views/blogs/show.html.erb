@@ -10,7 +10,7 @@
   <h3><%=h @blog.title %></h3>
 
   <div class="box">
-    <%= simple_format @blog.body %>
+    <%= simple_format auto_link(sanitize @blog.body) %>
   </div>
 
   <p>

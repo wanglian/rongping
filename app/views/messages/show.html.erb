@@ -26,7 +26,7 @@
     </p>
 
     <div class="box">
-      <%= simple_format(h(@message.body)) %>
+      <%= simple_format(auto_link(sanitize @message.body)) %>
     </div>
     <p>
       <%= rezm_button_to_reply(@message) %> |
