@@ -4,7 +4,7 @@
 
 <% content_for :sidebar do -%>
   <ul>
-    <li><%= link_to "Reply"[], "javascript:$('comment').focus();" %></li>
+    <%- if logged_in? -%><li><%= link_to "Reply"[], "javascript:$('comment').focus();" %></li><%- end -%>
   </ul>
   <%= render :partial => 'shared/activity' -%>
 <% end -%>
@@ -13,11 +13,13 @@
   <%= render :partial => 'comment', :collection => @topic.comments %>
 </table>
 
+<div style="margin-left:80px;">
 <%- if logged_in? -%>
-  <div style="margin-left:80px;">
     <%- form_remote_tag :url => add_comment_topic_path(@topic), :html => {:id => 'comment_form'} do -%>
     	<%= text_area_tag :comment, nil %><br/>
     	<%= submit_tag 'Reply'[] %>
     <%- end -%>
-  </div>
+<%- else -%>
+  <div id="notice"><%= link_to "Log in"[], login_url %> to reply.</div>
 <%- end -%>
+</div>

@@ -1,13 +1,22 @@
-<% content_for :header do -%>
+<%- content_for :header do -%>
 	<%= "Event"[] %> - <%= @event.title %>
-<% end -%>
+<%- end -%>
+
+<%- content_for :sidebar do -%>
+  <%= render :partial => 'calendar', :locals => { :events => @month_events, :date => @date } %>
+
+  <ul>
+    <%- if logged_in? -%><li><%= link_to "Add new event"[], new_event_path %></li><% end -%>
+  </ul>
+  <%= render :partial => 'shared/activity' -%>
+<%- end -%>
 
 <table class="index">
   <%= render :partial => @event %>
 </table>
 
 <h2><%= "Attendees"[] %></h2>
-<% unless @attendees.empty? -%>
+<%- unless @attendees.empty? -%>
   <table>
     <%- @attendees.in_groups_of(5, false) do |row_attendees| -%>
     <tr>
@@ -20,31 +29,25 @@
     </tr>
     <%- end -%>
   </table>
-<% else -%>
+<%- else -%>
   <p>
-    没有人参加.
+    <%= "No attendees"[]%>
   </p>
-<% end -%>
+<%- end -%>
 
 <h2><%= "Comments"[] %></h2>
 <table id="comments">
   <%= render :partial => 'comment', :collection => @event.comments %>
 </table>
+<div style="margin-left:80px;">
 <%- if logged_in? -%>
-  <div style="margin-left:80px;">
   <% form_remote_tag :url => add_comment_event_path(@event), :html => { :id => "comment_form" } do |f| %>
     <%= text_area_tag :comment, nil, :class => "comment" %><br/>
     <%= submit_tag "Publish"[] %>
   <% end %>
-  </div>
+<%- else -%>
+  <div id="notice"><%= link_to "Log in"[], login_url %> to comment.</div>
 <%- end -%>
+</div>
 
-<% content_for :sidebar do -%>
-  <%= render :partial => 'calendar', :locals => { :events => @month_events, :date => @date } %>
-
-  <ul>
-    <li><%= link_to "Add new event"[], new_event_path %></li>
-  </ul>
-  <%= render :partial => 'shared/activity' -%>
-<% end -%>
 

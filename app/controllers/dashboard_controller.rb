@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  before_filter :login_required
+  # before_filter :login_required
   
   # GET /
   # The default dashboard

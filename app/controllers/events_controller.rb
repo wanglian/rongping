@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-
-  before_filter :login_required
+  before_filter :login_required, :only => [:index, :show] unless guest_browse_enabled?
+  before_filter :login_required, :except => [:index, :show]
   before_filter :load_event, :except => [:index, :new, :create]
   before_filter :load_date, :only => [:index, :show]
   before_filter :can_edit, :only => [:update, :destroy]

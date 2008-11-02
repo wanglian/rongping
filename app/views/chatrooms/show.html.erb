@@ -11,11 +11,11 @@
     <td width="80" class="top"><%= avatar_for @chatroom.user %></td>
     <td class="top">
       <div>
-        <%= user_link @chatroom.user %> 创建
-        <%= time_ago_in_words @chatroom.created_at %>前
+        <%= user_link @chatroom.user %> <%= 'created'[] %>
+        <%= time_ago_in_words @chatroom.created_at %> ago
         <%- if @chatroom.user == current_user -%>
-          <%= link_to '编辑', edit_chatroom_path(@chatroom) %> |
-          <%= link_to_remote '删除', :url => chatroom_path(@chatroom), :method => :delete, :confirm => "You are deleting '{object}'? Are you sure?"[:confirm_alert, @chatroom.title], :success => "Element.remove('chatroom_#{@chatroom.id}')" %>
+          <%= link_to 'Edit'[], edit_chatroom_path(@chatroom) %> |
+          <%= link_to_remote 'Delete'[], :url => chatroom_path(@chatroom), :method => :delete, :confirm => "You are deleting '{object}'? Are you sure?"[:confirm_alert, @chatroom.title], :success => "Element.remove('chatroom_#{@chatroom.id}')" %>
         <%- end -%>
       </div>
 

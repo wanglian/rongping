@@ -3,35 +3,37 @@
     <%= avatar_for event.user %>
   </td>
   <td>
-    <p>
+    <div style="font-size:1.2em;margin-bottom:5px;">
       <%= link_to h(event.title), event, :style => "font-size:1.2em;font-weight:bold;" %>
       <%= event.start_time.to_s :short %>
       <% unless event.end_time.nil? -%>
       - <%= event.end_time.to_s :short %>
       <% end -%>
-    </p>
+    </div>
     <div class="box">
       <%= simple_format event.description %>
     </div>
-    <p class="meta">
-      <%= user_link event.user %> 创建于
-      <%= time_ago_in_words(event.created_at) %>前
+    <div>
+      <%= user_link event.user %> <%= "Created"[] %>
+      <%= time_ago_in_words(event.created_at) %> ago
       <% if current_user == event.user -%>
       | <%= link_to "Edit"[],  edit_event_path(event) %>
       <% end -%>
-    </p>
-    <% unless event.event_attendees_count == 0 -%>
+    </div>
+    <%- unless event.event_attendees_count == 0 -%>
     <p>
-      <%= event.event_attendees_count %>人参加 |
-      <%= link_to "#{event.comments.size}个评论", event_path(event) %>
+      <%= "{size} {objects}"[:number_of_objects, event.event_attendees_count, "attendees"[]] %> |
+      <%= link_to "{size} {object}"[:number_of_objects, event.comments.size, "comments"[]], event_path(event) %>
     </p>
-    <% end -%>
+    <%- end -%>
+    <%- if logged_in? -%>
     <p>
       <% unless event.attending?(current_user) -%>
-      <%= link_to "我参加", attend_event_path(event), :method => :post %>
+      <%= link_to "I attend"[], attend_event_path(event), :method => :post %>
       <% else -%>
-      <%= link_to "我退出", unattend_event_path(event), :method => :delete %>
+      <%= link_to "I quit"[], unattend_event_path(event), :method => :delete %>
       <% end -%>
     </p>
+    <%- end -%>
   </td>
 </tr>

@@ -5,7 +5,7 @@
     <div>
       <div style="float:right;"><%= link_to "Download"[], document.attachment.url %></div>
       <%= user_link document.user %>
-      上传 <%= time_ago_in_words(document.created_at) %>前
+      <%= 'uploaded'[] %> <%= time_ago_in_words(document.created_at) %> ago
       <%= "Content type"[]%>: <%= document.attachment_content_type %>
       <%= "Size"[] %>: <%= document.attachment_file_size/1000.0 %>K
       <%- if current_user == document.user -%>

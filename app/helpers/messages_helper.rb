@@ -88,7 +88,7 @@ module MessagesHelper
   
   # Pretty format for message sent date/time
   def rezm_sent_at(message)
-    time_ago_in_words(message.created_at) + "前"
+    time_ago_in_words(message.created_at) + " ago"
   end
   
   # Pretty format for message.subject which appeads the status (Deleted/Unread)

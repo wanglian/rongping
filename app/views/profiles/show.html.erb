@@ -30,7 +30,7 @@
 	
 	<%- unless current_user == @user -%>
 	  <p>
-	    <%= link_to "#{@user.name}的日志", blogs_path(:user => @user.name) %> |
+	    <%= link_to "{user}'s {object}"[:whose_object, @user.name, "blog"[]], blogs_path(:user => @user.name) %> |
       <%= link_to 'Send a message'[:compose], new_message_path(:id => @user.id) %>
 	  </p>
 	<%- end -%>

@@ -8,13 +8,15 @@
 
 <table class="index">
   <%= render :partial => 'chatroom', :collection => @chatrooms %>
+  <% if @chatrooms.empty? %><tr><td><%= "No record"[] %></td></tr><% end %>
 </table>
 
 <%= will_paginate @chatrooms %>
 
-<h2><%= 'Add new session'[] %></h2>
-
-<%- form_for(:chatroom) do |f| -%>
-  <%= f.text_field :title, :size => 60 %>
-  <%= f.submit "Create"[] %>
+<%- if logged_in? -%>
+  <h2><%= 'Add new session'[] %></h2>
+  <%- form_for(:chatroom) do |f| -%>
+    <%= f.text_field :title, :size => 60 %>
+    <%= f.submit "Create"[] %>
+  <%- end -%>
 <%- end -%>

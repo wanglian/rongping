@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :only => [:index]
+  before_filter :login_required, :only => [:index] unless guest_browse_enabled?
   before_filter :find_user, 
     :only => [:profile, 
               :destroy, 

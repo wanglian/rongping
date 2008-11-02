@@ -3,8 +3,4 @@ module Admin::SettingsHelper
     render :partial => "#{setting.field_type}", :locals => {:setting => setting}
   end
   
-  def registration_enabled
-    s(:registration_enabled) == 1
-  end
-  
 end

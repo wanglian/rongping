@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-	<title><%= 'site_name'[] %></title>
+	<title><%= s(:site_name) %></title>
 	
 	<%= stylesheet_link_tag 'default' %>
 	<%= stylesheet_link_tag 'calendar/blue/style' %>
@@ -19,7 +19,7 @@
     <div id="global_links">
       <%= render :partial => 'shared/global_links' %>
     </div>
-    <h1><%= "site_name"[] %> <span><%= "company_name"[] %></span></h1>
+    <h1><%= s(:site_name) %> <span><%= s(:company_name) %></span></h1>
 
     <div id="tabs">
       <%= render :partial => 'shared/tabs' %>
@@ -52,14 +52,14 @@
     </div>
   </div>
   <div id="footer">
-    <%= 'site_name'[] %> 
-	  © <%= 'company_name'[] %>
-	  [<% if cookies[:lang] == 'en-US' -%>
-      English |
-      <%= link_to_remote '简体中文', :url => choose_lang_path(:lang => 'zh-CN'), :success => "window.location.reload();", :method => :put %>
-    <% else -%>
+    <%= s(:site_name) %> 
+	  © <%= s(:company_name) %>
+	  [<% if cookies[:lang] == 'zh-CN' -%>
       <%= link_to_remote 'English', :url => choose_lang_path(:lang => 'en-US'), :success => "window.location.reload();", :method => :put %> |
       简体中文
+    <% else -%>
+      English |
+      <%= link_to_remote '简体中文', :url => choose_lang_path(:lang => 'zh-CN'), :success => "window.location.reload();", :method => :put %>
     <% end -%>]
   </div>
 

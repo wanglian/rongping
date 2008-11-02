@@ -3,13 +3,13 @@
   <td class="top">
     <div style="padding:5px 0;">
       <span style="font-size:1.2em;font-weight:bold;"><%= link_to h(chatroom.title), chatroom %></span>
-      (<%= chatroom.chats.size %>个记录)
+      (<%= "{size} {object}"[:number_of_objects, chatroom.chats.size, "records"[]] %>)
     </div>
     <div>
       <div style="float:right;"><%= link_to "Join"[], chatroom_chats_path(chatroom) %></div>
-      <%= user_link chatroom.user %> 创建
-      <%= time_ago_in_words chatroom.created_at %>前
-      <%= link_to_remote '删除', :url => chatroom_path(chatroom), :method => :delete, :confirm => "You are deleting '{object}'? Are you sure?"[:confirm_alert, chatroom.title], :success => "Element.remove('chatroom_#{chatroom.id}')" if chatroom.user == current_user %>
+      <%= user_link chatroom.user %> <%= 'Created'[] %>
+      <%= time_ago_in_words chatroom.created_at %> ago
+      <%= link_to_remote 'Delete'[], :url => chatroom_path(chatroom), :method => :delete, :confirm => "You are deleting '{object}'? Are you sure?"[:confirm_alert, chatroom.title], :success => "Element.remove('chatroom_#{chatroom.id}')" if chatroom.user == current_user %>
     </div>
   </td>
 </tr>

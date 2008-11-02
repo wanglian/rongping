@@ -5,49 +5,40 @@ module ActivitiesHelper
     user = activity.user
     case activity_type(activity)
     when "Blog"
-      %(#{user_link(user)} 写了一篇日志: #{blog_link(activity.item)}.)
+      "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "published"[], "a blog"[], blog_link(activity.item)]
     when "Comment"
       parent = activity.item.commentable
       parent_type = parent.class.to_s
       case parent_type
       when "Topic"
-        %(#{user_link(activity.item.user)} 回复了话题: #{topic_link(parent)}.)
+        "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "replied"[], "{user}'s {object}"[:whose_object, parent.user.name, "event"[]], topic_link(parent)]
       when "Blog"
-        blog = activity.item.commentable
-        %(#{user_link(user)} 评论了#{someones(blog.user, user)}日志: #{blog_link(blog)}.)
+        "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "commented"[], "{user}'s {object}"[:whose_object, parent.user.name, "blog"[]], blog_link(parent)]
       when "user"
         %(#{user_link(activity.item.commenter)} commented on 
           #{wall(activity)}.)
-        when "Event"
-          %(#{user_link(activity.user)} 评论了活动: #{event_link(parent)}.)
+      when "Event"
+        "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "commented"[], "{user}'s {object}"[:whose_object, parent.user.name, "event"[]], event_link(parent)]
       end
     when "Connection"
       %(#{user_link(activity.item.user)} and
         #{user_link(activity.item.contact)}
         have connected.)
-    when "ForumPost"
-      post = activity.item
-      %(#{user_link(user)} made a post on the forum topic
-        #{topic_link(post.topic)}.)
     when "Topic"
-      %(#{user_link(user)} 创建了一个话题: #{topic_link(activity.item)}.)
+      "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "created"[], "a topic"[], topic_link(activity.item)]
     when "Photo"
       %(#{user_link(user)}'s profile picture has changed.)
     when "user"
       %(#{user_link(user)}'s description has changed.)
     when "Event"
-      event = activity.item
-      %(#{user_link(user)} 创建了一个活动: #{event_link(event.title, event)}.)
+      "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "created"[], "a event"[], event_link(activity.item)]
     when "EventAttendee"
       event = activity.item.event
-      %(#{user_link(user)} 参加了#{someones(event.user, user)}活动: 
-        #{event_link(event.title, event)}.) 
+      "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "attended"[], "{user}'s {object}"[:whose_object, event.user.name, "event"[]], event_link(event)]
     when "Document"
-      %(#{user_link(user)} 上传了一个文件: #{document_link(activity.item)})
+      "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "uploaded"[], "a document"[], document_link(activity.item)]
     when "Chatroom"
-      %(#{user_link(user)} 创建了一个会话: #{chatroom_link(activity.item)})
-    when "OrderProgress"
-      %(#{user_link(user)} 填写了#{order_link("订单施工记录", activity.item)})
+      "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "created"[], "a session"[], chatroom_link(activity.item)]
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
     end
@@ -57,45 +48,37 @@ module ActivitiesHelper
     user = activity.user
     case activity_type(activity)
     when "Blog"
-      %(#{user_link(user)} 写了#{blog_link("一篇日志", activity.item)}.)
+      "{user} {action} {blog}"[:action_mini_feed, user_link(user), "published"[], blog_link("a blog"[], activity.item)]
     when "Comment"
       parent = activity.item.commentable
       parent_type = parent.class.to_s
       case parent_type
       when "Topic"
-        %(#{user_link(activity.item.user)} 回复了#{topic_link("话题", parent)})
+        "{user} {action} {topic}"[:action_mini_feed, user_link(activity.item.user), "replied to"[], topic_link("{user}'s {object}"[:whose_object, parent.user.name, "topic"[]], parent)]
       when "Event"
-        %(#{user_link(activity.user)} 评论了#{event_link("活动", parent)})
+        "{user} {action} {commentable}"[:action_mini_feed, user_link(activity.user), "commented"[], event_link("{user}'s {object}"[:whose_object, parent.user.name, "event"[]], parent)]
       when "Blog"
-        blog = activity.item.commentable
-        %(#{user_link(user)} 评论了#{someones(blog.user, user)}#{blog_link("日志", blog)}.)
+        "{user} {action} {commentable}"[:action_mini_feed, user_link(activity.user), "commented"[], blog_link("{user}'s {object}"[:whose_object, parent.user.name, "blog"[]], parent)]
       when "user"
-        %(#{user_link(activity.item.commenter)} commented on 
-          #{wall(activity)}.)
+        %(#{user_link(activity.item.commenter)} commented on #{wall(activity)}.)
       end
     when "Connection"
-      %(#{user_link(user)} and #{user_link(activity.item.contact)}
-        have connected.)
-    when "ForumPost"
-      topic = activity.item.topic
-      %(#{user_link(user)} made a #{topic_link("forum post", topic)}.)
+      %(#{user_link(user)} and #{user_link(activity.item.contact)} have connected.)
     when "Topic"
-      %(#{user_link(user)} 创建了#{topic_link("一个话题", activity.item)}.)
+      "{user} {action} {object}"[:action_mini_feed, user_link(user), "created"[], topic_link("a topic"[], activity.item)]
     when "Photo"
       %(#{user_link(user)}'s profile picture has changed.)
     when "user"
       %(#{user_link(user)}'s description has changed.)
     when "Event"
-      %(#{user_link(user)} 创建了#{event_link("一个活动", activity.item)}.)
+      "{user} {action} {object}"[:action_mini_feed, user_link(user), "created"[], event_link("a event"[], activity.item)]
     when "EventAttendee"
       event = activity.item.event
-      %(#{user_link(user)} 参加#{someones(event.user, user)}#{event_link("活动", event)}.)
+      "{user} {action} {object}"[:action_mini_feed, user_link(user), "attended"[], event_link("{user}'s {object}"[:whose_object, event.user.name, "event"[]], event)]
     when "Document"
-      %(#{user_link(user)} 上传了#{document_link("一个文件", activity.item)})
+      "{user} {action} {object}"[:action_mini_feed, user_link(user), "uploaded"[], document_link("a document"[], activity.item)]
     when "Chatroom"
-      %(#{user_link(user)} 创建了#{chatroom_link("一个会话", activity.item)})
-    when "OrderProgress"
-      %(#{user_link(user)} 填写了#{order_link("订单施工记录", activity.item)}.)
+      "{user} {action} {object}"[:action_mini_feed, user_link(user), "created"[], chatroom_link("a session"[], activity.item)]
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
     end
@@ -174,10 +157,6 @@ module ActivitiesHelper
       text = event.title
     end
     link_to(text, event_path(event))
-  end
-
-  def order_link(text, order)
-    link_to(text, '/order_progresses')
   end
   
   def document_link(text, document = nil)

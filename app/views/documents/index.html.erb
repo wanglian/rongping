@@ -1,16 +1,19 @@
-<% content_for :header do -%>
+<%- content_for :header do -%>
 	<%= 'Documents'[] %>
-<% end -%>
+<%- end -%>
 
-<% content_for :sidebar do -%>
+<%- content_for :sidebar do -%>
   <ul>
-    <li><%= link_to 'Add new document'[], new_document_path %></li>
+    <%- if logged_in? -%><li><%= link_to 'Add new document'[], new_document_path %></li><% end -%>
   </ul>
   <%= render :partial => 'shared/activity' -%>
-<% end -%>
+<%- end -%>
 
 <table class="index">
   <%= render :partial => 'document', :collection => @documents %>
+  <% if @documents.empty? %><tr><td><%= "No record"[] %></td></tr><% end %>
 </table>
 
 <%= will_paginate @documents %>
+
+<%- if logged_in? -%><h2><%= link_to 'Add new document'[], new_document_path %></h2><% end -%>

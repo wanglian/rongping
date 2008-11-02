@@ -4,7 +4,7 @@
 
 <% content_for :sidebar do -%>
   <ul>
-    <li><%= link_to "Add new topic"[], "javascript:$('topic_name').focus();" %></li>
+    <%- if logged_in? -%><li><%= link_to "Add new topic"[], "javascript:$('topic_name').focus();" %></li><% end %>
   </ul>
   <%= render :partial => 'shared/activity' -%>
 <% end -%>
@@ -15,11 +15,11 @@
 </table>
 
 <%= will_paginate @topics %>
-<br />
 
-<h2><%= "Add new topic"[] %></h2>
-
-<% form_for(:topic) do |f| %>
-  <%= f.text_field :name, :size => 60 %>
-  <%= f.submit "Create"[] %>
+<%- if logged_in? -%>
+  <h2><%= "Add new topic"[] %></h2>
+  <% form_for(:topic) do |f| %>
+    <%= f.text_field :name, :size => 60 %>
+    <%= f.submit "Create"[] %>
+  <% end %>
 <% end %>

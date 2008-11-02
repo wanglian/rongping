@@ -7,8 +7,8 @@
 
   <p>
     <%= user_link blog.user %>
-    写于 <%= time_ago_in_words(blog.created_at) %>前 |
-    <%= link_to "#{blog.comments.size}个评论", blog_path(blog) %>
+    <%= 'Wrote'[] %> <%= time_ago_in_words(blog.created_at) %> ago |
+    <%= link_to "{size} {object}"[:number_of_objects, blog.comments.size, "comments"[]], blog_path(blog) %>
     <%- if current_user == blog.user -%>
       | <%= link_to 'Edit'[], edit_blog_path(blog) %>
       | <%= link_to 'Delete'[], blog_path(blog), :method => :delete, :confirm => "You are deleting '{object}'. Are you sure?"[:confirm_alert, blog.title] %>

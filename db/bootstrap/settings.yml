@@ -3,14 +3,14 @@ site_name:
   identifier: 'site_name'
   description: 'The name of your application. This name will be used to brand your entire application.'
   field_type: 'string'
-  value: "Order Tracking System"
+  value: "Rongping Community"
 
 company_name:
   label: "Company name"
   identifier: 'company_name'
   description: "Your company's name. It will be used to identify you as the owner of the application."
   field_type: 'string'
-  value: "HP Technology"
+  value: "A full-stack community web application written in Ruby/Rails"
   
 site_url:
   label: "Site URL"
@@ -37,5 +37,12 @@ registration_enabled:
   label: "Registration enabled"
   identifier: 'registration_enabled'
   description: 'Whether registration enabled. 1 - enabled, 0 - disabled.'
+  field_type: 'string'
+  value: '1'
+
+guest_browse_enabled:
+  label: "Guest browse enabled"
+  identifier: 'guest_browse_enabled'
+  description: 'Where guest browsing enabled. 1 - enabled, 0 - disabled'
   field_type: 'string'
   value: '1'

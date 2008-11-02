@@ -1,13 +1,18 @@
 class BlogsController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required, :only => [:index, :show] unless guest_browse_enabled?
+  before_filter :login_required, :except => [:index, :show]
   before_filter :find_blog, :except => [:index, :new, :create]
   before_filter :can_edit, :only => [:update, :destroy]
   
   # GET /blogs
   # GET /blogs.xml
   def index
-    @user = User.find_by_login(params[:user]) || current_user
-    @blogs = Blog.paginate_by_user_id @user.id, :order => "created_at DESC", :page => params[:page]
+    unless logged_in?
+      @blogs = Blog.paginate :order => "created_at DESC", :page => params[:page]
+    else
+      @user = User.find_by_login(params[:user]) || current_user
+      @blogs = Blog.paginate_by_user_id @user.id, :order => "created_at DESC", :page => params[:page]
+    end
 
     respond_to do |format|
       format.html # index.html.erb

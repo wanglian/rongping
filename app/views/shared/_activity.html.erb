@@ -1,4 +1,6 @@
 <div style="font-size:1.5em;font-weight:bold;"><%= 'Activity'[] %></div>
 <table class="index">
-  <%= render :partial => 'shared/activity_mini_item', :collection => Activity.find_recent %>
+  <%- @activities = Activity.find_recent -%>
+  <%= render :partial => 'shared/activity_mini_item', :collection => @activities %>
+  <% if @activities.empty? %><tr><td><%= "No record"[] %></td></tr><% end %>
 </table>

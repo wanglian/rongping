@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(:version => 20081101164343) do
     t.datetime "updated_at"
   end
 
+  add_index "chats", ["user_id"], :name => "index_chats_on_user_id"
+  add_index "chats", ["chatroom_id"], :name => "index_chats_on_chatroom_id"
+
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
     t.text     "comment",                        :default => ""
@@ -58,10 +61,6 @@ ActiveRecord::Schema.define(:version => 20081101164343) do
   end
 
   add_index "comments", ["user_id"], :name => "fk_comments_user"
-
-  create_table "departments", :force => true do |t|
-    t.string "name"
-  end
 
   create_table "documents", :force => true do |t|
     t.integer  "user_id"
@@ -108,66 +107,6 @@ ActiveRecord::Schema.define(:version => 20081101164343) do
 
   add_index "messages", ["receiver_id"], :name => "index_messages_on_receiver_id"
   add_index "messages", ["sender_id"], :name => "index_messages_on_sender_id"
-
-  create_table "order_progresses", :force => true do |t|
-    t.integer  "order_id"
-    t.string   "progress_type"
-    t.text     "note"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "orders", :force => true do |t|
-    t.string   "order_number"
-    t.date     "audit_at"
-    t.string   "audit_number"
-    t.integer  "customer_id"
-    t.integer  "user_id"
-    t.integer  "manager_id"
-    t.text     "memo"
-    t.string   "account_name"
-    t.text     "account_contact"
-    t.integer  "product_id"
-    t.string   "port_rate"
-    t.float    "install_fee"
-    t.float    "rent_fee"
-    t.string   "a_access_type"
-    t.string   "a_access_device"
-    t.text     "a_address"
-    t.text     "a_contact"
-    t.string   "b_access_type"
-    t.string   "b_access_device"
-    t.text     "b_address"
-    t.text     "b_contact"
-    t.string   "state"
-    t.integer  "confirm_user_id"
-    t.datetime "confirm_at"
-    t.string   "circuit_id"
-    t.string   "dsu_type"
-    t.string   "dsu_sn"
-    t.string   "router_type"
-    t.string   "router_sn"
-    t.string   "config_name"
-    t.string   "node_name"
-    t.string   "port_assignment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "organizes", :force => true do |t|
-    t.string   "name"
-    t.text     "contact"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "products", :force => true do |t|
-    t.string  "name"
-    t.integer "parent_id"
-    t.string  "address"
-  end
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"

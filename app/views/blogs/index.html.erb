@@ -1,5 +1,6 @@
 <% content_for :header do -%>
-	<%= @user.name %>的日志
+	<%- if logged_in? -%><%= "{user}'s {object}"[:whose_object, @user.name, "blog"[]] %>
+	<%- else -%><%= 'Blog'[] %><%- end -%>
 <% end -%>
 
 <% content_for :sidebar do -%>
@@ -15,3 +16,5 @@
 </table>
 
 <%= will_paginate @blogs %>
+
+<% if current_user == @user %><h2><%= link_to 'Add new blog'[], new_blog_path %></h2><% end %>
