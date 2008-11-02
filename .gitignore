@@ -8,4 +8,5 @@ database.yml
 doc/api
 .DS_Store
 .svn
-
+Capfile
+config/deploy.rb
