@@ -1,6 +1,7 @@
 == Welcome to Rongping
 
 Rongping is a full-stack community web application written in Ruby/Rails.
+Rongping is based on BaseApp, a default Ruby on Rails project that kick-starts your next Rails project.
 
 Features:
  - Blog
