@@ -1,6 +1,4 @@
-app_name: HPT
-site_name: 订单跟踪系统
-company_name: 瀚平网络技术
+app_name: Rongping
 
 dashboard: 首页
 my: 我的
@@ -13,12 +11,6 @@ log_in: 登录
 settings: 设置
 users: 用户
 customers: 客户
-
-prev_page: 上一页
-next_page: 下一页
-no_record: 没有记录
-confirm_alert: "你要删除\"{object}\". 确定吗?"
-are_you_sure?: "确定吗?"
 
 login: 登录名
 password: 密码
@@ -63,30 +55,33 @@ account_details: 帐号信息
 account_created: 帐号创建时间
 last_updated: 最后更新
 
-my_orders: 我的订单
-order_number: 订单编号
-product: 产品
-customer: 客户名称
-paid_user: 付款方
-order_information: 订单信息
-order_progress: 施工进展
+# common
+number_of_objects: "{size}个{object}"
+whose_object: "{user}的{object}"
+confirm_alert: "你要删除\"{object}\". 确定吗?"
+are_you_sure?: "确定吗?"
+
+prev_page: 上一页
+next_page: 下一页
+no_record: 没有记录
   
+# forum
 forum: 论坛
 topic: 话题
 topics: 话题
 add_new_topic: 创建话题
 records: 记录
 replies: 回复
-number_of_objects: "{size}个{object}"
-whose_object: "{user}的{object}"
-action_mini_feed: "{user} {action}{object}"
-action_feed: "{user} {action}{object}: {object_link}"
 a_topic: 一个话题
 replied_to: 回复
 
+# activity
 activity: 动态
 recent_activities: 最新动态
+action_mini_feed: "{user} {action}{object}"
+action_feed: "{user} {action}{object}: {object_link}"
 
+# event
 event: 活动
 events: 活动
 add_new_event: 创建活动
@@ -103,6 +98,7 @@ i_quit: 我退出
 a_event: 一个活动
 attended: 加入
 
+# blog
 blog: 日志
 add_new_blog: 写日志
 edit_blog: 编辑日志
@@ -110,6 +106,7 @@ wrote: 写于
 published: 发表
 commented: 评论
 
+# messges
 message: 消息
 messages: 消息
 message_state: "消息({count})"
@@ -124,6 +121,7 @@ send: 发送
 to: 发给
 from: 来自
 
+# document
 document: 文件
 documents: 文件列表
 add_new_document: 上传文件
@@ -135,6 +133,7 @@ size: 大小
 uploaded: 上传
 a_document: 一个文件
 
+# chat
 chat: 会话
 session: 会话
 sessions: 会话列表
