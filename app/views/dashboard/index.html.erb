@@ -1,13 +1,5 @@
-<% content_for :header do -%>
-	<%= "Recent Activities"[] %>
-<% end -%>
-
-<% content_for :sidebar do -%>
-	
-<% end -%>
-
-<table class="index">
-  <%- @activities = Activity.find_recent %>
-  <%= render :partial => 'shared/activity_item', :collection => @activities %>
-  <% if @activities.empty? %><tr><td><%= "No record"[] %></td></tr><% end %>
-</table>
+<%- if logged_in? -%>
+  <%= render :partial => 'user' %>
+<%- else -%>
+  <%= render :partial => 'guest' %>
+<%- end -%>
