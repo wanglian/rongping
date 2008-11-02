@@ -1,55 +1,40 @@
-== Welcome to BaseApp
+== Welcome to Rongping
 
-BaseApp is a default Ruby on Rails project which by default includes the following:
+Rongping is a full-stack community web application written in Ruby/Rails.
 
- * A layout, including:
-    - tabs
-    - global links
-    - optional sidebar
-    - notice, warning and error flash messages
-    - a very agreeable stylesheet (which is easy to customize)
- * Default dashboard page
- * Administration panel where you can:
-    - Manage users (add, delete, purge, suspend, activate, send new passwords)
-    - Manage settings 
- * User authentication, with:
-    - login form at /login
-    - signup form at /signup
-    - password and login recovery
-    - activation
- * User Profiles:
-    - Location, Website, Full name fields by default, easily extendible.
-    - Gravatars
- * Plugins:
-    - restful_authentication
-    - acts_as_state_machine
- * Frozen Rails 2.1.1
+Features:
+ - Blog
+ - File sharing
+ - Group chat
+ - Forum
+ - Event calendar
+ - Messages
+ - Activity feeds
+ - I18n support
+ - System config: enable/disable guest_browse/registration
 
 == Getting started
 
-There are several things you'll need to do before you can really get started. Run the following rake command:
+1 get source
+git clone git://github.com/wanglian/rongping.git
 
-   rake notes:todo
+2 database config
+cd rongping
+cp config/database.sqlite3.yml config/database.yml
 
-This will generate a list of TODO entries throughout the project. Check the TODO entries in the code for more information.
+3 mail config
+cp config/initializers/mail.rb.sample config/initializers/mail.rb
+Gmail is used by default. Change your email account
 
-Note: Todo's tagged with (BaseApp) are for the BaseApp project itself. You can safely ignore these.
+4 database init
+rake db:bootstrap
 
-== Contribute! 
+5 start app
+script/server
 
-There are still some things I want in BaseApp, but which haven't gotten around to implementing yet.
-
-NOTE: Also run 'rake notes:todo'. Todo's tagged with (BaseApp) are also wanted features
-
- * TESTS!!!
- * Manage roles / permissions
- * OpenID signup/login
- * Configuration (e.g. from config/app.yml) (use activation? enable OpenID? etc.)
- * Use Gibberish, Globalize or Rails 2.2's i18n and make the whole app available in English and Dutch by default
- * A website, documentation, bug/patch tracker
- 
-Feel free to implement any of these features and send in a patch. Other features are welcome also, but those will be judged on general usability. 
+That's ok!
+The default administrator account: admin/base_app
 
 == Credit
 
-BaseAPP is developed by Ariejan de Vroom and released to the public under the MIT license.
+Rongping is developed by wanglian released to the public under the MIT license.
