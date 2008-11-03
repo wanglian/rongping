@@ -14,22 +14,11 @@ module ActivitiesHelper
         "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "replied to"[], "{user}'s {object}"[:whose_object, parent.user.name, "topic"[]], topic_link(parent)]
       when "Blog"
         "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "commented"[], "{user}'s {object}"[:whose_object, parent.user.name, "blog"[]], blog_link(parent)]
-      when "user"
-        %(#{user_link(activity.item.commenter)} commented on 
-          #{wall(activity)}.)
       when "Event"
         "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "commented"[], "{user}'s {object}"[:whose_object, parent.user.name, "event"[]], event_link(parent)]
       end
-    when "Connection"
-      %(#{user_link(activity.item.user)} and
-        #{user_link(activity.item.contact)}
-        have connected.)
     when "Topic"
       "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "created"[], "a topic"[], topic_link(activity.item)]
-    when "Photo"
-      %(#{user_link(user)}'s profile picture has changed.)
-    when "user"
-      %(#{user_link(user)}'s description has changed.)
     when "Event"
       "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "created"[], "a event"[], event_link(activity.item)]
     when "EventAttendee"
@@ -59,17 +48,9 @@ module ActivitiesHelper
         "{user} {action} {commentable}"[:action_mini_feed, user_link(activity.user), "commented"[], event_link("{user}'s {object}"[:whose_object, parent.user.name, "event"[]], parent)]
       when "Blog"
         "{user} {action} {commentable}"[:action_mini_feed, user_link(activity.user), "commented"[], blog_link("{user}'s {object}"[:whose_object, parent.user.name, "blog"[]], parent)]
-      when "user"
-        %(#{user_link(activity.item.commenter)} commented on #{wall(activity)}.)
       end
-    when "Connection"
-      %(#{user_link(user)} and #{user_link(activity.item.contact)} have connected.)
     when "Topic"
       "{user} {action} {object}"[:action_mini_feed, user_link(user), "created"[], topic_link("a topic"[], activity.item)]
-    when "Photo"
-      %(#{user_link(user)}'s profile picture has changed.)
-    when "user"
-      %(#{user_link(user)}'s description has changed.)
     when "Event"
       "{user} {action} {object}"[:action_mini_feed, user_link(user), "created"[], event_link("a event"[], activity.item)]
     when "EventAttendee"
@@ -96,21 +77,11 @@ module ActivitiesHelper
                 "comment.gif"
               when "Event"
                 "comment.gif"
-              when "user"
-                "signal.gif"
               when "Topic"
                 "new.gif"
               end
-            when "Connection"
-              "switch.gif"
-            when "ForumPost"
-              "new.gif"
             when "Topic"
               "add.gif"
-            when "Photo"
-              "camera.gif"
-            when "user"
-              "edit.gif"
             when "Event"
               "time.gif"
             when "EventAttendee"
@@ -119,20 +90,10 @@ module ActivitiesHelper
               "document.gif"
             when "Chatroom"
               "check.gif"
-            when "OrderProgress"
-              "reply.gif"
             else
               raise "Invalid activity type #{activity_type(activity).inspect}"
             end
     image_tag("icons/#{img}", :class => "icon")
-  end
-  
-  def someones(user, commenter, link = true)
-    link ? "#{user_link(user)}的" : "#{h user.name}的"
-  end
-  
-  def blogs_link(text, user)
-    link_to(text, blogs_path(:user => user.name))
   end
   
   def blog_link(text, blog = nil)
@@ -173,14 +134,6 @@ module ActivitiesHelper
       text = chatroom.title
     end
     link_to text, chatroom_chats_path(chatroom)
-  end
-  
-  # Return a link to the wall.
-  def wall(activity)
-    commenter = activity.user
-    user = activity.item.commentable
-    link_to("#{someones(user, commenter, false)} wall",
-            user_path(user, :anchor => "wall"))
   end
   
   private
