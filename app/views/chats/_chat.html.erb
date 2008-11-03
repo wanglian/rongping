@@ -1,5 +1,5 @@
 <tr>
   <td style="width:145px;text-align:right;padding-right:5px;font-weight:bold;"><%= chat.user.name %></td>
-  <td style="background:#eef;padding-left:2px;" id="chat-<%= chat.id %>"><div><%= simple_format auto_link(sanitize chat.body) %></div></td>
-  <td width="150"><%= chat.created_at.to_s :db %></td>
+  <td style="background:#eef;padding-left:2px;" id="chat-<%= chat.id %>"><div><%= auto_link(sanitize chat.body) %></div></td>
+  <td width="150"><%= chat.created_at.to_s :short %></td>
 </tr>

@@ -49,7 +49,7 @@ class ChatroomsController < ApplicationController
 
     respond_to do |format|
       if @chatroom.save
-        flash[:notice] = '{object} was successfully {action}.'[:object_action_notice, "Chatroom"[], "created"[]]
+        flash[:notice] = '{object} was successfully {action}.'[:object_action_notice, "Session"[], "created"[]]
         format.html { redirect_to(chatroom_chats_url(@chatroom)) }
         format.xml  { render :xml => @chatroom, :status => :created, :location => @chatroom }
       else
