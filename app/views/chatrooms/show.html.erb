@@ -19,7 +19,11 @@
         <%- end -%>
       </div>
 
-      <div><%= simple_format auto_link(sanitize @chatroom.description) %></div>
+      <div class=""><%= simple_format auto_link(sanitize @chatroom.description) %></div>
+      <div>
+        <%= "{size} {object}"[:number_of_objects, @chatroom.online_users.size, "online users"[]] %> |
+        <%= "{size} {object}"[:number_of_objects, @chatroom.chats.size, "records"[]] %>
+      </div>
     </td>
   </tr>
   <tr>

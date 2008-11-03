@@ -1,10 +1,11 @@
 class ChatsController < ApplicationController
-  before_filter :login_required, :find_chatroom
+  before_filter :login_required
+  before_filter :find_chatroom
   
   # GET /chats
   # GET /chats.xml
   def index
-    @chats = Chat.find_all_by_chatroom_id @chatroom.id, :order => "created_at DESC"
+    @chats = @chatroom.chats
     
     unless @chats.empty?
       session[:chat_id] = @chats.first.id
@@ -24,6 +25,8 @@ class ChatsController < ApplicationController
 
     respond_to do |format|
       if @chatroom.chats << @chat
+        ChatUser.active(@chatroom.id, current_user.id)
+        
         format.js do
           render :update do |page|
             page.insert_html :top, :chats, :partial => 'chat', :object => @chat
@@ -50,9 +53,11 @@ class ChatsController < ApplicationController
   
   def refresh
     @chats = Chat.refresh(session[:chat_id], @chatroom.id, current_user)
-    unless @chats.empty?
-      session[:chat_id] = @chats.first.id
-      render :update do |page|
+    ChatUser.active(@chatroom.id, current_user.id)
+    
+    render :update do |page|
+      unless @chats.empty?
+        session[:chat_id] = @chats.first.id
         @chats.reverse.each do |chat|
           page << "if ($('chat-#{chat.id}')){"
           page << '}else{'
@@ -61,8 +66,7 @@ class ChatsController < ApplicationController
           page << '}'
         end
       end
-    else
-      render :nothing => true
+      page.replace_html :online_users, :partial => 'online_users', :object => @chatroom.online_users
     end
   end
 

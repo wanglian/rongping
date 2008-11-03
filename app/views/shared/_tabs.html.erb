@@ -6,11 +6,13 @@
 	<li><%= tab_to "Chat"[], [{:controller => "chatrooms"}] %></li>
 	<li><%= tab_to "Forum"[], [{:controller => "topics"}] %></li>
 	<li><%= tab_to "Event"[], [{:controller => "events"}] %></li>
+	<%- if logged_in? -%>
 	<li>
-	  <%- if logged_in? && current_user.unread_messages.size > 0 -%>
+	  <%- if current_user.unread_messages.size > 0 -%>
 	  <%= tab_to "Messages({count})"[:message_state, current_user.unread_messages.size], [{:controller => "messages"}] %>
 	  <%- else -%>
 	  <%= tab_to "Messages"[], [{:controller => "messages"}] %>
 	  <%- end -%>
 	</li>
+	<%- end -%>
 </ul>

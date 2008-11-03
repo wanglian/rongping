@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  chatroom_id: 1
+  user_id: 1
+  active_at: 2008-11-03 19:29:56
+
+two:
+  chatroom_id: 1
+  user_id: 1
+  active_at: 2008-11-03 19:29:56

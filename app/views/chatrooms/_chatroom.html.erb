@@ -3,7 +3,7 @@
   <td class="top">
     <div style="padding:5px 0;">
       <span style="font-size:1.2em;font-weight:bold;"><%= link_to h(chatroom.title), chatroom %></span>
-      (<%= "{size} {object}"[:number_of_objects, chatroom.chats.size, "records"[]] %>)
+      (<%= "{size} {object}"[:number_of_objects, chatroom.online_users.size, "online users"[]] %>)
     </div>
     <div>
       <div style="float:right;"><%= link_to "Join"[], chatroom_chats_path(chatroom) %></div>

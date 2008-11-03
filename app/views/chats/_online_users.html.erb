@@ -1,0 +1,4 @@
+<!-- <% debug online_users %> -->
+<%- online_users.push(current_user).uniq.each do |user| -%>
+  <%= user_link user %>
+<%- end -%>

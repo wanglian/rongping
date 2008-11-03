@@ -6,6 +6,10 @@
   <%= render :partial => 'shared/activity' -%>
 <% end -%>
 
+<div>
+  <%= 'Online users'[] %>: <span id="online_users"><%= render :partial => 'online_users', :object => @chatroom.online_users %></span>
+</div>
+
 <%- if logged_in? -%>
 <table class="index">
   <tr>

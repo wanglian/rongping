@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081101164343) do
+ActiveRecord::Schema.define(:version => 20081103112956) do
 
   create_table "activities", :force => true do |t|
     t.integer  "item_id"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(:version => 20081101164343) do
   end
 
   add_index "blogs", ["user_id"], :name => "index_blogs_on_user_id"
+
+  create_table "chat_users", :force => true do |t|
+    t.integer  "chatroom_id"
+    t.integer  "user_id"
+    t.datetime "active_at"
+    t.datetime "created_at"
+  end
 
   create_table "chatrooms", :force => true do |t|
     t.integer  "user_id"
