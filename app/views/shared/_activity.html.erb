@@ -1,6 +1,7 @@
 <div style="font-size:1.5em;font-weight:bold;"><%= 'Activity'[] %></div>
-<table class="index">
-  <%- @activities = Activity.find_recent -%>
+<%- @activities = Activity.find_recent -%>
+<table class="index" id="activities">
   <%= render :partial => 'shared/activity_mini_item', :collection => @activities %>
   <% if @activities.empty? %><tr><td><%= "No record"[] %></td></tr><% end %>
 </table>
+<%#= periodically_call_remote :url => refresh_activities_users_path, :method => 'get', :frequency => 5 %>

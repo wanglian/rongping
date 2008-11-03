@@ -1,5 +1,5 @@
 <%- unless activity_mini_item.item.nil? -%>
-  <tr>
+  <tr id="activity-<%= activity_mini_item.id %>">
     <td width="40"><%= avatar_for(activity_mini_item.user, "thumb") %></td>
     <td>
       <%= minifeed_message activity_mini_item %><br/>

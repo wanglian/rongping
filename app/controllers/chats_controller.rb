@@ -58,8 +58,8 @@ class ChatsController < ApplicationController
     
     render :update do |page|
       unless @chats.empty?
-        session[:chat_id] = @chats.first.id
-        @chats.reverse.each do |chat|
+        session[:chat_id] = @chats.last.id
+        @chats.each do |chat|
           page << "if ($('chat-#{chat.id}')){"
           page << '}else{'
           page.insert_html :top, 'chats', :partial => 'chat', :object => chat

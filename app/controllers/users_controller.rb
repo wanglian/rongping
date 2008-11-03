@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :only => [:index] unless guest_browse_enabled?
+  before_filter :login_required, :only => [:index, :refresh_activities] unless guest_browse_enabled?
   before_filter :find_user, 
     :only => [:profile, 
               :destroy, 
@@ -165,6 +165,26 @@ class UsersController < ApplicationController
             end
           end
         end
+      end
+    end
+  end
+  
+  def refresh_activities
+    activity_id = session[:activity_id] || Activity.find(:last).id
+    @activities = Activity.refresh activity_id, current_user
+    puts @activities.size
+    render :update do |page|
+      unless @activities.empty?
+        session[:activity_id] = @activities.last.id
+        @activities.each do |activity|
+          page << "if ($('activity-#{activity.id}')){"
+          page << '}else{'
+          page.insert_html :top, 'activitiess', :partial => 'shared/activity_mini_item', :object => activity
+          page.visual_effect :highlight, "activity-#{activity.id}"
+          page << '}'
+        end
+      else
+        render :nothing => true
       end
     end
   end
