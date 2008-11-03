@@ -43,11 +43,12 @@ class ChatsController < ApplicationController
   # DELETE /chats/1.xml
   def destroy
     @chat = @chatroom.chats.find(params[:id])
-    @chat.destroy
+    @chat.destroy if @chat && can_destroy?(@chatroom, @chat)
 
     respond_to do |format|
       format.html { redirect_to(chatroom_chats_url(@chatroom)) }
       format.xml  { head :ok }
+      format.js { render :nothing => true }
     end
   end
   
@@ -73,6 +74,10 @@ class ChatsController < ApplicationController
   private
   def find_chatroom
     @chatroom = Chatroom.find params[:chatroom_id]
+  end
+  
+  def can_destroy(chatroom, chat)
+    return (current_user.admin? || chatroom.user == current_user || chat.user == current_user) ? true : false
   end
   
 end
