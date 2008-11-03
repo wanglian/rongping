@@ -34,6 +34,7 @@ change: 修改
 publish: 发表
 reply: 回复
 created: 创建
+updated: 更新
 
 new_user: 创建用户
 status: 状态
@@ -43,6 +44,7 @@ user: 用户
 users: 用户
 customer: 客户
 profile: 个人信息
+your_profile: 个人信息
 upload_photo: 上传头像
 add_new_user: 创建用户
 
@@ -60,6 +62,16 @@ number_of_objects: "{size}个{object}"
 whose_object: "{user}的{object}"
 confirm_alert: "你要删除\"{object}\". 确定吗?"
 are_you_sure?: "确定吗?"
+
+# notice
+object_action_notice: "{object}已{action}"
+login_success_notice: "欢迎回来, {user}!"
+login_failure_notice: "登录名或密码错误, 或者帐号还未激活."
+logout_notice: "已退出."
+sign_up_notice: "用户注册成功,需要激活才能正常使用.<br/>如何激活用户的Email将发送到你的邮箱,请注意查收."
+user_activate_notice: "用户已激活.<br/>感谢你的注册!"
+event_attend_notice: "你加入了这个活动."
+event_unattend_notice: "你退出了这个活动."
 
 prev_page: 上一页
 next_page: 下一页
@@ -119,6 +131,7 @@ compose: 发消息
 recipient: 发送给 
 subject: 主题
 send: 发送
+sent: 发送
 to: 发给
 from: 来自
 

@@ -49,7 +49,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        flash[:notice] = 'Document was successfully created.'
+        flash[:notice] = '{object} was successfully {action}.'[:object_action_notice, "Document"[], "created"[]]
         format.html { redirect_to(@document) }
         format.xml  { render :xml => @document, :status => :created, :location => @document }
       else
@@ -66,7 +66,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.update_attributes(params[:document])
-        flash[:notice] = 'Document was successfully updated.'
+        flash[:notice] = '{object} was successfully {action}.'[:object_action_notice, "Document"[], "updated"[]]
         format.html { redirect_to(@document) }
         format.xml  { head :ok }
       else

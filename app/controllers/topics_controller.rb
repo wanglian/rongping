@@ -44,7 +44,7 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.save
-        flash[:notice] = 'Topic was successfully created.'
+        flash[:notice] = '{object} was successfully {action}.'[:object_action_notice, "Topic"[], "created"[]]
         format.html { redirect_to(@topic) }
         format.xml  { render :xml => @topic, :status => :created, :location => @topic }
       else

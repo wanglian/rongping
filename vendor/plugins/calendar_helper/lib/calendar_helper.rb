@@ -76,7 +76,7 @@ module CalendarHelper
       :other_month_class => 'otherMonth',
       :day_name_class => 'dayName',
       :day_class => 'day',
-      :abbrev => (0..2),
+      :abbrev => (0..0),
       :first_day_of_week => 0,
       :accessible => false,
       :show_today => true,
@@ -91,9 +91,10 @@ module CalendarHelper
     first_weekday = first_day_of_week(options[:first_day_of_week])
     last_weekday = last_day_of_week(options[:first_day_of_week])
     
-    # day_names = Date::DAYNAMES.dup
-    day_names = %w{日 一 二 三 四 五 六}
-    month_names = %w{0 1月 2月 3月 4月 5月 6月 7月 8月 9月 10月 11月 12月}
+    day_names = Date::DAYNAMES.dup
+    month_names = Date::MONTHNAMES.dup
+    # day_names = %w{日 一 二 三 四 五 六}
+    # month_names = %w{0 1 2 3 4 5 6 7 8 9 10 11 12}
     first_weekday.times do
       day_names.push(day_names.shift)
     end
@@ -102,13 +103,13 @@ module CalendarHelper
     cal = %(<table class="#{options[:table_class]}" border="0" cellspacing="0" cellpadding="0">)
     cal << %(<thead><tr>)
     if options[:previous_month_text] or options[:next_month_text]
-      cal << %(<th colspan="2">#{options[:previous_month_text]}</th>)
-      colspan=3
+      cal << %(<th colspan="1">#{options[:previous_month_text]}</th>)
+      colspan=5
     else
       colspan=7
     end
-    cal << %(<th colspan="#{colspan}" class="#{options[:month_name_class]}" style="text-align:center;">#{options[:year]}年#{month_names[options[:month]]}</th>)
-    cal << %(<th colspan="2" style="text-align:right;">#{options[:next_month_text]}</th>) if options[:next_month_text]
+    cal << %(<th colspan="#{colspan}" class="#{options[:month_name_class]}" style="text-align:center;">#{options[:year]} - #{month_names[options[:month]]}</th>)
+    cal << %(<th colspan="1" style="text-align:right;">#{options[:next_month_text]}</th>) if options[:next_month_text]
     cal << %(</tr><tr class="#{options[:day_name_class]}">)
     day_names.each do |d|
       unless d[options[:abbrev]].eql? d

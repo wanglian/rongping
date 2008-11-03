@@ -3,11 +3,6 @@
 <%- end -%>
 
 <%- content_for :sidebar do -%>
-  <%= render :partial => 'calendar', :locals => { :events => @month_events, :date => @date } %>
-
-  <ul>
-    <%- if logged_in? -%><li><%= link_to "Add new event"[], new_event_path %></li><% end -%>
-  </ul>
   <%= render :partial => 'shared/activity' -%>
 <%- end -%>
 

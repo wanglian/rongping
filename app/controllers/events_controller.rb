@@ -46,7 +46,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        flash[:notice] = 'Event was successfully created.'
+        flash[:notice] = '{object} was successfully {action}.'[:object_action_notice, "Event"[], "created"[]]
         format.html { redirect_to(@event) }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
@@ -59,7 +59,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        flash[:notice] = 'Event was successfully updated.'
+        flash[:notice] = '{object} was successfully {action}.'[:object_action_notice, "Event"[], "updated"[]]
         format.html { redirect_to(@event) }
         format.xml  { head :ok }
       else
@@ -80,7 +80,7 @@ class EventsController < ApplicationController
 
   def attend
     if @event.attend(current_user)
-      flash[:notice] = "You are attending this event."
+      flash[:notice] = "You are attending this event."[:event_attend_notice]
       redirect_to @event
     else
       flash[:error] = "You can only attend once."
@@ -90,7 +90,7 @@ class EventsController < ApplicationController
 
   def unattend
     if @event.unattend(current_user)
-      flash[:notice] = "You are not attending this event."
+      flash[:notice] = "You are not attending this event."[:event_unattend_notice]
       redirect_to @event
     else
       flash[:error] = "You are not attending this event."

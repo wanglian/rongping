@@ -52,7 +52,7 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
-        flash[:notice] = 'Blog was successfully created.'
+        flash[:notice] = '{object} was successfully {action}.'[:object_action_notice, "Blog"[], "created"[]]
         format.html { redirect_to(@blog) }
         format.xml  { render :xml => @blog, :status => :created, :location => @blog }
       else
@@ -67,7 +67,7 @@ class BlogsController < ApplicationController
   def update
     respond_to do |format|
       if @blog.update_attributes(params[:blog])
-        flash[:notice] = 'Blog was successfully updated.'
+        flash[:notice] = '{object} was successfully {action}.'[:object_action_notice, "Blog"[], "updated"[]]
         format.html { redirect_to(@blog) }
         format.xml  { head :ok }
       else

@@ -86,7 +86,7 @@ class UsersController < ApplicationController
     @user.register!
     
     redirect_back_or_default('/')
-    flash[:notice] = "Thanks for signing up!<br />You will receive an email in a few minutes with further instructions on how to activate your account."
+    flash[:notice] = "Thanks for signing up!<br />You will receive an email in a few minutes with further instructions on how to activate your account."[:sign_up_notice]
   rescue ActiveRecord::RecordInvalid
     render :action => 'new'
   end
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
     self.current_user = params[:activation_code].blank? ? :false : User.find_by_activation_code(params[:activation_code])
     if logged_in? && !current_user.active?
       current_user.activate!
-      flash[:notice] = "Your account is now ready.<br />Thanks for signing up!"
+      flash[:notice] = "Your account is now ready.<br />Thanks for signing up!"[:user_activate_notice]
     end
     redirect_back_or_default('/')
   end

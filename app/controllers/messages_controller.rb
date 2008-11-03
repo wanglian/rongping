@@ -38,7 +38,7 @@ class MessagesController < ApplicationController
     
     respond_to do |format|
       if @message.save
-        flash[:notice] = 'Message was sent successfully.'
+        flash[:notice] = '{object} was {action} successfully.'[:object_action_notice, "Message"[], "sent"[]]
         format.html { redirect_to outbox_messages_path }
       else
         format.html { render :action => "new" }
