@@ -25,7 +25,7 @@ class ChatsController < ApplicationController
 
     respond_to do |format|
       if @chatroom.chats << @chat
-        ChatUser.active(@chatroom.id, current_user.id)
+        # ChatUser.active(@chatroom.id, current_user.id)
         
         format.js do
           render :update do |page|
@@ -67,7 +67,7 @@ class ChatsController < ApplicationController
           page << '}'
         end
       end
-      page.replace_html :online_users, :partial => 'online_users', :object => @chatroom.online_users
+      page.replace_html :online_users, :partial => 'online_users', :object => @chatroom.online_users.dup
     end
   end
 
