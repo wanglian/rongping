@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :password, :password_confirmation, :avatar
+  attr_accessible :login, :email, :password, :password_confirmation, :avatar, :time_zone
 
   acts_as_state_machine :initial => :pending
   state :passive

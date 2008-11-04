@@ -35,7 +35,9 @@ ActionController::Routing::Routes.draw do |map|
                                      :edit_email => :get,
                                      :update_email => :put,
                                      :edit_avatar => :get, 
-                                     :update_avatar => :put },
+                                     :update_avatar => :put,
+                                     :edit_time_zone => :get,
+                                     :update_time_zone => :put },
                         :collection => {:refresh_activities => :get}
                             
   map.resource :session

@@ -22,13 +22,17 @@ class ApplicationController < ActionController::Base
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => '9fe6825f97cc334d88925fde5c4808a8'
   
-  before_filter :set_language
+  before_filter :set_language, :set_user_time_zone
   
   private
   def set_language
     Gibberish.current_language = cookies[:lang] || 'en-US'
     WillPaginate::ViewHelpers.pagination_options[:prev_label] = '&laquo; Previous'[:prev_page]
     WillPaginate::ViewHelpers.pagination_options[:next_label] = 'Next &raquo;'[:next_page]
+  end
+  
+  def set_user_time_zone
+    Time.zone = current_user.time_zone if logged_in?
   end
   
   def current_action

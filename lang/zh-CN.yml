@@ -44,6 +44,7 @@ user: 用户
 users: 用户
 customer: 客户
 profile: 个人信息
+time_zone: 时区
 your_profile: 个人信息
 upload_photo: 上传头像
 add_new_user: 创建用户

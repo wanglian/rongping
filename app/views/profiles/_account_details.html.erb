@@ -14,4 +14,8 @@
 	<%= cell "Last updated"[], @user.updated_at.to_s(:long) %>
 	
 	<%= cell_separator %>
+	
+	<%= cell "Time zone"[], "#{@user.time_zone} <small>#{link_to "change"[], edit_time_zone_user_url(@user)}</small>" %>
+	
+	<%= cell_separator %>
 </table>

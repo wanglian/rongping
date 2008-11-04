@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081103112956) do
+ActiveRecord::Schema.define(:version => 20081104122035) do
 
   create_table "activities", :force => true do |t|
     t.integer  "item_id"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20081103112956) do
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
+    t.string   "time_zone"
   end
 
 end

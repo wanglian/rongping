@@ -1,0 +1,13 @@
+<% content_for :header do -%>
+	Change my time zone
+<% end -%>
+
+<% form_for :user, @user, :url => update_time_zone_user_url(@user), :html => {:method => :put} do |f| %>
+
+	<h3>Choose your time zone</h3>
+
+	<p><%= f.time_zone_select :time_zone, TimeZone.all %></p>
+
+	<p><%= submit_tag "Change my time zone" %> or <%= link_to "forget about it", profile_url(@user) %></p>
+	
+<% end %>

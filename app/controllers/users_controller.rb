@@ -5,6 +5,7 @@ class UsersController < ApplicationController
               :destroy, 
               :edit_password,   :update_password, 
               :edit_email,      :update_email,
+              :edit_time_zone,  :update_time_zone,
               :update_avatar ]
   
   layout 'login' #, :except => [:edit_password, :update_password]
@@ -152,6 +153,25 @@ class UsersController < ApplicationController
       redirect_to edit_email_user_url(@user)
     end
   end  
+  
+  def edit_time_zone
+    
+  end
+  
+  def update_time_zone
+    if current_user == @user
+      if @user.update_attributes(:time_zone => params[:user][:time_zone])
+        flash[:notice] = "Your time zone has been updated."
+        redirect_to profile_url(@user)
+      else
+        flash[:error] = "Your time zone could not be updated."
+        redirect_to edit_time_zone_user_url(@user)
+      end
+    else
+      flash[:error] = "You cannot update another user's time zone!"
+      redirect_to edit_time_zone_user_url(@user)
+    end
+  end
   
   def update_avatar
     if @user.update_attributes(params[:user])
