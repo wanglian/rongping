@@ -1,6 +1,6 @@
 <tr id="chat-<%= chat.id %>">
   <td style="width:145px;text-align:right;padding-right:5px;font-weight:bold;"><%= chat.user.name %></td>
-  <td style="background:#eef;padding-left:2px;" id="chat-<%= chat.id %>"><div><%= auto_link(sanitize chat.body) %></div></td>
+  <td style="background:#eef;padding-left:2px;" id="chat-body-<%= chat.id %>"><div><%= auto_link(sanitize chat.body) %></div></td>
   <td style="width:100px;text-align:right;"><%= chat.created_at.to_s :short %></td>
   <td style="width:20px;text-align:center;">
     <%= link_to_remote 'X', :url => chatroom_chat_path(@chatroom, chat), :method => :delete, :confirm => 'Are you sure?'[], :loading => "Element.remove('chat-#{chat.id}')" if current_user.admin? || @chatroom.user == current_user || chat.user == current_user %>

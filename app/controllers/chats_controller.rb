@@ -63,7 +63,7 @@ class ChatsController < ApplicationController
           page << "if ($('chat-#{chat.id}')){"
           page << '}else{'
           page.insert_html :top, 'chats', :partial => 'chat', :object => chat
-          page.visual_effect :highlight, "chat-#{chat.id}"
+          page.visual_effect :highlight, "chat-body-#{chat.id}"
           page << '}'
         end
       end
