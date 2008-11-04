@@ -9,7 +9,7 @@
       <div style="float:right;"><%= link_to "Join"[], chatroom_chats_path(chatroom) %></div>
       <%= user_link chatroom.user %> <%= 'Created'[] %>
       <%= time_ago_in_words chatroom.created_at %> ago
-      <%- if current_user.admin? || chatroom.user == current_user -%>
+      <%- if logged_in? && (current_user.admin? || chatroom.user == current_user) -%>
       <%= link_to 'Edit'[], edit_chatroom_path(chatroom) %> |
       <%= link_to_remote 'Delete'[], :url => chatroom_path(chatroom), :method => :delete, :confirm => "You are deleting '{object}'? Are you sure?"[:confirm_alert, chatroom.title], :success => "Element.remove('chatroom_#{chatroom.id}')" %>
       <%- end -%>
