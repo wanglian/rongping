@@ -30,7 +30,7 @@ class ChatsController < ApplicationController
         format.js do
           render :update do |page|
             page.insert_html :top, :chats, :partial => 'chat', :object => @chat
-            page.visual_effect :highlight, "chat-#{@chat.id}"
+            page.visual_effect :highlight, "chat-body-#{@chat.id}"
           end
         end
       else
