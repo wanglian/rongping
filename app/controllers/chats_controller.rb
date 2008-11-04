@@ -76,7 +76,7 @@ class ChatsController < ApplicationController
     @chatroom = Chatroom.find params[:chatroom_id]
   end
   
-  def can_destroy(chatroom, chat)
+  def can_destroy?(chatroom, chat)
     return (current_user.admin? || chatroom.user == current_user || chat.user == current_user) ? true : false
   end
   
