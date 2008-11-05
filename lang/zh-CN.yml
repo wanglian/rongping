@@ -19,6 +19,12 @@ remember_me: 记住我
 location: 家乡
 real_name: 姓名
 website: 个人网站
+signup_info: ''
+already_have_an_account?: '已经注册了?'
+login_here: 直接登录
+having_trouble_logging_in?: "无法访问我的帐号?"
+sign_up_for_an_account_now: "注册帐号"
+create_new_account: "注册 {site_name} 帐号"
 
 edit: 编辑
 save: 保存

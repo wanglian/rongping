@@ -40,8 +40,15 @@
 
   </div>
   <div id="footer">
-    <%= s(:site_name) %> by <%= s(:company_name) %><br />
-	Copyright © <%= s(:company_name) %>
+    <%= s(:site_name) %>
+	  Copyright © <%= s(:company_name) %><br/>
+	  [<% if cookies[:lang] == 'zh-CN' -%>
+      <%= link_to_remote 'English', :url => choose_lang_path(:lang => 'en-US'), :success => "window.location.reload();", :method => :put %> |
+      简体中文
+    <% else -%>
+      English |
+      <%= link_to_remote '简体中文', :url => choose_lang_path(:lang => 'zh-CN'), :success => "window.location.reload();", :method => :put %>
+    <% end -%>]
   </div>
 
 

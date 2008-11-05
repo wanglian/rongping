@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(:version => 20081104122035) do
     t.text     "body"
     t.integer  "chatroom_id"
     t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   add_index "chats", ["user_id"], :name => "index_chats_on_user_id"
@@ -88,6 +87,8 @@ ActiveRecord::Schema.define(:version => 20081104122035) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "event_attendees", ["event_id"], :name => "index_event_attendees_on_event_id"
 
   create_table "events", :force => true do |t|
     t.string   "title"

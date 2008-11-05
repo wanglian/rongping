@@ -122,5 +122,6 @@ div.progressBar div.background {
 }
 /** Footer */
 #footer {
-	display: none;
+/*	display: none;*/
+	text-align: center;
 }

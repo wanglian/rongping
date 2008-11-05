@@ -6,7 +6,7 @@
   <%= f.error_messages %>
   <p>
     <%= f.label "Choose a file"[] %><br />
-    <%= f.file_field :attachment %>
+    <%= f.file_field :attachment, :onchange => "$('document_title').value=this.value.substring(this.value.lastIndexOf('/') + 1, (this.value.length));" %>
   </p>
   <p>
     <%= f.label "title"[] %><br />
