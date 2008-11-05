@@ -4,8 +4,7 @@ class CreateChats < ActiveRecord::Migration
       t.integer :user_id
       t.text :body
       t.integer :chatroom_id
-
-      t.timestamps
+      t.datetime :created_at
     end
     
     add_index :chats, :chatroom_id

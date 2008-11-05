@@ -6,6 +6,8 @@ class CreateEventAttendees < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :event_attendees, :event_id
   end
 
   def self.down

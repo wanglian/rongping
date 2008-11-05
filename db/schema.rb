@@ -35,9 +35,11 @@ ActiveRecord::Schema.define(:version => 20081104122035) do
   create_table "chat_users", :force => true do |t|
     t.integer  "chatroom_id"
     t.integer  "user_id"
-    t.datetime "active_at"
     t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "chat_users", ["chatroom_id"], :name => "index_chat_users_on_chatroom_id"
 
   create_table "chatrooms", :force => true do |t|
     t.integer  "user_id"
@@ -170,7 +172,7 @@ ActiveRecord::Schema.define(:version => 20081104122035) do
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
-    t.string   "time_zone"
+    t.string   "time_zone",                               :default => "Beijing"
   end
 
 end

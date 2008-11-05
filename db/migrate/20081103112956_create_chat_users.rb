@@ -3,9 +3,11 @@ class CreateChatUsers < ActiveRecord::Migration
     create_table :chat_users do |t|
       t.integer :chatroom_id
       t.integer :user_id
-      t.datetime :active_at
-      t.datetime :created_at
+      
+      t.timestamps
     end
+    
+    add_index :chat_users, :chatroom_id
   end
 
   def self.down

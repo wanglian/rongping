@@ -54,7 +54,7 @@ class ChatsController < ApplicationController
   
   def refresh
     @chats = Chat.refresh(session[:chat_id], @chatroom.id, current_user)
-    ChatUser.active(@chatroom.id, current_user.id)
+    @chatroom.add_or_update_online_user current_user
     
     render :update do |page|
       unless @chats.empty?
@@ -67,7 +67,7 @@ class ChatsController < ApplicationController
           page << '}'
         end
       end
-      page.replace_html :online_users, :partial => 'online_users', :object => @chatroom.online_users.dup
+      page.replace_html :online_users, :partial => 'online_users', :object => @chatroom.online_users
     end
   end
 
