@@ -6,7 +6,7 @@ class Chatroom < ActiveRecord::Base
   has_many :chats, :order => "created_at DESC"
   has_many :chat_users
   has_many :online_users, :through => :chat_users, :source => :user, 
-                          :conditions => ["chat_users.updated_at > ?", Time.now.utc-10.seconds], :order => "chat_users.updated_at asc"
+                          :conditions => ["chat_users.updated_at > ?", Time.zone.now-10.seconds], :order => "chat_users.updated_at asc"
   
   validates_presence_of :title, :user
   validates_length_of   :title, :maximum => MAX_NAME
