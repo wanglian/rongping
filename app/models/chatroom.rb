@@ -53,7 +53,7 @@ class Chatroom < ActiveRecord::Base
     if chat_user = ChatUser.find_by_chatroom_id_and_user_id(self, current_user)
       chat_user.update_attribute('updated_at', Time.now)
     else
-      chat_user = self.chat_users.create :user_id => current_user
+      chat_user = self.chat_users.create :user => current_user
       chat_user.activate!
     end
   end
