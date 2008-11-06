@@ -16,7 +16,7 @@
     <%= f.radio_button :privacy, 'Protected' %>Protected
   </p>
   <p>
-    <%= f.submit "Update"[] %>
+    <%= f.submit @chatroom.new_record? ? "Create"[] : "Update"[] %>
     <%= button_to_function 'Cancel'[], "history.back()" %>
   </p>
 <%- end -%>

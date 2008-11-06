@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081106062248) do
+ActiveRecord::Schema.define(:version => 20081106065348) do
 
   create_table "activities", :force => true do |t|
     t.integer  "item_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20081106062248) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state",       :default => "passive"
   end
 
   add_index "chat_users", ["chatroom_id"], :name => "index_chat_users_on_chatroom_id"

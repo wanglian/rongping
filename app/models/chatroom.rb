@@ -44,13 +44,13 @@ class Chatroom < ActiveRecord::Base
   end
   
   def update_online_user(current_user)
-    if chat_user = ChatUser.find_by_chatroom_id_and_user_id(self, current_user.id)
+    if chat_user = self.chat_users.find_by_user_id(current_user.id)
       chat_user.update_attribute('updated_at', Time.now)
     end
   end
   
   def add_or_update_online_user(current_user)
-    if chat_user = ChatUser.find_by_chatroom_id_and_user_id(self, current_user.id)
+    if chat_user = self.chat_users.find_by_user_id(current_user.id)
       chat_user.update_attribute('updated_at', Time.now)
     else
       chat_user = self.chat_users.create :user => current_user
