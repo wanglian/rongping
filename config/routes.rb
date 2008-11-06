@@ -1,5 +1,7 @@
 # See how all your routes lay out with "rake routes"
 ActionController::Routing::Routes.draw do |map|
+  map.resources :searches
+  
   map.resources :chatrooms do |chatroom|
     chatroom.resources :chats, :collection => {:refresh => :get}
   end

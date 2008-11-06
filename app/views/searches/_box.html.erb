@@ -1,0 +1,7 @@
+<h2><%= 'Search'[] %> <%= type %></h2>
+<% form_tag searches_path, :method => :get, :id => "frmSearch" do %>
+  <%= text_field_tag :q, h(params[:q]), :id => "txtSearch", :maxlength => 50 %>
+  <%= submit_tag "Search"[] %>
+  <%= hidden_field_tag "model", model %>
+  <%= hidden_field_tag "type", type %>
+<% end %>

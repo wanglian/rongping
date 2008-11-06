@@ -1,0 +1,17 @@
+<% content_for :header do -%>
+	<%= "Search results"[] %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+	<%= render :partial => "searches/box", :locals => {:type => params[:type], :model => params[:model]} %>
+<% end -%>
+
+<%= will_paginate(@results) %>
+  <%- if @results.empty? -%>
+    <h3><%= 'No record'[] %></h3>
+  <%- else -%>
+    <ul class="list people">
+      <%= render :partial => partial(@results), :collection => @results %>
+    </ul>
+  <%- end -%>
+<%= will_paginate(@results) %>

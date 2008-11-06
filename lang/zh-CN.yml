@@ -41,6 +41,8 @@ publish: 发表
 reply: 回复
 created: 创建
 updated: 更新
+search: 搜索
+search_results: 搜索结果
 
 new_user: 创建用户
 status: 状态
