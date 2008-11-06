@@ -29,14 +29,14 @@ class Chatroom < ActiveRecord::Base
   def can_join?(current_user)
     return true if self.public? || self.user == current_user
     if protected?
-      self.chat_users.find_by_state_and_user_id 'active', current_user
+      self.chat_users.find_by_state_and_user_id 'active', current_user.id
     else
       false
     end
   end
   
   def apply(current_user)
-    if chat_user = self.chat_users.find_by_user_id(current_user)
+    if chat_user = self.chat_users.find_by_user_id(current_user.id)
       chat_user.destroy
     end
     chat_user = self.chat_users.create :user => current_user
@@ -44,13 +44,13 @@ class Chatroom < ActiveRecord::Base
   end
   
   def update_online_user(current_user)
-    if chat_user = ChatUser.find_by_chatroom_id_and_user_id(self, current_user)
+    if chat_user = ChatUser.find_by_chatroom_id_and_user_id(self, current_user.id)
       chat_user.update_attribute('updated_at', Time.now)
     end
   end
   
   def add_or_update_online_user(current_user)
-    if chat_user = ChatUser.find_by_chatroom_id_and_user_id(self, current_user)
+    if chat_user = ChatUser.find_by_chatroom_id_and_user_id(self, current_user.id)
       chat_user.update_attribute('updated_at', Time.now)
     else
       chat_user = self.chat_users.create :user => current_user
