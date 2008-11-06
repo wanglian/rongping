@@ -27,7 +27,7 @@ module ActivitiesHelper
     when "Document"
       "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "uploaded"[], "a document"[], document_link(activity.item)]
     when "Chatroom"
-      "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "created"[], "a session"[], chatroom_link(activity.item)]
+      "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "created"[], "a chatroom"[], chatroom_link(activity.item)]
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
     end
@@ -59,7 +59,7 @@ module ActivitiesHelper
     when "Document"
       "{user} {action} {object}"[:action_mini_feed, user_link(user), "uploaded"[], document_link("a document"[], activity.item)]
     when "Chatroom"
-      "{user} {action} {object}"[:action_mini_feed, user_link(user), "created"[], chatroom_link("a session"[], activity.item)]
+      "{user} {action} {object}"[:action_mini_feed, user_link(user), "created"[], chatroom_link("a chatroom"[], activity.item)]
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
     end

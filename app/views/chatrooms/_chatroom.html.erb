@@ -2,16 +2,27 @@
   <td width="80" class="top"><%= avatar_for chatroom.user %></td>
   <td class="top">
     <div style="padding:5px 0;">
-      <span style="font-size:1.2em;font-weight:bold;"><%= link_to h(chatroom.title), chatroom %></span>
-      (<%= "{size} {object}"[:number_of_objects, chatroom.online_users.size, "online users"[]] %>)
+      <span style="font-size:1.2em;font-weight:bold;">
+        <%- if chatroom.public? || chatroom.can_join?(current_user) -%>
+          <%= link_to h(chatroom.title), chatroom_chats_path(chatroom) %>
+          <%- else -%>
+            <%=h chatroom.title %>
+          <%- end -%>
+      </span>
+      (<%= "{size} {object}"[:number_of_objects, chatroom.online_users.size, "online users"[]] %>) - 
+      <%= chatroom.privacy[] %>
     </div>
     <div>
-      <div style="float:right;"><%= link_to "Join"[], chatroom_chats_path(chatroom) %></div>
+      <div style="float:right;">
+        <%- unless chatroom.public? || chatroom.can_join?(current_user) -%>
+          <%= link_to "Apply to join"[], chatroom_chats_path(chatroom) -%>
+        <%- end -%>
+      </div>
       <%= user_link chatroom.user %> <%= 'Created'[] %>
       <%= time_ago_in_words chatroom.created_at %> ago
       <%- if logged_in? && (current_user.admin? || chatroom.user == current_user) -%>
-      <%= link_to 'Edit'[], edit_chatroom_path(chatroom) %> |
-      <%= link_to_remote 'Delete'[], :url => chatroom_path(chatroom), :method => :delete, :confirm => "You are deleting '{object}'? Are you sure?"[:confirm_alert, chatroom.title], :success => "Element.remove('chatroom_#{chatroom.id}')" %>
+        <%= link_to 'Edit'[], edit_chatroom_path(chatroom) %> |
+        <%= link_to_remote 'Delete'[], :url => chatroom_path(chatroom), :method => :delete, :confirm => "You are deleting '{object}'? Are you sure?"[:confirm_alert, chatroom.title], :success => "Element.remove('chatroom_#{chatroom.id}')" %>
       <%- end -%>
     </div>
   </td>

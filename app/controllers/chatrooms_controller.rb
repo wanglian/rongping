@@ -2,6 +2,7 @@ class ChatroomsController < ApplicationController
   before_filter :login_required, :only => [:index, :show] unless guest_browse_enabled?
   before_filter :login_required, :except => [:index, :show]
   before_filter :can_edit, :only => [:update, :destroy]
+  before_filter :find_chatroom, :except => [:index, :new, :create]
   
   # GET /chatrooms
   # GET /chatrooms.xml
@@ -17,8 +18,6 @@ class ChatroomsController < ApplicationController
   # GET /chatrooms/1
   # GET /chatrooms/1.xml
   def show
-    @chatroom = Chatroom.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @chatroom }
@@ -38,7 +37,7 @@ class ChatroomsController < ApplicationController
 
   # GET /chatrooms/1/edit
   def edit
-    @chatroom = Chatroom.find(params[:id])
+    
   end
 
   # POST /chatrooms
@@ -62,8 +61,7 @@ class ChatroomsController < ApplicationController
   # PUT /chatrooms/1
   # PUT /chatrooms/1.xml
   def update
-    @chatroom = Chatroom.find(params[:id])
-
+    
     respond_to do |format|
       if @chatroom.update_attributes(params[:chatroom])
         flash[:notice] = '{object} was successfully {action}.'[:object_action_notice, "Chatroom"[], "updated"[]]
@@ -79,7 +77,6 @@ class ChatroomsController < ApplicationController
   # DELETE /chatrooms/1
   # DELETE /chatrooms/1.xml
   def destroy
-    @chatroom = Chatroom.find(params[:id])
     @chatroom.destroy
 
     respond_to do |format|
@@ -87,4 +84,23 @@ class ChatroomsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def accept
+    chat_user = @chatroom.chat_users.find_by_user_id params[:user_id]
+    chat_user.activate!
+    render :nothing => true
+  end
+  
+  def leave
+    chat_user = @chatroom.chat_users.find_by_user_id current_user
+    chat_user.destroy if chat_user
+    
+    redirect_to chatrooms_url
+  end
+  
+  private
+  def find_chatroom
+    @chatroom = Chatroom.find(params[:id])
+  end
+  
 end

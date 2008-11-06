@@ -2,8 +2,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :searches
   
-  map.resources :chatrooms do |chatroom|
-    chatroom.resources :chats, :collection => {:refresh => :get}
+  map.resources :chatrooms, :member => {:accept => :put, :leave => :delete} do |chatroom|
+    chatroom.resources :chats, :collection => {:refresh => :get, :refresh_status => :get}
   end
 
   map.resources :documents

@@ -1,5 +1,5 @@
 <%- content_for :header do -%>
-	<%= 'Sessions'[] %>
+	<%= 'Chatrooms'[] %>
 <%- end -%>
 
 <%- content_for :sidebar do -%>
@@ -14,9 +14,5 @@
 <%= will_paginate @chatrooms %>
 
 <%- if logged_in? -%>
-  <h2><%= 'Add new session'[] %></h2>
-  <%- form_for(:chatroom) do |f| -%>
-    <%= f.text_field :title, :size => 60 %>
-    <%= f.submit "Create"[] %>
-  <%- end -%>
+  <h2><%= link_to 'Add new chatroom'[], new_chatroom_path %></h2>
 <%- end -%>

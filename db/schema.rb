@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081104122035) do
+ActiveRecord::Schema.define(:version => 20081106062248) do
 
   create_table "activities", :force => true do |t|
     t.integer  "item_id"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20081104122035) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "privacy",     :default => "Public"
   end
 
   create_table "chats", :force => true do |t|

@@ -146,7 +146,7 @@ from: 来自
 
 # document
 document: 文件
-documents: 文件列表
+documents: 文件
 add_new_document: 上传文件
 edit_document: 编辑文件
 choose_a_file: 选择文件
@@ -158,11 +158,18 @@ a_document: 一个文件
 
 # chat
 chat: 会话
-session: 会话
-sessions: 会话列表
-add_new_session: 创建会话
-edit_session: 编辑会话
+chatroom: 会议室
+chatrooms: 会议室
+add_new_chatroom: 创建会议室
+edit_session: 编辑会议室
 post: 发送
 join: 加入
-a_session: 一个会话
+apply_to_join: 请求加入
+request_to_join: 请求加入
+approve: 同意
+leave_room: 离开会议室
+a_chatroom: 一个会议室
 online_users: 在线用户
+public: 公开
+protected: 私密
+privacy: 访问设置

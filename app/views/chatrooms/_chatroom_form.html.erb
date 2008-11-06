@@ -2,12 +2,18 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label "title"[] %><br />
+    <%= f.label "Title"[] %><br />
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label "description"[] %><br />
+    <%= f.label "Description"[] %><br />
     <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label "Privacy"[] %><br />
+    <%#= f.select :privacy, Chatroom::PRIVACIES %>
+    <%= f.radio_button :privacy, 'Public' %>Public<br/>
+    <%= f.radio_button :privacy, 'Protected' %>Protected
   </p>
   <p>
     <%= f.submit "Update"[] %>

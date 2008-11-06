@@ -6,30 +6,36 @@
   <%= render :partial => 'shared/activity' -%>
 <% end -%>
 
-<div>
-  <%= 'Online users'[] %>: <span id="online_users"><%= render :partial => 'online_users', :object => @chatroom.online_users %></span>
-</div>
+<%- if logged_in? && @can_join -%>
+  <div>
+    <%= 'Online users'[] %>: <span id="online_users"><%= user_link current_user %></span>
+  </div>
 
-<%- if logged_in? -%>
-<table class="index">
-  <tr>
-    <td width="150"></td>
-    <td>
-      <div style="width:100%;">
-        <%- @chat = Chat.new unless @chat -%>
-        <%- remote_form_for @chat, :url => chatroom_chats_path(@chatroom), :loading => "$('chat_body').clear();" do |f| -%>
-          <%= f.text_field :body, :value => '', :style => "width:70%;" %>
-          <%= submit_tag "Post"[] %>
-        <%- end -%>
-      </div>
-    </td>
-  </tr>
-</table>
-<div class="clear"> </div>
+  <table class="index">
+    <tr>
+      <td width="150"></td>
+      <td>
+        <div style="width:100%;">
+          <%- @chat = Chat.new unless @chat -%>
+          <%- remote_form_for @chat, :url => chatroom_chats_path(@chatroom), :loading => "$('chat_body').clear();" do |f| -%>
+            <%= f.text_field :body, :value => '', :style => "width:70%;" %>
+            <%= submit_tag "Post"[] %>
+            <%= link_to "Leave room"[], leave_chatroom_path(@chatroom), :method => :delete %>
+          <%- end -%>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class="clear"> </div>
+
+  <table class="index" id="chats">
+    <%= render :partial => "chat", :collection => @chats %>
+  </table>
+  <%= periodically_call_remote :url => refresh_chatroom_chats_path(@chatroom), :method => 'get', :frequency => 3 %>
+<%- else -%>
+  <%= periodically_call_remote :url => refresh_status_chatroom_chats_path(@chatroom), :method => 'get', :frequency => 3 %>
 <%- end -%>
 
-<table class="index" id="chats">
-  <%= render :partial => "chat", :collection => @chats %>
-</table>
-
-<%= periodically_call_remote :url => refresh_chatroom_chats_path(@chatroom), :method => 'get', :frequency => 3 %>
+<%- if flash[:chatroom] -%>
+<div id="notice"><%= flash[:chatroom] %></div>
+<%- end -%>

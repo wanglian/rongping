@@ -5,8 +5,15 @@ class ChatsController < ApplicationController
   # GET /chats
   # GET /chats.xml
   def index
-    @chats = @chatroom.chats
+    @can_join = @chatroom.can_join?(current_user)
+    if @chatroom.protected?
+      unless @can_join 
+        @chatroom.apply(current_user)
+        flash[:chatroom] = "Your request has been accepted. Please wait to be approved."
+      end
+    end
     
+    @chats = @chatroom.chats
     unless @chats.empty?
       session[:chat_id] = @chats.first.id
     end
@@ -53,6 +60,11 @@ class ChatsController < ApplicationController
   end
   
   def refresh
+    unless @chatroom.can_join?(current_user)
+      render :nothing => true
+      return
+    end
+    
     @chats = Chat.refresh(session[:chat_id], @chatroom.id, current_user)
     @chatroom.add_or_update_online_user current_user
     
@@ -67,9 +79,21 @@ class ChatsController < ApplicationController
           page << '}'
         end
       end
-      page.replace_html :online_users, :partial => 'online_users', :object => @chatroom.online_users
+      page.replace_html :online_users, :partial => 'online_chat_users', :object => @chatroom.chat_users.online
     end
   end
+  
+  def refresh_status
+    if @chatroom.can_join?(current_user)
+      render :update do |page|
+        page.call "window.location.reload"
+      end
+    else
+      @chatroom.update_online_user(current_user)
+      render :nothing => true
+    end
+  end
+  
 
   private
   def find_chatroom

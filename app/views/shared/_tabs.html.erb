@@ -2,10 +2,10 @@
 	<li><%= tab_to "Dashboard"[], [{:controller => "dashboard" }] %></li>
 	<li><%= tab_to "Users"[], [{:controller => "users"}] %></li>
 	<li><%= tab_to "Blog"[], [{:controller => "blogs"}] %></li>
-	<li><%= tab_to "Document"[], [{:controller => "documents"}] %></li>
-	<li><%= tab_to "Chat"[], [{:controller => "chatrooms"}] %></li>
+	<li><%= tab_to "Documents"[], [{:controller => "documents"}] %></li>
+	<li><%= tab_to "Chatrooms"[], [{:controller => "chatrooms"}] %></li>
 	<li><%= tab_to "Forum"[], [{:controller => "topics"}] %></li>
-	<li><%= tab_to "Event"[], [{:controller => "events"}] %></li>
+	<li><%= tab_to "Events"[], [{:controller => "events"}] %></li>
 	<%- if logged_in? -%>
 	<li>
 	  <%- if current_user.unread_messages.size > 0 -%>
