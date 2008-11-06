@@ -3,6 +3,8 @@ class BlogsController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
   before_filter :find_blog, :except => [:index, :new, :create]
   before_filter :can_edit, :only => [:update, :destroy]
+  skip_before_filter :verify_authenticity_token, :only => [:set_blog_tag_list]
+  in_place_edit_for :blog, :tag_list
   
   # GET /blogs
   # GET /blogs.xml
@@ -27,6 +29,12 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.xml
   def show
+    if @blog
+      @prev = Blog.find :first, :conditions => ["user_id = ? and created_at < ?", @blog.user_id, @blog.created_at], 
+                        :order => "created_at DESC"
+      @next = Blog.find :first, :conditions => ["user_id = ? and created_at > ?", @blog.user_id, @blog.created_at], 
+                        :order => "created_at ASC"
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @blog }
