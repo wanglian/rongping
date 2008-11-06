@@ -212,8 +212,9 @@ div.progressBar div.background {
 #right h2 {
 	color: #494949;
 	font-weight: normal;
-	font-size: 1.2em;
-	padding: 0.5em;
+	font-size: 1.5em;
+	padding: 0;
+	margin: 0;
 }
 /** Footer */
 #footer {
@@ -677,3 +678,9 @@ textarea.comment {
 	background:#eee;
 	padding:2px;
 }
+
+/* tag cloud */
+.css1 { font-size: 1.0em; }
+.css2 { font-size: 1.2em; }
+.css3 { font-size: 1.4em; }
+.css4 { font-size: 1.6em; }

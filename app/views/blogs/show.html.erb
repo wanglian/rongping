@@ -9,6 +9,10 @@
 <table class="index"><tr><td>
   <h3><%=h @blog.title %></h3>
 
+  <%- unless @blog.tag_list.blank? -%>
+    <p><%= "Tags"[] %>: <%= @blog.tag_list %></p>
+  <%- end -%>
+  
   <div class="box">
     <%= simple_format auto_link(sanitize @blog.body) %>
   </div>

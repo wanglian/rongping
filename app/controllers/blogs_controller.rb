@@ -8,10 +8,14 @@ class BlogsController < ApplicationController
   # GET /blogs.xml
   def index
     unless logged_in?
-      @blogs = Blog.paginate :order => "created_at DESC", :page => params[:page]
+      @blogs = params[:tag] ? Blog.paginate_tagged_with(params[:tag], :order => "blogs.created_at DESC", :page => params[:page]) :
+                              Blog.paginate(:order => "created_at DESC", :page => params[:page])
+      @tags = Blog.tag_counts
     else
       @user = User.find_by_login(params[:user]) || current_user
-      @blogs = Blog.paginate_by_user_id @user.id, :order => "created_at DESC", :page => params[:page]
+      @blogs = params[:tag] ? Blog.paginate_tagged_with(params[:tag], :conditions => ["blogs.user_id = ?", @user.id], :order => "blogs.created_at DESC", :page => params[:page]) :
+                              Blog.paginate_by_user_id(@user.id, :order => "created_at DESC", :page => params[:page])
+      @tags = Blog.tag_counts :conditions => ["blogs.user_id = ?", @user.id]
     end
 
     respond_to do |format|

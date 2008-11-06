@@ -8,7 +8,11 @@
     <%= f.text_area :body %>
   </p>
   <p>
-    <%= f.submit "Save"[] %>
+    <%= f.label "Tags"[] %><br />
+    <%= f.text_field :tag_list, :size => 60 %>
+  </p>
+  <p>
+    <%= f.submit @blog.new_record? ? "Create"[] : "Update"[] %>
     <%= button_to_function 'Cancel'[], "history.back()" %>
   </p>
 <% end %>

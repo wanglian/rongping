@@ -1,13 +1,20 @@
 <% content_for :header do -%>
 	<%- if logged_in? -%><%= "{user}'s {object}"[:whose_object, @user.name, "blog"[]] %>
 	<%- else -%><%= 'Blog'[] %><%- end -%>
+	<%- if params[:tag] -%>- <%= params[:tag] %><%- end -%>
 <% end -%>
 
 <% content_for :sidebar do -%>
   <ul>
     <% if current_user == @user %><li><%= link_to 'Add new blog'[], new_blog_path %></li><% end %>
   </ul>
-  <%= render :partial => 'shared/activity' -%>
+  
+  <h2><%= 'Tags'[] %></h2>
+  <% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+    <%= link_to tag.name, { :tag => tag.name }, :class => css_class %>
+  <% end %>
+  
+  <%#= render :partial => 'shared/activity' -%>
 <% end -%>
 
 <table class="index">
