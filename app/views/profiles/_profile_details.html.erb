@@ -4,7 +4,7 @@
 
 <table class="overview">
 	<% @profile.public_attributes.each do |column| -%>
-		<%= cell "#{column.humanize}"[], "#{@profile.send(column) || '-'}" %>
+		<%= cell "#{column.humanize}"[], "#{auto_link(@profile.send(column)) || '-'}" %>
 	<% end -%>
 	<%= cell_separator %>
 </table>
