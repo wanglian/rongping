@@ -12,8 +12,10 @@ class BlogsController < ApplicationController
     unless logged_in?
       if params[:tag] 
         @blogs = Blog.paginate_tagged_with(params[:tag], :order => "blogs.created_at DESC", :page => params[:page])
-      else
+      elsif params[:search]
         @blogs = Blog.search(params[:search], :order => "created_at DESC")
+      else
+        @blogs = Blog.paginate :order =>"created_at DESC", :page => params[:page]
       end
       @tags = Blog.tag_counts
     else

@@ -12,7 +12,11 @@ class UsersController < ApplicationController
   # layout 'application', :only => [:index, :show]
   
   def index
-    @users = User.search params[:search], :order => "created_at DESC"
+    if params[:search]
+      @users = User.search params[:search], :order => "created_at DESC"
+    else
+      @users = User.paginate :order => "created_at DESC", :page => params[:page]
+    end
     
     render :layout => 'application'
   end

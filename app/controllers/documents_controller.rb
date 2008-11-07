@@ -6,7 +6,11 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.xml
   def index
-    @documents = Document.search params[:search], :order => "created_at DESC"
+    if params[:search]
+      @documents = Document.search params[:search], :order => "created_at DESC"
+    else
+      @documents = Document.paginate :order => "created_at DESC", :page => params[:page]
+    end
 
     respond_to do |format|
       format.html # index.html.erb
