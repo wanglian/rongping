@@ -9,7 +9,7 @@ class ChatsController < ApplicationController
     if @chatroom.protected?
       unless @can_join 
         @chatroom.apply(current_user)
-        flash[:chatroom] = "Your request has been accepted. Please wait to be approved."
+        flash[:chatroom] = "Your request has been accepted. Please wait to be approved."[:request_chatroom_feedback]
       end
     end
     

@@ -65,7 +65,7 @@ module ApplicationHelper
   end
   
   def search_title(search)
-    "#{"Search results"[]}: #{search}" if search
+    "#{"Search results"[]}: \"#{search}\"" if search
   end
   
   

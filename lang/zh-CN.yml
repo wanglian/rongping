@@ -181,3 +181,4 @@ online_users: 在线用户
 public: 公开
 protected: 私密
 privacy: 访问设置
+request_chatroom_feedback: "申请已发送,请稍等.申请通过后会自动转到会议室."
