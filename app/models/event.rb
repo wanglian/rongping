@@ -20,6 +20,14 @@ class Event < ActiveRecord::Base
 
   after_create :log_activity
   
+  # sphinx
+  define_index do
+    indexes :title
+    indexes :description
+    
+    has created_at
+  end
+  
   def self.monthly_events(date)
     self.period_events(date.beginning_of_month, date.to_time.end_of_month)
   end

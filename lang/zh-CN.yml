@@ -42,6 +42,7 @@ reply: 回复
 created: 创建
 updated: 更新
 search: 搜索
+search_object: "搜索{object}"
 search_results: 搜索结果
 
 new_user: 创建用户
@@ -121,6 +122,7 @@ attended: 加入
 
 # blog
 blog: 日志
+blogs: 日志
 add_new_blog: 写日志
 edit_blog: 编辑日志
 wrote: 写于

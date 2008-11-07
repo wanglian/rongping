@@ -1,11 +1,14 @@
+<% rss_url = @user ? formatted_blogs_url(:rss, :user => @user.login) : formatted_blogs_url(:rss) %>
+
 <%- content_for :css do -%>
-  <%= auto_discovery_link_tag(:rss, formatted_blogs_url(:rss, :user => @user.login)) %>
+  <%= auto_discovery_link_tag(:rss, rss_url) %>
 <%- end -%>
 
 <%- content_for :header do -%>
-  <div style="float:right;"><%= link_to image_tag('icons/feed.gif'), formatted_blogs_url(:rss, :user => @user.login), :title => "Subscribe to {blog}"[:subscribe_blog, "[#{s(:site_name)}] #{blog_title(@user)}"] %></div>
+  <div style="float:right;"><%= link_to image_tag('icons/feed.gif'), rss_url, :title => "Subscribe to {blog}"[:subscribe_blog, "[#{s(:site_name)}] #{blog_title(@user)}"] %></div>
 	<%= blog_title @user %>
 	<%- if params[:tag] -%>- <%= params[:tag] %><%- end -%>
+	<%= search_title params[:search] %>
 <%- end -%>
 
 <%- content_for :sidebar do -%>
@@ -13,11 +16,15 @@
     <% if current_user == @user %><li><%= link_to 'Add new blog'[], new_blog_path %></li><% end %>
   </ul>
   
+  <%= render :partial => 'shared/search', :locals => {:object => "blogs"[]} -%>
+  
   <h2><%= 'Tags'[] %></h2>
+  <p>
   <%- tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| -%>
     <%= link_to tag.name, { :tag => tag.name }, :class => css_class %>
   <%- end -%>
   <%- if @tags.empty? -%><%= 'No tags'[] %><%- end -%>
+  </p>
   
   <%#= render :partial => 'shared/activity' -%>
 <%- end -%>

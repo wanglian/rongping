@@ -64,6 +64,11 @@ module ApplicationHelper
   	</tr>"
   end
   
+  def search_title(search)
+    "#{"Search results"[]}: #{search}" if search
+  end
+  
+  
   # override 以汉化
   # def distance_of_time_in_words(from_time, to_time = 0, include_seconds = false)
   #   from_time = from_time.to_time if from_time.respond_to?(:to_time)

@@ -12,6 +12,14 @@ class Topic < ActiveRecord::Base
   
   after_create :log_activity
   
+  # sphinx
+  define_index do
+    indexes :name
+    indexes comments.comment, :as => :comments
+    
+    has created_at
+  end
+  
   def self.find_recent
     find(:all, :order => "created_at DESC", :limit => NUM_RECENT)
   end

@@ -1,11 +1,13 @@
 <% content_for :header do -%>
 	<%= "Topics"[] %>
+	<%= search_title params[:search] %>
 <% end -%>
 
 <% content_for :sidebar do -%>
   <ul>
     <%- if logged_in? -%><li><%= link_to "Add new topic"[], "javascript:$('topic_name').focus();" %></li><% end %>
   </ul>
+  <%= render :partial => 'shared/search', :locals => {:object => "forum"[]} -%>
   <%= render :partial => 'shared/activity' -%>
 <% end -%>
 

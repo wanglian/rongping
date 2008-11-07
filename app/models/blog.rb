@@ -12,6 +12,13 @@ class Blog < ActiveRecord::Base
   
   after_create :log_activity
   
+  define_index do
+    indexes title
+    indexes body
+    
+    has created_at, user_id
+  end
+  
   def self.per_page
     10
   end

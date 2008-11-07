@@ -217,7 +217,7 @@ div.progressBar div.background {
 	font-weight: normal;
 	font-size: 1.5em;
 	padding: 0;
-	margin: 0;
+	margin: 1em 0 0;
 }
 /** Footer */
 #footer {

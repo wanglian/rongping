@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   # layout 'application', :only => [:index, :show]
   
   def index
-    @users = User.paginate_by_sql "select * from users where id in (select user_id from roles_users where role_id = (select id from roles where name='user')) order by created_at DESC", :page => params[:page]
+    @users = User.search params[:search], :order => "created_at DESC"
+    
     render :layout => 'application'
   end
   

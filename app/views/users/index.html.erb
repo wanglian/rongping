@@ -1,8 +1,10 @@
 <% content_for :header do -%>
 	<%= "Users"[] %>
+	<%= search_title params[:search] %>
 <% end -%>
 
 <% content_for :sidebar do -%>
+  <%= render :partial => 'shared/search', :locals => {:object => "users"[]} -%>
   <%= render :partial => 'shared/activity' -%>
 <% end -%>
 

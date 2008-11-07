@@ -11,4 +11,11 @@ class Document < ActiveRecord::Base
   validates_length_of :title, :maximum => MAX_TITLE_LENGTH
   
   after_create :log_activity
+  
+  define_index do
+    indexes title
+    indexes description
+    
+    has created_at
+  end
 end

@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(:version => 20081106140432) do
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["item_type"], :name => "index_activities_on_item_type"
   add_index "activities", ["item_id"], :name => "index_activities_on_item_id"
+  add_index "activities", ["item_type"], :name => "index_activities_on_item_type"
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -58,12 +58,12 @@ ActiveRecord::Schema.define(:version => 20081106140432) do
     t.datetime "created_at"
   end
 
-  add_index "chats", ["user_id"], :name => "index_chats_on_user_id"
   add_index "chats", ["chatroom_id"], :name => "index_chats_on_chatroom_id"
+  add_index "chats", ["user_id"], :name => "index_chats_on_user_id"
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
-    t.text     "comment",                        :default => ""
+    t.text     "comment"
     t.datetime "created_at",                                     :null => false
     t.integer  "commentable_id",                 :default => 0,  :null => false
     t.string   "commentable_type", :limit => 15, :default => "", :null => false
@@ -117,8 +117,8 @@ ActiveRecord::Schema.define(:version => 20081106140432) do
     t.datetime "updated_at"
   end
 
-  add_index "messages", ["receiver_id"], :name => "index_messages_on_receiver_id"
   add_index "messages", ["sender_id"], :name => "index_messages_on_sender_id"
+  add_index "messages", ["receiver_id"], :name => "index_messages_on_receiver_id"
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
@@ -138,8 +138,8 @@ ActiveRecord::Schema.define(:version => 20081106140432) do
     t.integer "user_id"
   end
 
-  add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
   add_index "roles_users", ["role_id"], :name => "index_roles_users_on_role_id"
+  add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
 
   create_table "settings", :force => true do |t|
     t.string   "label"
@@ -158,8 +158,8 @@ ActiveRecord::Schema.define(:version => 20081106140432) do
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
 
   create_table "tags", :force => true do |t|
     t.string "name"

@@ -5,6 +5,8 @@ tmp/*
 database.yml
 *.sqlite
 *.sqlite3
+db/sphinx/*
+*sphinx.conf
 doc/api
 .DS_Store
 .svn

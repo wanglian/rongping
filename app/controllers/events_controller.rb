@@ -7,10 +7,15 @@ class EventsController < ApplicationController
   
   def index
     @month_events = Event.monthly_events(@date)
-    unless filter_by_day?
-      @events = @month_events
+    
+    if params[:search]
+      @events = Event.search params[:search], :order => 'created_at DESC'
     else
-      @events = Event.daily_events(@date)
+      unless filter_by_day?
+        @events = @month_events
+      else
+        @events = Event.daily_events(@date)
+      end
     end
     
     respond_to do |format|

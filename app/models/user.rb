@@ -24,9 +24,21 @@ class User < ActiveRecord::Base
     has_role?('admin')
   end
   
+  def profile_name
+    profile.real_name if profile
+  end
   
   def name
-    login
+    profile_name || login
+  end
+  
+  # sphinx
+  define_index do
+    indexes login
+    indexes email
+    indexes profile.real_name, :as => :real_name
+    
+    has created_at
   end
   
   # Virtual attribute for the unencrypted password

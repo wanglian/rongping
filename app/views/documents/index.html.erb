@@ -1,11 +1,13 @@
 <%- content_for :header do -%>
 	<%= 'Documents'[] %>
+	<%= search_title params[:search] %>
 <%- end -%>
 
 <%- content_for :sidebar do -%>
   <ul>
     <%- if logged_in? -%><li><%= link_to 'Add new document'[], new_document_path %></li><% end -%>
   </ul>
+  <%= render :partial => 'shared/search', :locals => {:object => "documents"[]} -%>
   <%= render :partial => 'shared/activity' -%>
 <%- end -%>
 

@@ -10,13 +10,21 @@ class BlogsController < ApplicationController
   # GET /blogs.xml
   def index
     unless logged_in?
-      @blogs = params[:tag] ? Blog.paginate_tagged_with(params[:tag], :order => "blogs.created_at DESC", :page => params[:page]) :
-                              Blog.paginate(:order => "created_at DESC", :page => params[:page])
+      if params[:tag] 
+        @blogs = Blog.paginate_tagged_with(params[:tag], :order => "blogs.created_at DESC", :page => params[:page])
+      else
+        @blogs = Blog.search(params[:search], :order => "created_at DESC")
+      end
       @tags = Blog.tag_counts
     else
       @user = User.find_by_login(params[:user]) || current_user
-      @blogs = params[:tag] ? Blog.paginate_tagged_with(params[:tag], :conditions => ["blogs.user_id = ?", @user.id], :order => "blogs.created_at DESC", :page => params[:page]) :
-                              Blog.paginate_by_user_id(@user.id, :order => "created_at DESC", :page => params[:page])
+      if params[:tag]
+        @blogs = Blog.paginate_tagged_with(params[:tag], :conditions => ["blogs.user_id = ?", @user.id], :order => "blogs.created_at DESC", :page => params[:page])
+      elsif params[:search]
+        @blogs = Blog.search params[:search], :conditions => {:user_id => @user.id}, :order => "created_at DESC"
+      else
+        @blogs = Blog.paginate_by_user_id(@user.id, :order => "created_at DESC", :page => params[:page])
+      end
       @tags = Blog.tag_counts :conditions => ["blogs.user_id = ?", @user.id]
     end
 
