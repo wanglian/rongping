@@ -1,6 +1,6 @@
 <h2><%= 'Search {object}'[:search_object, object] %></h2>
 <p>
-<%- form_tag nil, :method => :get do -%>
+<%- form_tag request.request_uri, :method => :get do -%>
   <%= text_field_tag :search, h(params[:search]), :maxlength => 50 %>
   <%= submit_tag "Search"[] %>
 <%- end -%>
