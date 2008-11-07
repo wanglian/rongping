@@ -4,7 +4,7 @@ module BlogsHelper
     if user.nil?
       'Blog'[]
     else
-      "{user}'s {object}"[:whose_object, @user.name, "blog"[]]
+      "{user}'s {object}"[:whose_object, user.name, "blog"[]]
     end
   end
   

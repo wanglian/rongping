@@ -1,5 +1,5 @@
 <% content_for :header do -%>
-	<%= @blog.user.name %>的日志
+	<%= link_to blog_title(@blog.user), blogs_path(:user => @blog.user.login) %>
 <% end -%>
 
 <% content_for :sidebar do -%>
