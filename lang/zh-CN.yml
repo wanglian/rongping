@@ -129,7 +129,9 @@ commented: 评论
 a_blog: 一篇日志
 tag: 标签
 tags: 标签
-
+no_tags: 没有
+saving: "保存..."
+subscribe_blog: "订阅{blog}"
 
 # messges
 message: 消息

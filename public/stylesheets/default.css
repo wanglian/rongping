@@ -14,6 +14,9 @@ a:hover {
 	background-color: #0054ff;
 	color: #fff;
 }
+a img {
+	border: none;
+}
 input {
 	font-size: 1.0em;
 }

@@ -12,7 +12,7 @@
   <%- if @blog.user == current_user -%>
     <p>
       <%= "Tags"[] %>: <a href="return false;" id="edit_tag_list"><%= 'Edit'[] %></a>
-      <%= in_place_editor_field :blog, 'tag_list', {}, :save_text => 'OK'[], :cancel_text => "Cancel"[], :saving_text => "Save"[], :external_control => 'edit_tag_list' %>
+      <%= in_place_editor_field :blog, 'tag_list', {}, :save_text => 'OK'[], :cancel_text => "Cancel"[], :saving_text => "Saving"[], :external_control => 'edit_tag_list' %>
       
     </p>
   <%- elsif !@blog.tag_list.blank? -%>

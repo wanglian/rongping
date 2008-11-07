@@ -1,21 +1,26 @@
-<% content_for :header do -%>
-	<%- if logged_in? -%><%= "{user}'s {object}"[:whose_object, @user.name, "blog"[]] %>
-	<%- else -%><%= 'Blog'[] %><%- end -%>
-	<%- if params[:tag] -%>- <%= params[:tag] %><%- end -%>
-<% end -%>
+<%- content_for :css do -%>
+  <%= auto_discovery_link_tag(:rss, formatted_blogs_url(:rss, :user => @user.login)) %>
+<%- end -%>
 
-<% content_for :sidebar do -%>
+<%- content_for :header do -%>
+  <div style="float:right;"><%= link_to image_tag('icons/feed.gif'), formatted_blogs_url(:rss, :user => @user.login), :title => "Subscribe to {blog}"[:subscribe_blog, "[#{s(:site_name)}] #{blog_title(@user)}"] %></div>
+	<%= blog_title @user %>
+	<%- if params[:tag] -%>- <%= params[:tag] %><%- end -%>
+<%- end -%>
+
+<%- content_for :sidebar do -%>
   <ul>
     <% if current_user == @user %><li><%= link_to 'Add new blog'[], new_blog_path %></li><% end %>
   </ul>
   
   <h2><%= 'Tags'[] %></h2>
-  <% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+  <%- tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| -%>
     <%= link_to tag.name, { :tag => tag.name }, :class => css_class %>
-  <% end %>
+  <%- end -%>
+  <%- if @tags.empty? -%><%= 'No tags'[] %><%- end -%>
   
   <%#= render :partial => 'shared/activity' -%>
-<% end -%>
+<%- end -%>
 
 <table class="index">
   <%= render :partial => 'blog', :collection => @blogs %>
