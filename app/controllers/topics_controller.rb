@@ -2,14 +2,15 @@ class TopicsController < ApplicationController
   before_filter :login_required, :only => [:index, :show] unless guest_browse_enabled?
   before_filter :login_required, :except => [:index, :show]
   before_filter :can_edit, :only => [:destroy]
+  before_filter :find_forum
   
   # GET /topics
   # GET /topics.xml
   def index
     if params[:search]
-      @topics = Topic.search params[:search], :order => "created_at DESC"
+      @topics = @forum.topics.search params[:search], :order => "created_at DESC"
     else
-      @topics = Topic.paginate :order => "created_at DESC", :page => params[:page]
+      @topics = @forum.topics.paginate :order => "created_at DESC", :page => params[:page]
     end
 
     respond_to do |format|
@@ -21,7 +22,7 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.xml
   def show
-    @topic = Topic.find(params[:id])
+    @topic = @forum.topics.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -47,9 +48,9 @@ class TopicsController < ApplicationController
     @topic.user = current_user
 
     respond_to do |format|
-      if @topic.save
+      if @forum.topics << @topic
         flash[:notice] = '{object} was successfully {action}.'[:object_action_notice, "Topic"[], "created"[]]
-        format.html { redirect_to(@topic) }
+        format.html { redirect_to(forum_topic_path(@forum, @topic)) }
         format.xml  { render :xml => @topic, :status => :created, :location => @topic }
       else
         format.html { render :action => "new" }
@@ -61,21 +62,21 @@ class TopicsController < ApplicationController
   # DELETE /topics/1
   # DELETE /topics/1.xml
   def destroy
-    @topic = Topic.find(params[:id])
+    @topic = @forum.topics.find(params[:id])
     @topic.destroy
 
     respond_to do |format|
-      format.html { redirect_to(topics_url) }
+      format.html { redirect_to(forum_topics_url(@forum)) }
       format.xml  { head :ok }
     end
   end
   
   def add_comment
-    @topic = Topic.find(params[:id])
+    @topic = @forum.topics.find(params[:id])
     @comment = Comment.new :comment => params[:comment], :user_id => current_user.id
     @topic.comments << @comment
     respond_to do |format|
-      format.html { redirect_to topic_url(@topic) }
+      format.html { redirect_to(forum_topic_path(@forum, @topic)) }
       format.js do
         render :update do |page|
           page.insert_html :bottom, :comments, :partial => 'comment', :object => @comment
@@ -86,12 +87,18 @@ class TopicsController < ApplicationController
   end
   
   def delete_comment
-    @topic = Topic.find(params[:id])
+    @topic = @forum.topics.find(params[:id])
     comment = @topic.comments.find params[:cid]
     comment.destroy if comment
     respond_to do |format|
-      format.html { redirect_to topic_url(@topic) }
+      format.html { redirect_to(forum_topic_path(@forum, @topic)) }
       format.js   { render :nothing => true }
     end
   end
+  
+  private
+  def find_forum
+    @forum = Forum.find params[:forum_id]
+  end
+  
 end

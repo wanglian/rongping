@@ -2,13 +2,13 @@
   <td width="80" class="top"><%= avatar_for topic.user %></td>
   <td class="top">
     <div style="padding:5px 0;">
-      <span style="font-size:1.2em;font-weight:bold;"><%= link_to h(topic.name), topic %></span>
+      <span style="font-size:1.2em;font-weight:bold;"><%= link_to h(topic.name), forum_topic_path(@forum, topic) %></span>
       (<%= "{size} {objects}"[:number_of_objects, topic.comments.size, "replies"[]] %>)
     </div>
     <div>
       <%= user_link topic.user %> <%= "Created"[] %>
       <%= time_ago_in_words topic.created_at %> ago
-      <%= link_to_remote 'Delete'[], :url => topic_path(topic), :method => :delete, :confirm => "You are deleting '{object}'?\nAre you sure?"[:confirm_alert, topic.name], :success => "Element.remove('topic_#{topic.id}')" if topic.user == current_user %>
+      <%= link_to_remote 'Delete'[], :url => forum_topic_path(@forum, topic), :method => :delete, :confirm => "You are deleting '{object}'?\nAre you sure?"[:confirm_alert, topic.name], :success => "Element.remove('topic_#{topic.id}')" if topic.user == current_user %>
     </div>
   </td>
 </tr>

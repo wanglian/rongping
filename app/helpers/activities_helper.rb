@@ -109,7 +109,7 @@ module ActivitiesHelper
       topic = text
       text = topic.name
     end
-    link_to(text, topic_path(topic))
+    link_to(text, forum_topic_path(topic.forum, topic))
   end
 
   def event_link(text, event = nil)

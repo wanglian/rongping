@@ -1,5 +1,5 @@
 <% content_for :header do -%>
-	<%= @topic.name %>
+	<%= link_to h(@forum.title), forum_topics_path(@forum) %> - <%= @topic.name %>
 <% end -%>
 
 <% content_for :sidebar do -%>
@@ -15,7 +15,7 @@
 
 <div style="margin-left:80px;">
 <%- if logged_in? -%>
-    <%- form_remote_tag :url => add_comment_topic_path(@topic), :html => {:id => 'comment_form'} do -%>
+    <%- form_remote_tag :url => add_comment_forum_topic_path(@forum, @topic), :html => {:id => 'comment_form'} do -%>
     	<%= text_area_tag :comment, nil %><br/>
     	<%= submit_tag 'Reply'[] %>
     <%- end -%>

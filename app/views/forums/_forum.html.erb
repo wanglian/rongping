@@ -1,0 +1,12 @@
+<tr id="forum_<%= forum.id %>">
+  <td width="20" class="top"><%= image_tag "icons/folder.gif" %></td>
+  <td class="top">
+    <div>
+      <span style="font-size:1.2em;font-weight:bold;"><%= link_to h(forum.title), forum_topics_path(forum) %></span>
+      (<%= "{size} {objects}"[:number_of_objects, forum.topics.size, "topics"[]] %>)
+    </div>
+    <div>
+      <%=h forum.description  %>
+    </div>
+  </td>
+</tr>

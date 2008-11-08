@@ -1,0 +1,13 @@
+<% content_for :header do -%>
+	<%= "Forums"[] %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%#= render :partial => 'shared/search', :locals => {:object => "forum"[]} -%>
+  <%= render :partial => 'shared/activity' -%>
+<% end -%>
+
+<table class="index">
+  <%= render :partial => 'forum', :collection => @forums %>
+  <% if @forums.empty? %><tr><td><%= "No record"[] %></td></tr><% end %>
+</table>

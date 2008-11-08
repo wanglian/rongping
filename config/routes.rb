@@ -1,6 +1,8 @@
 # See how all your routes lay out with "rake routes"
 ActionController::Routing::Routes.draw do |map|
-  map.resources :searches
+  map.resources :forums do |forum|
+    forum.resources :topics, :member => {:add_comment => :post, :delete_comment => :delete}
+  end
   
   map.resources :chatrooms, :member => {:accept => :put, :leave => :delete} do |chatroom|
     chatroom.resources :chats, :collection => {:refresh => :get, :refresh_status => :get}
@@ -18,8 +20,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :blogs, :member => {:add_comment => :post, :delete_comment => :delete}
   
   map.resources :events, :member => { :attend => :post, :unattend => :delete, :add_comment => :post, :delete_comment => :delete }
-  
-  map.resources :topics, :member => {:add_comment => :post, :delete_comment => :delete}
 
   map.resources :orders do |order|
     order.resources :order_progresses
@@ -68,7 +68,7 @@ ActionController::Routing::Routes.draw do |map|
                                              :active    => :get, 
                                              :suspended => :get, 
                                              :deleted   => :get }
-    admin.resources :organizes, :member => {:new_user => :get, :create_user => :post, :show_user => :get}
+    admin.resources :forums
   end
   
   # Dashboard as the default location

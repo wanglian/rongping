@@ -1,0 +1,32 @@
+<% content_for :header do -%>
+	<%= 'Forums'[] %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+	
+<% end -%>
+
+<table class="index">
+  <tr>
+	<th>ID</th>
+	<th><%= 'Title'[] %></th>
+	<th><%= 'Description'[] %></th>
+	<th></th>
+  </tr>
+
+<% # TODO: (base_app) Add some sort of search feature to easily find users %>
+<% for forum in @forums %>
+  <tr>
+	<td><%= forum.id %></td>
+	<td><%= link_to h(forum.title), admin_forum_url(forum) %></td>
+	<td><%=h forum.description %></td>
+	<td class="actions">
+	  <%= link_to 'Show'[], admin_forum_url(forum) %>
+  </td>
+  </tr>
+<% end %>
+</table>
+
+<p>
+	<%= link_to 'New forum'[], new_admin_forum_path %>
+</p>

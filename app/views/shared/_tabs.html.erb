@@ -4,7 +4,7 @@
 	<li><%= tab_to "Blog"[], [{:controller => "blogs"}] %></li>
 	<li><%= tab_to "Documents"[], [{:controller => "documents"}] %></li>
 	<li><%= tab_to "Chatrooms"[], [{:controller => "chatrooms"}] %></li>
-	<li><%= tab_to "Forum"[], [{:controller => "topics"}] %></li>
+	<li><%= tab_to "Forum"[], [{:controller => "topics", :forum_id => 1}] %></li>
 	<li><%= tab_to "Events"[], [{:controller => "events"}] %></li>
 	<%- if logged_in? -%>
 	<li>

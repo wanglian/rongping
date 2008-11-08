@@ -1,0 +1,18 @@
+<% content_for :header do -%>
+ 	<%= 'Forum'[] %> - <em><%=h @forum.title %></em>
+<% end -%>
+
+<% content_for :sidebar do -%>
+
+<% end -%>
+
+<table class="overview">
+	<%= cell "Title"[], h(@forum.title) %>
+	<%= cell "Forum ID", h(@forum.id) %>	
+	<%= cell "Description"[], h(@forum.description) %>
+	
+	<%= cell_separator %>
+</table>
+
+<%= link_to 'Edit'[], edit_admin_forum_path(@forum) %> |
+<%= link_to 'Back'[], admin_forums_path %>
