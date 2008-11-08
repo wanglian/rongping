@@ -30,6 +30,8 @@ module ActivitiesHelper
       "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "created"[], "a chatroom"[], chatroom_link(activity.item)]
     when "Group"
       "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "created"[], "a group"[], group_link(activity.item)]
+    when "GroupUser"
+      "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "joined"[], "group"[], group_link(activity.item.group)]
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
     end
@@ -64,6 +66,8 @@ module ActivitiesHelper
       "{user} {action} {object}"[:action_mini_feed, user_link(user), "created"[], chatroom_link("a chatroom"[], activity.item)]
     when "Group"
       "{user} {action} {object}"[:action_mini_feed, user_link(user), "created"[], group_link("a group"[], activity.item)]
+    when "GroupUser"
+      "{user} {action} {object}"[:action_mini_feed, user_link(user), "joined"[], group_link("a group"[], activity.item.group)]
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
     end
@@ -95,6 +99,8 @@ module ActivitiesHelper
             when "Chatroom"
               "check.gif"
             when "Group"
+              "check.gif"
+            when "GroupUser"
               "check.gif"
             else
               raise "Invalid activity type #{activity_type(activity).inspect}"

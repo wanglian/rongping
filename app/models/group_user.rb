@@ -1,4 +1,6 @@
 class GroupUser < ActiveRecord::Base
+  include ActivityLogger
+  
   belongs_to :group
   belongs_to :user
   named_scope :recent, lambda {|limit| {:conditions => {:state => 'active'}, :order => 'updated_at DESC', :limit => limit}}
@@ -7,7 +9,7 @@ class GroupUser < ActiveRecord::Base
   acts_as_state_machine :initial => :passive
   state :passive
   state :requesting
-  state :active
+  state :active, :enter => :log_activity
   
   event :apply do
     transitions :from => :passive, :to => :requesting 

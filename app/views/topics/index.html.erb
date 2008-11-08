@@ -4,6 +4,7 @@
   </div>
 	<%= forum_title(@forum) %>
 	<%= search_title params[:search] %>
+	<div style="font-size:0.8em;color:#666;"><%=h @forum.description %></div>
 <% end -%>
 
 <% content_for :sidebar do -%>
