@@ -10,7 +10,10 @@ class Comment < ActiveRecord::Base
   # NOTE: Comments belong to a user
   belongs_to :user
   
-  after_create :log_activity
+  def after_create
+    return if self.commentable_type == 'Topic' && self.commentable.forum.owner
+    log_activity
+  end
   
   # Helper class method to lookup all comments assigned
   # to all commentable types for a given user.

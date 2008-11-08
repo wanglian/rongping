@@ -97,6 +97,8 @@ records: 记录
 replies: 回复
 a_topic: 一个话题
 replied_to: 回复
+whose_forum: "{owner}论坛"
+back_to_object: "回到 {object}"
 
 # activity
 activity: 动态
@@ -183,3 +185,26 @@ public: 公开
 protected: 私密
 privacy: 访问设置
 request_chatroom_feedback: "申请已发送,请稍等.申请通过后会自动转到会议室."
+
+# group
+group: 小组
+groups: 小组
+a_group: 一个小组
+group_logo: 小组图标
+requesting_users: 请求加入
+new_members: 最近加入
+members: 成员
+add_new_group: 创建小组
+edit_group: 编辑小组
+name: 名称
+i_am_a_member_of_this_group.: 我是这个小组的成员.
+i_am_the_owner_of_this_group.: 我是这个小组的创建者.
+i_have_applied_to_join_this_group.: 我已申请加入这个小组.
+leave: 退出小组
+accept: 接受
+ignore: 忽略
+recent_topics: 最近讨论话题
+group_accept_message: 你已接受{user}加入这个小组
+group_leave_message: 你已离开这个小组
+group_join_message: 你已加入这个小组
+group_apply_message: 你已申请加入这个小组

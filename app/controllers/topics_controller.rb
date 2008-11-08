@@ -1,8 +1,9 @@
 class TopicsController < ApplicationController
   before_filter :login_required, :only => [:index, :show] unless guest_browse_enabled?
   before_filter :login_required, :except => [:index, :show]
-  before_filter :can_edit, :only => [:destroy]
   before_filter :find_forum
+  before_filter :can_edit, :only => [:destroy]
+  before_filter :can_view, :only => [:index, :show]
   
   # GET /topics
   # GET /topics.xml
@@ -101,4 +102,9 @@ class TopicsController < ApplicationController
     @forum = Forum.find params[:forum_id]
   end
   
+  def can_view
+    if @forum.owner
+      redirect_to forums_url unless @forum.owner.has_member?(current_user)
+    end
+  end
 end

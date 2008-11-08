@@ -11,7 +11,9 @@ class Topic < ActiveRecord::Base
   belongs_to :user
   belongs_to :forum
   
-  after_create :log_activity
+  def after_create
+    log_activity if self.forum.owner.nil?
+  end
   
   # sphinx
   define_index do

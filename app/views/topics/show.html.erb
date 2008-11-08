@@ -1,5 +1,8 @@
 <% content_for :header do -%>
-	<%= link_to h(@forum.title), forum_topics_path(@forum) %> - <%= @topic.name %>
+	<div style="float:right;">
+    <%= link_to_owner @forum %>
+  </div>
+  <%= link_to forum_title(@forum), forum_topics_path(@forum) %> - <%= @topic.name %>
 <% end -%>
 
 <% content_for :sidebar do -%>

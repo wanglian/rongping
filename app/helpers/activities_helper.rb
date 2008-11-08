@@ -28,6 +28,8 @@ module ActivitiesHelper
       "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "uploaded"[], "a document"[], document_link(activity.item)]
     when "Chatroom"
       "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "created"[], "a chatroom"[], chatroom_link(activity.item)]
+    when "Group"
+      "{user} {action} {object}: {object_link}"[:action_feed, user_link(user), "created"[], "a group"[], group_link(activity.item)]
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
     end
@@ -60,6 +62,8 @@ module ActivitiesHelper
       "{user} {action} {object}"[:action_mini_feed, user_link(user), "uploaded"[], document_link("a document"[], activity.item)]
     when "Chatroom"
       "{user} {action} {object}"[:action_mini_feed, user_link(user), "created"[], chatroom_link("a chatroom"[], activity.item)]
+    when "Group"
+      "{user} {action} {object}"[:action_mini_feed, user_link(user), "created"[], group_link("a group"[], activity.item)]
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
     end
@@ -89,6 +93,8 @@ module ActivitiesHelper
             when "Document"
               "document.gif"
             when "Chatroom"
+              "check.gif"
+            when "Group"
               "check.gif"
             else
               raise "Invalid activity type #{activity_type(activity).inspect}"
@@ -134,6 +140,14 @@ module ActivitiesHelper
       text = chatroom.title
     end
     link_to text, chatroom_chats_path(chatroom)
+  end
+  
+  def group_link(text, group = nil)
+    if group.nil?
+      group = text
+      text = group.name
+    end
+    link_to text, group_path(group)
   end
   
   private

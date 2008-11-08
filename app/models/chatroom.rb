@@ -9,10 +9,14 @@ class Chatroom < ActiveRecord::Base
   # has_many :online_users, :through => :chat_users, :source => :user, 
   #                           :conditions => ["chat_users.updated_at > ?", Time.zone.now-10.seconds], :order => "chat_users.updated_at asc"
   
+  belongs_to :owner, :polymorphic => true
+  
   validates_presence_of :title, :user
   validates_length_of   :title, :maximum => MAX_NAME
   
-  after_create :log_activity
+  def after_create
+    log_activity if self.owner.nil?
+  end
   
   def online_users # ugly
     self.chat_users.online.collect {|cu| cu.user}

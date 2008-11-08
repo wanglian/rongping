@@ -1,6 +1,7 @@
 log/*
 public/avatars/*
 public/attachments/*
+public/logos/*
 tmp/*
 database.yml
 *.sqlite

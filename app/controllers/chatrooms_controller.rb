@@ -7,7 +7,7 @@ class ChatroomsController < ApplicationController
   # GET /chatrooms
   # GET /chatrooms.xml
   def index
-    @chatrooms = Chatroom.paginate :order => 'created_at DESC', :page => params[:page]
+    @chatrooms = Chatroom.paginate :conditions => {:owner_type => nil, :owner_id => nil}, :order => 'created_at DESC', :page => params[:page]
 
     respond_to do |format|
       format.html # index.html.erb

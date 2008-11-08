@@ -1,5 +1,8 @@
 <% content_for :header do -%>
-	<%= @forum.title %>
+  <div style="float:right;">
+    <%= link_to_owner @forum %>
+  </div>
+	<%= forum_title(@forum) %>
 	<%= search_title params[:search] %>
 <% end -%>
 

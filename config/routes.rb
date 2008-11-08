@@ -1,5 +1,7 @@
 # See how all your routes lay out with "rake routes"
 ActionController::Routing::Routes.draw do |map|
+  map.resources :groups, :member => {:join => :put, :leave => :put, :accept => :put, :reject => :put}
+
   map.resources :forums do |forum|
     forum.resources :topics, :member => {:add_comment => :post, :delete_comment => :delete}
   end

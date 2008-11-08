@@ -1,0 +1,19 @@
+<tr id="group_<%= group.id %>">
+  <td width="80" class="top"><%= image_tag group.logo.url %></td>
+  <td class="top">
+    <div style="padding:5px 0;">
+      <span style="font-size:1.2em;font-weight:bold;">
+        <%= link_to h(group.name), group %>
+      </span>
+       (<%= "{size} {object}"[:number_of_objects, group.members.size, "members"[]]%>) - <%= group.privacy[] %>
+    </div>
+    <div>
+      <%= user_link group.user %> <%= 'Created'[] %>
+      <%= time_ago_in_words group.created_at %> ago
+      <%- if logged_in? && (current_user.admin? || group.user == current_user) -%>
+        <%= link_to 'Edit'[], edit_group_path(group) %> |
+        <%= link_to_remote 'Delete'[], :url => group_path(group), :method => :delete, :confirm => "You are deleting '{object}'? Are you sure?"[:confirm_alert, group.name], :success => "Element.remove('group_#{group.id}')" %>
+      <%- end -%>
+    </div>
+  </td>
+</tr>
