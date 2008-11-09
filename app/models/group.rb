@@ -21,6 +21,14 @@ class Group < ActiveRecord::Base
                     :default_url => "/images/default_:style_avatar.png",
                     :default_style => :small
 
+  # sphinx
+  define_index do
+    indexes name
+    indexes description
+    
+    has created_at, user_id
+  end
+  
   def public?
     self.privacy == 'Public'
   end

@@ -1,8 +1,10 @@
 <%- content_for :header do -%>
 	<%= 'Groups'[] %>
+	<%= search_title params[:search] %>
 <%- end -%>
 
 <%- content_for :sidebar do -%>
+  <%= render :partial => 'shared/search', :locals => {:object => "groups"[]} -%>
   <%= render :partial => 'shared/activity' -%>
 <%- end -%>
 

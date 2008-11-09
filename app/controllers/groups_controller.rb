@@ -8,8 +8,12 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.xml
   def index
-    @groups = Group.paginate :order => 'created_at DESC', :page => params[:page]
-
+    if params[:search]
+      @groups = Group.search params[:search], :order => 'created_at DESC'
+    else
+      @groups = Group.paginate :order => 'created_at DESC', :page => params[:page]
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @groups }

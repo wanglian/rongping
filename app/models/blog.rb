@@ -12,6 +12,7 @@ class Blog < ActiveRecord::Base
   
   after_create :log_activity
   
+  # sphinx
   define_index do
     indexes title
     indexes body
