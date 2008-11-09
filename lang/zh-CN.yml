@@ -153,6 +153,7 @@ send: 发送
 sent: 发送
 to: 发给
 from: 来自
+re: 回复
 
 # document
 document: 文件

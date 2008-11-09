@@ -107,8 +107,8 @@ class MessagesController < ApplicationController
     respond_to do |format|
       if can_view(replied_message)
         @message.recipient = replied_message.sender_name
-        @message.subject = "Re: " + replied_message.subject 
-        @message.body = "\n\n___________________________\n" + replied_message.sender_name + " wrote:\n\n" + replied_message.body
+        @message.subject = "#{"Re"[]}: " + replied_message.subject 
+        @message.body = "\n\n________________________________\n" + replied_message.sender_name + " #{"wrote"[]} #{replied_message.created_at.to_s :db}\n\n" + replied_message.body
         format.html { render :action => "new" }
       else
         headers["Status"] = "Forbidden"

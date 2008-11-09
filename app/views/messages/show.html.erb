@@ -14,11 +14,11 @@
 <table><tr>
   <td width="40px"><%= avatar_for rezm_sender_or_receiver(@message), :thumb %></td>
   <td>
-    <p>
+    <div>
       <label for="message_sender_name" ><strong><%= rezm_to_or_from_label %>:</strong></label>
       <%= rezm_sender_or_receiver_link(@message) %>
       <%= rezm_sent_at(@message) %>
-    </p>
+    </div>
 
     <p>
       <label for="message_subject" ><strong><%= 'Subject'[] %>:</strong></label>  
