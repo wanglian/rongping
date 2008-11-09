@@ -97,7 +97,6 @@ records: 记录
 replies: 回复
 a_topic: 一个话题
 replied_to: 回复
-whose_forum: "{owner}论坛"
 back_to_object: "回到 {object}"
 
 # activity
@@ -197,6 +196,8 @@ members: 成员
 add_new_group: 创建小组
 edit_group: 编辑小组
 name: 名称
+whose_forum: "{owner}论坛"
+whose_chatroom: "{owner}会议室"
 i_am_a_member_of_this_group.: 我是这个小组的成员.
 i_am_the_owner_of_this_group.: 我是这个小组的创建者.
 i_have_applied_to_join_this_group.: 我已申请加入这个小组.

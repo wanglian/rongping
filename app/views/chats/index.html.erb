@@ -1,9 +1,13 @@
 <% content_for :header do -%>
-	<%= @chatroom.title %>
+	<%= chatroom_title(@chatroom) %><br/>
+	<span><%=h @chatroom.description %></span>
 <% end -%>
 
 <% content_for :sidebar do -%>
-  <%= render :partial => 'shared/activity' -%>
+  <ul>
+    <%- if @chatroom.owner -%><li><%= link_to_owner @chatroom.owner %></li><%- end -%>
+  </ul>
+  <%#= render :partial => 'shared/activity' -%>
 <% end -%>
 
 <%- if logged_in? && @can_join -%>

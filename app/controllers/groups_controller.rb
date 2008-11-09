@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.xml
   def show
-    @forum = Forum.find_by_owner @group
+    @forum = @group.forum
     if @forum
       @topics = @forum.topics.paginate :order => "created_at DESC", :page => params[:page]
     else

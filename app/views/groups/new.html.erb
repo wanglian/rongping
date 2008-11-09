@@ -14,6 +14,10 @@
     <%= f.text_area :description %>
   </p>
   <p>
+    <%= f.label "Tags"[] %>(<%= 'Separate tags by commas'[] %>)<br />
+    <%= f.text_field :tag_list, :size => 60 %>
+  </p>
+  <p>
     <%= f.label "Privacy"[] %><br />
     <%= f.radio_button :privacy, 'Public' %>Public<br/>
     <%= f.radio_button :privacy, 'Protected' %>Protected

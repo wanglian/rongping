@@ -1,12 +1,10 @@
 <% content_for :header do -%>
-	<div style="float:right;">
-    <%= link_to_owner @forum %>
-  </div>
   <%= link_to forum_title(@forum), forum_topics_path(@forum) %> - <%= @topic.name %>
 <% end -%>
 
 <% content_for :sidebar do -%>
   <ul>
+    <%- if @forum.owner -%><li><%= link_to_owner @forum.owner %></li><%- end -%>
     <%- if logged_in? -%><li><%= link_to "Reply"[], "javascript:$('comment').focus();" %></li><%- end -%>
   </ul>
   <%= render :partial => 'shared/activity' -%>

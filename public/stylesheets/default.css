@@ -116,6 +116,10 @@ ul {
 	margin: 0;
 	font-size: 1.3em;
 }
+#left .head span {
+	font-size:0.8em;
+	color:#666;
+}
 #left #screen {
 	padding: 0 1.5em 1.5em;
 }

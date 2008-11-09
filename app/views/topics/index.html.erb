@@ -1,14 +1,12 @@
 <% content_for :header do -%>
-  <div style="float:right;">
-    <%= link_to_owner @forum %>
-  </div>
 	<%= forum_title(@forum) %>
-	<%= search_title params[:search] %>
-	<div style="font-size:0.8em;color:#666;"><%=h @forum.description %></div>
+	<%= search_title params[:search] %><br/>
+	<span><%=h @forum.description %></span>
 <% end -%>
 
 <% content_for :sidebar do -%>
   <ul>
+    <%- if @forum.owner -%><li><%= link_to_owner @forum.owner %></li><%- end -%>
     <%- if logged_in? -%><li><%= link_to "Add new topic"[], "javascript:$('topic_name').focus();" %></li><% end %>
   </ul>
   

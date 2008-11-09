@@ -3,7 +3,14 @@
 <% end -%>
 
 <%- content_for :sidebar do -%>
-  <%- if @group.user == current_user && !@group.requesting_members.empty? -%>
+  <%- if show_chatroom?(@group, current_user) -%>
+  <h2>
+    <%= link_to "会议室", chatroom_chats_path(@group.chatroom) %> 
+    (<%= "{size} {object}"[:number_of_objects, @group.chatroom.online_users.size, "online users"[]] %>)
+  </h2>
+  <%- end-%>
+  
+  <%- if show_requesting_uses?(@group, current_user) -%>
   <h2><%= 'Requesting users'[] %></h2>
   <table class="index">
     <%- for member in @group.requesting_members -%>
@@ -19,10 +26,12 @@
   </table>
   <%- end -%>
   
+  <%- if show_members?(@group, current_user) -%>
   <h2><%= 'New members'[] %></h2>
   <table class="index">
     <%= render :partial => 'member', :collection => @group.group_users.recent(5).collect {|gu| gu.user} -%>
   </table>
+  <%- end -%>
 <%- end -%>
 
 <table class="index"></tr>
@@ -30,34 +39,37 @@
   <%= image_tag @group.logo.url, :align => "top" %>
 </td>
 <td>
-  <p><%=h @group.description %></p>
+  <div class="box"><%=h @group.description %></div>
   <div>
-  <%= "Created"[] %> <%= time_ago_in_words @group.created_at %> ago |
-  <%- if @group.user == current_user -%>
-    <%= "I am the owner of this group."[] %> |
-    <%= link_to 'Edit'[], edit_group_path(@group) %>
-  <%- elsif @group.has_member?(current_user) -%>
-    <%= "I am a member of this group."[] %>
-    <%= link_to "Leave"[], leave_group_path(@group), :method => :put %>
-  <%- elsif @group.has_requesting?(current_user) -%>
-    <%= "I have applied to join this group."[] %>
-  <%- else -%>
-    <%= link_to "Join"[], join_group_path(@group), :method => :put %>
-  <%- end -%>
+    <%= user_link @group.user %>
+    <%= "Created"[] %> <%= time_ago_in_words @group.created_at %> ago |
+    <%- if @group.user == current_user -%>
+      <%= "I am the owner of this group."[] %> |
+      <%= link_to 'Edit'[], edit_group_path(@group) %>
+    <%- elsif @group.has_member?(current_user) -%>
+      <%= "I am a member of this group."[] %>
+      <%= link_to "Leave"[], leave_group_path(@group), :method => :put %>
+    <%- elsif @group.has_requesting?(current_user) -%>
+      <%= "I have applied to join this group."[] %>
+    <%- else -%>
+      <%= link_to "Join"[], join_group_path(@group), :method => :put %>
+    <%- end -%>
   </div>
 </td>
 </tr></table>
 
+<%- if show_topics?(@group, current_user) -%>
 <h2><%= 'Recent topics'[] %></h2>
 <table class="index">
   <%= render :partial => 'topics/topic', :collection => @topics %>
   <% if @topics.empty? %><tr><td><%= "No record"[] %></td></tr><% end %>
 </table>
+<%- end -%>
 
-<%- if logged_in? && @forum -%>
+<%- if show_add_topic?(@group, current_user) && @forum -%>
   <h2><%= "Add new topic"[] %></h2>
-  <% form_for(:topic, :url => forum_topics_path(@forum)) do |f| %>
+  <%- form_for(:topic, :url => forum_topics_path(@forum)) do |f| -%>
     <%= f.text_field :name, :size => 60 %>
     <%= f.submit "Create"[] %>
-  <% end %>
-<% end %>
+  <%- end -%>
+<%- end -%>

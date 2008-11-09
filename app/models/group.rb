@@ -1,6 +1,8 @@
 class Group < ActiveRecord::Base
   include ActivityLogger
   
+  acts_as_taggable
+  
   MAX_NAME = 50
   PRIVACIES = %w(Public Protected)
   
@@ -8,6 +10,8 @@ class Group < ActiveRecord::Base
   has_many :group_users
   has_many :members, :through => :group_users, :source => :user, :conditions => "group_users.state = 'active'"
   has_many :requesting_members, :through => :group_users, :source => :user, :conditions => "group_users.state = 'requesting'"
+  has_one :chatroom, :as => :owner
+  has_one :forum, :as => :owner
     
   validates_presence_of :name, :user
   validates_length_of   :name, :maximum => MAX_NAME
@@ -60,6 +64,10 @@ class Group < ActiveRecord::Base
     Forum.create :title => self.name, :owner => self
     Chatroom.create :title => self.name, :owner => self, :user => self.user
     log_activity
+  end
+  
+  def self.per_page
+    10
   end
   
 end

@@ -31,8 +31,13 @@ class Chatroom < ActiveRecord::Base
   end
   
   def can_join?(current_user)
-    return true if self.public? || self.user == current_user
-    if protected?
+    if self.user == current_user
+      true
+    elsif self.owner
+      self.owner.has_member? current_user
+    elsif self.public?
+      true
+    elsif protected?
       self.chat_users.find_by_state_and_user_id 'active', current_user.id
     else
       false
