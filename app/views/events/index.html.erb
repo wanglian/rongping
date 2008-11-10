@@ -9,7 +9,7 @@
   <ul>
     <%- if logged_in? -%><li><%= link_to "Add new event"[], new_event_path %></li><% end -%>
   </ul>
-  <%= render :partial => 'shared/search', :locals => {:object => "events"[]} -%>
+  <%= render :partial => 'shared/search', :locals => {:object => "events"[]} if search_enabled? -%>
   <%= render :partial => 'shared/activity' -%>
 <% end -%>
 

@@ -27,6 +27,9 @@ class BlogsController < ApplicationController
         @blogs = Blog.paginate_tagged_with(params[:tag], :order => "blogs.created_at DESC", :page => params[:page])
       elsif params[:search]
         @blogs = Blog.search(params[:search], :order => "created_at DESC")
+      elsif params[:user]
+        @user = User.find_by_login(params[:user])
+        @blogs = Blog.paginate_by_user_id(@user.id, :order => "created_at DESC", :page => params[:page])
       else
         @blogs = Blog.paginate :order =>"created_at DESC", :page => params[:page]
       end

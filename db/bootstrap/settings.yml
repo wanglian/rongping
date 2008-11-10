@@ -19,6 +19,27 @@ site_url:
   field_type: 'string'
   value: "localhost"
   
+site_keywords:
+  label: "Site keywords"
+  identifier: 'site_keywords'
+  description: "The keywords to describe your site for the search engines."
+  field_type: 'string'
+  value: "Rongping, community, opensource"
+
+site_description:
+  label: "Site description"
+  identifier: 'site_description'
+  description: "The description of your site for the search engines."
+  field_type: 'string'
+  value: "Rongping is a full-stack community web application written in Ruby/Rails"
+
+front_page:
+  label: "Front page"
+  identifier: 'front_page'
+  description: "The front page of your site (HTML supported)."
+  field_type: 'text'
+  value: "<h2>Rongping community</h2><br><p>You can customize this page.</p>"
+  
 support_name:
   label: "Support name"
   identifier: 'support_name'
@@ -44,5 +65,12 @@ guest_browse_enabled:
   label: "Guest browse enabled"
   identifier: 'guest_browse_enabled'
   description: 'Where guest browsing enabled. 1 - enabled, 0 - disabled'
+  field_type: 'string'
+  value: '1'
+  
+search_enabled:
+  label: "Search enabled"
+  identifier: 'search_enabled'
+  description: 'Whether full-text search enabled. 1 - enabled, 0 - disabled.'
   field_type: 'string'
   value: '1'

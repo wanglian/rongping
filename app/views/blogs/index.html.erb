@@ -16,7 +16,7 @@
     <% if current_user == @user %><li><%= link_to 'Add new blog'[], new_blog_path %></li><% end %>
   </ul>
   
-  <%= render :partial => 'shared/search', :locals => {:object => "blogs"[]} -%>
+  <%= render :partial => 'shared/search', :locals => {:object => "blogs"[]} if search_enabled? -%>
   
   <h2><%= 'Tags'[] %></h2>
   <p>

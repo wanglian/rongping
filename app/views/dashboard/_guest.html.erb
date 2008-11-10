@@ -6,22 +6,4 @@
 	<%= render :partial => 'shared/activity' -%>
 <%- end -%>
 
-<h2>What's Rongping?</h2>
-<p>Rongping is a full-stack community web application written in Ruby/Rails.</p>
-<p>Rongping is based on <a href="http://github.com/ariejan/baseapp/tree/master">BaseApp</a>, a default Ruby on Rails project that kick-starts your next Rails project.</p>
-<p>Rongping is an opensource project hosted on <a href="http://github.com">github</a></p>
-<p><a href="http://github.com/wanglian/rongping">Current version</a>(trunk).</p>
-
-<h2>Features</h2>
-<ul>
-  <li>Blog</li>
-  <li>File sharing</li>
-  <li>Group chat</li>
-  <li>Forum</li>
-  <li>Event calendar</li>
-  <li>Messages</li>
-  <li>Activity feeds</li>
-  <li>I18n support</li>
-  <li>System config: enable/disable guest_browse/registration</li>
-  
-</ul>
+<%= sanitize s(:front_page)%>

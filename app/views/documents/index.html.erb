@@ -7,7 +7,7 @@
   <ul>
     <%- if logged_in? -%><li><%= link_to 'Add new document'[], new_document_path %></li><% end -%>
   </ul>
-  <%= render :partial => 'shared/search', :locals => {:object => "documents"[]} -%>
+  <%= render :partial => 'shared/search', :locals => {:object => "documents"[]} if search_enabled? -%>
   <%= render :partial => 'shared/activity' -%>
 <%- end -%>
 

@@ -4,7 +4,7 @@
 <%- end -%>
 
 <%- content_for :sidebar do -%>
-  <%= render :partial => 'shared/search', :locals => {:object => "groups"[]} -%>
+  <%= render :partial => 'shared/search', :locals => {:object => "groups"[]} if search_enabled? -%>
   <%= render :partial => 'shared/activity' -%>
 <%- end -%>
 

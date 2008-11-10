@@ -16,7 +16,11 @@ class ApplicationController < ActionController::Base
   def registration_enabled?
     s(:registration_enabled) == 1
   end
-  helper_method :s, :registration_enabled?
+  def search_enabled?
+    s(:search_enabled) == 1
+  end
+  
+  helper_method :s, :registration_enabled?, :search_enabled?
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store

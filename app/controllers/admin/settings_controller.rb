@@ -14,6 +14,7 @@ class Admin::SettingsController < ApplicationController
       when 'string':        input[1].to_s
       when 'integer':       input[1].to_i
       when 'float':         input[1].to_f
+      when 'text':          input[1].to_s
       end
       
       setting.update_attribute(:value, value)
