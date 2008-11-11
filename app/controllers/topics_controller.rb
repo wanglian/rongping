@@ -104,7 +104,7 @@ class TopicsController < ApplicationController
   
   def can_view
     if @forum.owner
-      redirect_to forums_url unless @forum.owner.has_member?(current_user)
+      redirect_to forums_url unless @forum.owner.public? || @forum.owner.has_member?(current_user) # temp
     end
   end
 end
