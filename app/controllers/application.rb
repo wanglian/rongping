@@ -19,8 +19,11 @@ class ApplicationController < ActionController::Base
   def search_enabled?
     s(:search_enabled) == 1
   end
+  def current_language
+    cookies[:lang] || Gibberish.current_language
+  end
   
-  helper_method :s, :registration_enabled?, :search_enabled?
+  helper_method :s, :registration_enabled?, :search_enabled?, :current_language
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
@@ -30,7 +33,8 @@ class ApplicationController < ActionController::Base
   
   private
   def set_language
-    Gibberish.current_language = cookies[:lang] || 'en-US'
+    cookies[:lang] ||= s(:default_language)
+    Gibberish.current_language = cookies[:lang] || s(:default_language)
     WillPaginate::ViewHelpers.pagination_options[:prev_label] = '&laquo; Previous'[:prev_page]
     WillPaginate::ViewHelpers.pagination_options[:next_label] = 'Next &raquo;'[:next_page]
   end

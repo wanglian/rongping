@@ -215,7 +215,7 @@ class UsersController < ApplicationController
   end
   
   def choose_lang
-    cookies[:lang] = params[:lang] == 'en-US' ? 'en-US' : 'zh-CN'
+    cookies[:lang] = params[:lang] || s(:default_language)
     render :nothing => true
   end
   

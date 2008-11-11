@@ -74,3 +74,10 @@ search_enabled:
   description: 'Whether full-text search enabled. 1 - enabled, 0 - disabled.'
   field_type: 'string'
   value: '1'
+  
+default_language:
+  label: "Default language"
+  identifier: 'default_language'
+  description: 'Default language. en-US/zh-CN'
+  field_type: 'string'
+  value: 'zh-CN'

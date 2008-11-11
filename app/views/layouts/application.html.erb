@@ -56,7 +56,7 @@
   <div id="footer">
     <%= s(:site_name) %> 
 	  © <%= s(:company_name) %>
-	  [<% if cookies[:lang] == 'zh-CN' -%>
+	  [<% if current_language == 'zh-CN' -%>
       <%= link_to_remote 'English', :url => choose_lang_path(:lang => 'en-US'), :success => "window.location.reload();", :method => :put %> |
       简体中文
     <% else -%>
