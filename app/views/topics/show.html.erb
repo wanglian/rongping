@@ -15,12 +15,14 @@
 </table>
 
 <div style="margin-left:80px;">
-<%- if logged_in? -%>
+<%- if can_reply?(@forum) -%>
     <%- form_remote_tag :url => add_comment_forum_topic_path(@forum, @topic), :html => {:id => 'comment_form'} do -%>
     	<%= text_area_tag :comment, nil %><br/>
     	<%= submit_tag 'Reply'[] %>
     <%- end -%>
+<%- elsif @forum.owner -%>
+  <div id="notice"><%= link_to "Join"[], join_group_path(@forum.owner), :method => :put %> <%= 'to reply'[] %>.</div>
 <%- else -%>
-  <div id="notice"><%= link_to "Log in"[], login_url %> to reply.</div>
+  <div id="notice"><%= link_to "Log in"[], login_path %> <%= 'to reply'[] %>.</div>
 <%- end -%>
 </div>

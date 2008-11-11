@@ -98,6 +98,7 @@ replies: 回复
 a_topic: 一个话题
 replied_to: 回复
 back_to_object: "回到 {object}"
+to_reply: 才可回复
 
 # activity
 activity: 动态

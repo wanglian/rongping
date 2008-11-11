@@ -2,8 +2,9 @@ class TopicsController < ApplicationController
   before_filter :login_required, :only => [:index, :show] unless guest_browse_enabled?
   before_filter :login_required, :except => [:index, :show]
   before_filter :find_forum
-  before_filter :can_edit, :only => [:destroy]
+  before_filter :can_edit, :only => [:destroy, :delete_comment]
   before_filter :can_view, :only => [:index, :show]
+  before_filter :can_reply, :only => [:add_comment]
   
   # GET /topics
   # GET /topics.xml
@@ -107,4 +108,11 @@ class TopicsController < ApplicationController
       redirect_to forums_url unless @forum.owner.public? || @forum.owner.has_member?(current_user) # temp
     end
   end
+  
+  def can_reply
+    if @forum.owner
+      redirect_to forums_url unless @forum.owner.has_member?(current_user) # temp
+    end
+  end
+  
 end
