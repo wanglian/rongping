@@ -5,7 +5,7 @@
 <% content_for :sidebar do -%>
   <ul>
     <%- if @forum.owner -%><li><%= link_to_owner @forum.owner %></li><%- end -%>
-    <%- if logged_in? -%><li><%= link_to "Reply"[], "javascript:$('comment').focus();" %></li><%- end -%>
+    <%- if can_reply?(@forum) -%><li><%= link_to "Reply"[], "javascript:$('comment').focus();" %></li><%- end -%>
   </ul>
   <%= render :partial => 'shared/activity' -%>
 <% end -%>
