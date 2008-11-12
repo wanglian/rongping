@@ -134,7 +134,7 @@ commented: 评论
 a_blog: 一篇日志
 tag: 标签
 tags: 标签
-separate_tags_by_commas: "多个标签以逗号分隔"
+separate_tags_by_commas: "多个标签以英文逗号分隔"
 no_tags: 没有
 saving: "保存..."
 subscribe_blog: "订阅{blog}"
