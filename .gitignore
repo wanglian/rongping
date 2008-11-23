@@ -13,4 +13,4 @@ doc/api
 .svn
 Capfile
 config/deploy.rb
-mail.rb
+mailer.yml

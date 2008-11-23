@@ -15,12 +15,12 @@
   <%= form.error_messages %>
   <p>
     <label for="message_recepient" ><%= 'Recipient'[] %>:</label><br />
-    <%= form.text_field :recipient, :size => 40, :value => @message.recipient, :readonly => true %>
+    <%= form.text_field :recipient, :value => @message.recipient, :readonly => true %>
   </p>
 
   <p>
     <label for="message_subject" ><%= 'Subject'[] %>:</label><br />
-    <%= form.text_field :subject, :size => 40 %>
+    <%= form.text_field :subject %>
   </p>
   
   <p>

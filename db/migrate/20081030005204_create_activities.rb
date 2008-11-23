@@ -8,8 +8,7 @@ class CreateActivities < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :activities, :item_id
-    add_index :activities, :item_type
+    add_index :activities, [:item_id, :item_type]
   end
 
   def self.down

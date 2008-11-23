@@ -5,7 +5,8 @@ body {
 	margin: 0;
 	padding: 0;
 	font-size: 0.8em;
-	min-width: 900px;
+	width: 950px;
+	margin: auto;
 }
 a:link, a:visited {
 	color: #0054ff;
@@ -28,7 +29,7 @@ ul {
 #header {
 	background-color: #204ca0;
 	margin: 0;
-	padding: 0.5em 1em 0 3em;
+	padding: 0.5em 1em 0;
 }
 #header h1 {
 	font-weight: normal;
@@ -98,7 +99,7 @@ ul {
 }
 /** Main body */
 #main {
-	margin: 2em 0 0 3em;
+	margin: 2em 0 0;
 }
 /** Left column */
 #left, #right {
@@ -226,7 +227,7 @@ div.progressBar div.background {
 /** Footer */
 #footer {
 	clear: both;
-	padding: 1em 4em;
+	padding: 1em;
 /*	color: #b5aea1;*/
 	font-size: 0.9em;
 }

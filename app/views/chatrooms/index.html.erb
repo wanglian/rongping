@@ -3,6 +3,9 @@
 <%- end -%>
 
 <%- content_for :sidebar do -%>
+  <ul>
+    <%- if logged_in? -%><li><%= link_to 'Add new chatroom'[], new_chatroom_path %></li><%- end -%>
+  </ul>
   <%= render :partial => 'shared/activity' -%>
 <%- end -%>
 

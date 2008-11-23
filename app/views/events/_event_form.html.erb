@@ -1,16 +1,26 @@
 <%= error_messages_for :event %>
 
 <% form_for(@event) do |f| %>
-  <table class="overview">
-    <%= cell f.label('Title'[]), f.text_field(:title) %>
-    <%= cell f.label('Description'[]), f.text_area(:description) %>
-    <%= cell f.label('Start time'[]), calendar_date_select_tag("event[start_time]", @event.start_time||Time.now, :time => true, :size => 22, :valid_date_check => "date >= (new Date()).stripTime()") %>
-    <%= cell f.label('End time'[]), calendar_date_select_tag("event[end_time]", @event.end_time, :time => true, :mixed => true, :size => 22, :valid_date_check => "date >= (new Date()).stripTime()") %>
-    <tr><td></td><td>
-      <%= f.submit @event.new_record? ? "Create"[] : "Update"[] %>
-      <%= button_to_function 'Cancel'[], "history.back()"%>
-    </td></tr>
-  </table>
+  <p>
+    <%= f.label "Title"[] %><br />
+    <%= f.text_field(:title) %>
+  </p>
+  <p>
+    <%= f.label('Description'[]) %><br />
+    <%= f.text_area(:description) %>
+  </p>
+  <p>
+    <%= f.label('Start time'[]) %><br />
+    <%= calendar_date_select_tag("event[start_time]", @event.start_time||Time.now, :time => true, :size => 22, :valid_date_check => "date >= (new Date()).stripTime()") %>
+  </p>
+  <p>
+    <%= f.label('End time'[]) %><br />
+    <%= calendar_date_select_tag("event[end_time]", @event.end_time, :time => true, :mixed => true, :size => 22, :valid_date_check => "date >= (new Date()).stripTime()") %>
+  </p>
+  <p>
+    <%= f.submit @event.new_record? ? "Create"[] : "Update"[] %>
+    <%= button_to_function 'Cancel'[], "history.back()"%>
+  </p>
   
 <% end %>
 

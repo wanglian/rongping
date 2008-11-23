@@ -10,6 +10,8 @@ class CreateForums < ActiveRecord::Migration
     Forum.create :title => 'Forum'
     
     add_column :topics, :forum_id, :integer, :default => 1
+    
+    add_index :topics, :forum_id
   end
 
   def self.down

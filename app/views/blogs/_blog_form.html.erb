@@ -9,7 +9,7 @@
   </p>
   <p>
     <%= f.label "Tags"[] %>(<%= 'Separate tags by commas'[] %>)<br />
-    <%= f.text_field :tag_list, :size => 60 %>
+    <%= f.text_field :tag_list %>
   </p>
   <p>
     <%= f.submit @blog.new_record? ? "Create"[] : "Update"[] %>
