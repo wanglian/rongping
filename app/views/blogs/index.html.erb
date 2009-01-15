@@ -6,7 +6,13 @@
 
 <%- content_for :header do -%>
   <div style="float:right;"><%= link_to image_tag('icons/feed.gif'), rss_url, :title => "Subscribe to {blog}"[:subscribe_blog, "[#{s(:site_name)}] #{blog_title(@user)}"] %></div>
-	<%= blog_title @user %>
+  <%- if !logged_in? -%>
+    <%= 'Blog'[] %>
+	<%- elsif current_user == @user -%>
+    <%= link_to 'All blogs'[], blogs_path %> | <%= 'My blogs'[] %>
+  <%- else -%>
+    <%= 'All blogs'[] %> | <%= link_to 'My blogs'[], blogs_path(:user => current_user.login) %>
+  <%- end -%>
 	<%- if params[:tag] -%>- <%= params[:tag] %><%- end -%>
 	<%= search_title params[:search] %>
 <%- end -%>
