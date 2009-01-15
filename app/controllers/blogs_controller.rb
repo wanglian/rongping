@@ -13,15 +13,17 @@ class BlogsController < ApplicationController
       @blogs = Blog.search(params[:search], :order => "created_at DESC")
       @tags = Blog.tag_counts
     elsif logged_in?
-      @user = User.find_by_login(params[:user]) || current_user
       if params[:tag]
-        @blogs = Blog.paginate_tagged_with(params[:tag], :conditions => ["blogs.user_id = ?", @user.id], :order => "blogs.created_at DESC", :page => params[:page])
+        @blogs = Blog.paginate_tagged_with(params[:tag], :order => "blogs.created_at DESC", :page => params[:page])
       elsif params[:search]
-        @blogs = Blog.search params[:search], :conditions => {:user_id => @user.id}, :order => "created_at DESC"
+        @blogs = Blog.search params[:search], :order => "created_at DESC"
+      elsif params[:user]
+        @user = User.find_by_login(params[:user])
+        @blogs = @user ? Blog.paginate_by_user_id(@user.id, :order => "created_at DESC", :page => params[:page]) : [].paginate
       else
-        @blogs = Blog.paginate_by_user_id(@user.id, :order => "created_at DESC", :page => params[:page])
+        @blogs = Blog.paginate :order => "created_at DESC", :page => params[:page]
       end
-      @tags = Blog.tag_counts :conditions => ["blogs.user_id = ?", @user.id]
+      @tags = Blog.tag_counts
     else
       if params[:tag] 
         @blogs = Blog.paginate_tagged_with(params[:tag], :order => "blogs.created_at DESC", :page => params[:page])
