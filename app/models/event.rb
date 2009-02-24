@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   include ActivityLogger
+  has_many :activities, :as => :item, :dependent => :destroy
 
   MAX_TITLE_LENGTH = 40
 

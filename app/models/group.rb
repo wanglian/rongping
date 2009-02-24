@@ -1,5 +1,6 @@
 class Group < ActiveRecord::Base
   include ActivityLogger
+  has_many :activities, :as => :item, :dependent => :destroy
   
   acts_as_taggable
   

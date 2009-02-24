@@ -1,5 +1,6 @@
 class Topic < ActiveRecord::Base
   include ActivityLogger
+  has_many :activities, :as => :item, :dependent => :destroy
   
   MAX_NAME = 100
   NUM_RECENT = 6
