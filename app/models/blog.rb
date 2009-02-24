@@ -1,5 +1,6 @@
 class Blog < ActiveRecord::Base
   include ActivityLogger
+  has_many :activities, :as => :item, :dependent => :destroy
   
   MAX_NAME = 100
   

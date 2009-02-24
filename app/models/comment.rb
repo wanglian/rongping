@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
   include ActivityLogger
+  has_many :activities, :as => :item, :dependent => :destroy
   
   belongs_to :commentable, :polymorphic => true
   
